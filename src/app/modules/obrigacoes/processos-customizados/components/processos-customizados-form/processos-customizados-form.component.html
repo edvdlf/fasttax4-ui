@@ -1,12 +1,15 @@
 <div>
+  <p-card header="Processo Customizado" styleClass="shadow-3  text-orange-500">
   <form [formGroup]="adicionarProcessoCustomizadoForm" (ngSubmit)="handleSubmitAdicionarProcessoCustomizado()" >
-    <div class="card">
       <p-toolbar>
         <div class="p-toolbar-group-star">
+          <h3>Criar</h3>
         </div>
         <div class="p-toolbar-group-end">
-            <p-button label="Salvar" icon="pi pi-save" severity="warning"
+            <p-button icon="pi pi-save" severity="warning"
             type="submit"
+            pTooltip="Clique para salvar o novo customizado"
+            tooltipPosition="top"
             ></p-button>
         </div>
       </p-toolbar>
@@ -31,14 +34,14 @@
           <input id="txtIdentificador" formControlName="identificador" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full ml-1">
         </div>
 
-        <div class="field col-12 md:col-5">
+        <div class="field col-12 md:col-6">
           <label for="lblDescricao" class="ml-1">Descrição:</label>
-          <input id="txtDescricao" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full ml-1">
+          <input id="txtDescricao" formControlName="descricao" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full ml-1">
         </div>
 
-        <div class="field col-11">
+        <div class="field col-12">
           <label for="lblPlQsl" class="ml-1">Instrução Pl-SQL:</label>
-          <textarea id="txtPlSql" type="text" rows="4" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full ml-1 mr-1"></textarea>
+          <textarea id="txtPlSql" formControlName="plsql" type="text" rows="4" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full ml-1 mr-1"></textarea>
         </div>
       </div>
       <div class="formgrid grid">
@@ -166,6 +169,15 @@
           </div>
 
       </div>
+  </form>
+</p-card>
+</div>
+
+<!--div *ngIf="processoCustomizadoAction?.event?.action===editarProcessoCustomizadoAction">
+  <form [formGroup]="editarProcessoCustomizadoForm" (ngSubmit)="handleSubmitEditarProcessoCustomizado()">
+    <div class="card flex flex-column md:flex-column gap-3">
+
     </div>
   </form>
-</div>
+</div-->
+

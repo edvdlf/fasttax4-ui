@@ -26,8 +26,8 @@ export class TarefasAutomatizadasTableComponent {
 
   public adicionarTarefaAutomatizadaEvent = TarefaAutomatizadaEvent.ADICIONAR_TAREFA_AUTOMATIZADA_EVENT;
   public editarTarefaAutomatizadaEvent = TarefaAutomatizadaEvent.EDITAR_TAREFA_AUTOMATIZADA_EVENT;
-  public excluirTarefaAutomatizadaEvent = TarefaAutomatizadaEvent.EXCLUI_TAREFA_AUTOMATIZADA_EVENT;
-  public filtrarTarefaAutomatizadaEvent = TarefaAutomatizadaEvent.FILTRAR_TAREFA_AUTOMATIZADA_EVENT;
+  //public excluirTarefaAutomatizadaEvent = TarefaAutomatizadaEvent.EXCLUI_TAREFA_AUTOMATIZADA_EVENT;
+  //public filtrarTarefaAutomatizadaEvent = TarefaAutomatizadaEvent.FILTRAR_TAREFA_AUTOMATIZADA_EVENT;
 
   tarefas: any[] = [{ chave: '', valor: '' }];
   public tarefasAutomatizadasDatas: Array<TarefaAutomatizadaResponse> = [];
@@ -122,8 +122,6 @@ export class TarefasAutomatizadasTableComponent {
   }
 
   handleDeleteTarefaAutomatizadaEvent(id: string, periodo: string): void {
-    console.log(id)
-    console.log(periodo)
     if (id && periodo !== '') {
        this.deleteTarefaAutomatizadaEvent.emit({id, periodo});
     }
@@ -160,7 +158,7 @@ export class TarefasAutomatizadasTableComponent {
       });
   }
 
-  
+
 
   getStatus(status: string) {
     switch (status) {

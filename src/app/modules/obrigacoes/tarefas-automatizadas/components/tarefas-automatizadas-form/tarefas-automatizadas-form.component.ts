@@ -183,7 +183,7 @@ SubmitTarefaAutomatizada(tarefaAutomatizadaRequest:TarefaAutomatizadaRequest):vo
        },
     })
     this.adicionarTarefaForm.reset();
-  }
+}
 
   handleSubmitEditarTarefa():void{
 

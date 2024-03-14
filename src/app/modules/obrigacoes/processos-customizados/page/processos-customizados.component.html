@@ -7,8 +7,9 @@
     <app-navbar (toggleSidebarForMe)="sideBarToggler()"></app-navbar>
     <app-processoscustomizados-table [processosCustomizados]="processoCustomizadoDatas"
     (processosCustomizadosEvent)="handleProcessoCustomizadoAction($event)"
-    (deleteProcessosCustomizadosEvent)="handleDeleteProcessoCustomizadoAction($event)"
-    ></app-processoscustomizados-table>
+    (deleteProcessoCustomizadoEvent)="handleDeleteProcessoCustomizadoAction($event)"
+    >
+  </app-processoscustomizados-table>
 
     <router-outlet></router-outlet>
   </mat-drawer-content>

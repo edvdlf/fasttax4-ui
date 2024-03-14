@@ -25,6 +25,7 @@ export class SidebarComponent {
           label: 'Dashboard',
           icon: 'pi pi-fw pi-chart-pie',
           routerLink:"/dashboard",
+        
         },
         {
             label: 'Rotinas diarias',

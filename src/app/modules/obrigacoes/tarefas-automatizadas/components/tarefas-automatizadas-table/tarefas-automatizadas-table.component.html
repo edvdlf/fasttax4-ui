@@ -80,7 +80,6 @@
         #funcionalidadesTable
         [value]="tarefasAutomatizadas"
         [(selection)]="tarefasAutomatizadaSelected"
-        styleClass="p-datatable-sm"
         [rows]="20"
         [paginator]="true"
         [globalFilterFields]="['grupo', 'id']"
@@ -238,9 +237,14 @@
               </div>
             </th>
             <th>
-
+              <div class="flex justify-content-between align-items-center">
+                Editar
+              </div>
             </th>
             <th>
+              <div class="flex justify-content-between align-items-center">
+                Excluir
+              </div>
             </th>
           </tr>
         </ng-template>
@@ -254,7 +258,6 @@
             <td style="text-align: left">{{ dados.obrigacao }}</td>
             <td style="text-align: left">{{ dados.estabelecimento }}</td>
             <td style="text-align: left">{{ dados.empresa }}</td>
-            <!--td style="text-align: left">{{ dados.descricao }}</td-->
             <td [pTooltip]="dados?.descricao" tooltipPosition="top" style="text-align: left">
               {{ dados?.descricao | shorten : 25 }}
             </td>

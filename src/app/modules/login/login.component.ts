@@ -55,7 +55,7 @@ export class LoginComponent {
               this.loginForm.reset()
               this.router.navigate(['/home'])
               this.messageService.add({
-              severity:'sucess',
+              severity:'success',
               summary: 'Sucesso',
               detail:`Bem vindo de volta ${response?.name}`,
               life:2000,
@@ -73,7 +73,7 @@ export class LoginComponent {
          }
       })
     }
-   
+
   }
 
   onSubmitSignupForm(): void {
@@ -87,7 +87,7 @@ export class LoginComponent {
              this.signupForm.reset();
               this.loginCard=true;
               this.messageService.add({
-                severity:'sucesso',
+                severity:'success',
                 summary: 'Sucesso',
                 detail:`Usuario criado com sucesso!`,
                 life:2000,

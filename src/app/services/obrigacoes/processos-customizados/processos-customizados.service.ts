@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
-import { ProcessoCustomizadoDeleteRequest } from 'src/app/models/interfaces/processoscustomizados/request/processoCustomizadoRequest';
+import { ProcessoCustomizadoCreateRequest } from 'src/app/models/interfaces/processoscustomizados/request/processoCustomizadoCreateRequest';
+
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -26,11 +27,18 @@ export class ProcessosCustomizadosService {
     return this.http.get<Array<ProcessoCustomizadoResponse>>(`${this.API_URL}/ProcessosCustomizadosMockers`)
   }
 
-  editarTarefaAutomatizada(id: string,requestDatas: ProcessoCustomizadoResponse ): Observable<ProcessoCustomizadoDeleteRequest> {
-    return this.http.put<ProcessoCustomizadoDeleteRequest>(`${this.API_URL}/ProcessosCustomizadosMockers/${id}`, requestDatas);
+  adicionarProcessosCustomizado(
+    requestDatas: ProcessoCustomizadoCreateRequest): Observable<ProcessoCustomizadoResponse> {
+    return this.http.post<ProcessoCustomizadoResponse>(
+      `${this.API_URL}/ProcessosCustomizadosMockers`, requestDatas
+    );
   }
 
-  deleteTarefaAutomatizada(id: string): Observable<ProcessoCustomizadoDeleteRequest> {
-    return this.http.delete<ProcessoCustomizadoDeleteRequest>(`${this.API_URL}/TarefasAutomatizadasMockers/${id}`);
-  }
+  //editarTarefaAutomatizada(id: string,requestDatas: ProcessoCustomizadoResponse ): Observable<ProcessoCustomizadoDeleteRequest> {
+    //return this.http.put<ProcessoCustomizadoDeleteRequest>(`${this.API_URL}/ProcessosCustomizadosMockers/${id}`, requestDatas);
+  //}
+
+  //deleteTarefaAutomatizada(id: string): Observable<ProcessoCustomizadoDeleteRequest> {
+    //return this.http.delete<ProcessoCustomizadoDeleteRequest>(`${this.API_URL}/TarefasAutomatizadasMockers/${id}`);
+  //}
 }

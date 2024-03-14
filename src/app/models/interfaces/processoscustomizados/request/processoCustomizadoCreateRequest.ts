@@ -1,5 +1,5 @@
-export interface ProcessoCustomizadoResponse {
-  id: string;
+export interface ProcessoCustomizadoCreateRequest {
+
   periodo: string;
   identificador: string;
   descricao: string;
@@ -9,4 +9,5 @@ export interface ProcessoCustomizadoResponse {
   empresa:string;
   uf:string;
   plsql:string;
+
 }

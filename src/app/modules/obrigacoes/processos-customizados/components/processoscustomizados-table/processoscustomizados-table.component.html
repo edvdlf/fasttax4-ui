@@ -6,50 +6,30 @@
     <div class="formgrid grid">
       <div class="field col-12">
       <p-toolbar>
-        <div class="p-toolbar-group-star"></div>
-        <div class="p-toolbar-group-end">
-          <p-button icon="pi pi-plus" class="mr-2" (onClick)="handleProcessoCustomizadoEvent(adicionarProcessoCustomizadoEvent)"></p-button>
-          <p-button icon="pi pi-file-excel" class="mr-2"></p-button>
-        </div>
-      </p-toolbar>
-      <p-toolbar>
-        <div class="p-toolbar-group-start">
-          <label for="periodos" class="ml-3 mr-3">Periodos: </label>
-            <p-dropdown
-            [options]="periodos"
-             optionLabel="name"
-             [filter]="true"
-             filterBy="name"
-             [showClear]="true"
-             formControlName="periodo"
-             placeholder="Periodos...">
-                <ng-template pTemplate="selectedItem" let-selectedOption>
-                    <div class="flex align-items-center gap-2">
-                        <div>{{ selectedOption.name }}</div>
-                    </div>
-                </ng-template>
-                <ng-template let-periodo pTemplate="item">
-                    <div class="flex align-items-center gap-2">
-                        <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + periodo.code.toLowerCase()" style="width: 18px"/>
-                        <div>{{ periodo.name }}</div>
-                    </div>
-                </ng-template>
-            </p-dropdown>
-
-
+        <div class="p-toolbar-group-star">
+          <h3>Lista</h3>
         </div>
         <div class="p-toolbar-group-end">
-          <div class="field col-4">
-            <p-button icon="pi pi-sync" pTooltip="Atualiza a listagem conforme periodo e obrigações selecionados" tooltipPosition="top" severity="warning"
-            type="submit"
-            ></p-button>
-          </div>
+          <p-button
+           icon="pi pi-plus"
+           class="mr-2"
+           pTooltip="Criar novo processo customizado"
+           tooltipPosition="top"
+           (onClick)="handleProcessoCustomizadoEvent(adicionarProcessoCustomizadoEvent)"
+           ></p-button>
+          <p-button
+           icon="pi pi-file-excel"
+           pTooltip="Exportar para excel"
+           tooltipPosition="top"
+            class="mr-2">
+          </p-button>
         </div>
       </p-toolbar>
+
       </div>
     </div>
       <p-table
-        #funcionalidadesTable
+        #processosCustomizadosTable
         [value]="processosCustomizados"
         styleClass="p-datatable-sm"
         [rows]="20"
@@ -57,6 +37,7 @@
         [responsive]="true"
         [globalFilterFields]="['grupo', 'id']"
         [tableStyle]="{ 'min-width': '50rem' }"
+        styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm"
         [rowHover]="true"
         [showCurrentPageReport]="true"
         dataKey="id"
@@ -205,18 +186,17 @@
             <td style="text-align: left">{{ dados.periodo }}</td>
             <td style="text-align: left">{{ dados.estabelecimento }}</td>
             <td style="text-align: left">{{ dados.empresa }}</td>
-            <td style="text-align: left">{{ dados.type }}</td>
             <td
               [pTooltip]="dados.descricao" tooltipPosition="top"
               style="text-align: left"
-            >{{ dados.description |shorten :25 }}</td>
+            >{{ dados.descricao |shorten :25 }}</td>
             <td style="text-align: left">{{ dados.status }}</td>
 
             <td style="text-align: center">
               <p-button
                 icon="pi pi-file-edit"
                 styleClass="p-button-rounded p-button-secondary p-button-text"
-                pTooltip="Editar" tooltipPosition="top"
+                (onClick)="handleProcessoCustomizadoEvent(editarProcessoCustomizadoEvent, dados.id)"
               >
               </p-button>
             </td>
@@ -224,9 +204,10 @@
               <p-button
                 icon="pi pi-trash"
                 styleClass="p-button-rounded p-button-secondary p-button-text"
-                pTooltip="Excluir" tooltipPosition="top"
+                (onClick)="handleDeleteProcessoCustomizadoEvent(dados.id, dados.periodo)"
               >
               </p-button>
+
             </td>
           </tr>
         </ng-template>

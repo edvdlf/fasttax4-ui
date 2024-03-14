@@ -7,6 +7,7 @@ import { EventAction } from 'src/app/models/event/EventAction';
 import { ProcessoCustomizadoResponse } from 'src/app/models/interfaces/processoscustomizados/response/processoCustomizadoResponse';
 import { ProcessosCustomizadosService } from 'src/app/services/obrigacoes/processos-customizados/processos-customizados.service';
 import { ProcessosCustomizadosFormComponent } from '../components/processos-customizados-form/processos-customizados-form.component';
+import { DeleteProcessoCustomizadoAction } from 'src/app/models/interfaces/processoscustomizados/event/deleteProcessoCustomizadoAction';
 
 @Component({
   selector: 'app-processos-customizados',
@@ -66,7 +67,7 @@ export class ProcessosCustomizadosComponent {
   handleProcessoCustomizadoAction(event: EventAction): void {
     if (event) {
       this.ref = this.dialogService.open(ProcessosCustomizadosFormComponent, {
-        header: event?.action,
+        //header: event?.action,
         width: '80%',
         contentStyle: { overflow: 'auto' },
         baseZIndex: 10000,
@@ -82,11 +83,13 @@ export class ProcessosCustomizadosComponent {
     }
   }
 
-  handleDeleteProcessoCustomizadoAction(event: {id:string, periodo:string}): void {
-    if (event) {
+  handleDeleteProcessoCustomizadoAction(event:{id:string, periodo:string}): void {
+
+    if (event.id ) {
+        ///alert(event.periodo)
         this.confirmationService.confirm({
-        message: `Confirma a exclusão da tarefa automatizada: Periodo :"
-         ${event?.periodo}`,
+        message: `Confirma a exclusão do processo customizado"
+         ${event?.id}`,
         header: "Confirmação de Exclusão",
         icon: 'pi pi-exclamation-triangle',
         acceptLabel: 'Sim',
@@ -99,31 +102,32 @@ export class ProcessosCustomizadosComponent {
   deleteProcessoCustomizado(id: string) {
     if (id) {
       this.processosCustomizadosService
-      .deleteTarefaAutomatizada(id)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-       next: (response) => {
-       this.getProcessosCustomizadosDatas();
-            this.messageService.add({
-            severity: 'success',
-            summary: 'Sucesso',
-            detail: 'Processo customizado excluído com sucesso!',
-            life: 3000,
-        });
-        },
-          error: (err) => {
-          console.log(err);
-          this.getProcessosCustomizadosDatas();
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Erro',
-            detail: 'Não foi possível excluir o processo customizado!',
-            life: 3000,
-          });
-          },
-        });
 
-      this.getProcessosCustomizadosDatas();
+      //.deleteTarefaAutomatizada(id)
+      //.pipe(takeUntil(this.destroy$))
+      //.subscribe({
+       //next: (response) => {
+       //this.getProcessosCustomizadosDatas();
+            //this.messageService.add({
+            //severity: 'success',
+            //summary: 'Sucesso',
+            //detail: 'Processo customizado excluído com sucesso!',
+            //life: 3000,
+        //});
+        //},
+          //error: (err) => {
+          //console.log(err);
+          //this.getProcessosCustomizadosDatas();
+          //this.messageService.add({
+           // severity: 'error',
+            //summary: 'Erro',
+            //detail: 'Não foi possível excluir o processo customizado!',
+            //life: 3000,
+          //});
+          //},
+        //});
+
+      //this.getProcessosCustomizadosDatas();
     }
   }
 
