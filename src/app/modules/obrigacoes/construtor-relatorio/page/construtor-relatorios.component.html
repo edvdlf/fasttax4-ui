@@ -1,0 +1,10 @@
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="sideBarOpen">
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-navbar (toggleSidebarForMe)="sideBarToggler()"></app-navbar>
+      <app-construtor-relatorios-table></app-construtor-relatorios-table>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

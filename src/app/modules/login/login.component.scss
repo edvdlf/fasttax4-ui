@@ -1,0 +1,140 @@
+.grid {
+  background-image: url("../../../assets/imgfundo.png") !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vmin;
+}
+
+@media screen and (min-width: 1400px) {
+  .grid {
+    background-position: top;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .grid {
+    height: 100vmax;
+  }
+}
+
+
+
+.login-form {
+  width: 450px;
+  height: 45vh;
+  min-height: 390px;
+  padding: 2rem 2rem;
+  border-radius: 0.5rem;
+  background: #FFFFFF;
+
+  transition: 0.2s width ease-in-out;
+
+  box-shadow: 0px 0px 18px 1px rgba(0,0,0,0.33);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  img {
+    transition: 0.2s width ease-in-out;
+  }
+
+  h1 {
+    margin: 1rem 0;
+    font-size: 1.25rem;
+    font-weight: 300;
+  }
+
+  form {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    input {
+      height: 3rem;
+      border: 2px solid transparent;
+      border-radius: 0.5rem;
+      background: red;
+      padding: 0 1rem;
+
+      transition: 0.2s box-shadow, 0.2s border;
+
+      & + input {
+        margin-top: 1rem;
+      }
+
+      &:focus {
+        outline: none !important;
+        border: 2px solid #E1742E;
+        box-shadow: 0px 0px 11px -3px #E1742E;
+      }
+    }
+
+    .login-btn {
+      margin-top: 2rem;
+      height: 3rem;
+      border: 0;
+      border-radius: 3rem;
+      background: #E1742E;
+      color: #FFFFFF;
+      font-weight: 700;
+
+      transition: filter 0.3s;
+
+      position: relative;
+
+      mat-spinner {
+        position: absolute;
+
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: auto;
+        margin-bottom: auto;
+
+        ::ng-deep circle {
+          stroke: #141312;
+        }
+      }
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+
+      &:disabled {
+        filter: opacity(0.5);
+
+        pointer-events: none;
+      }
+
+      &::placeholder {
+        color: #A8A8B3;
+      }
+    }
+  }
+}
+:host ::ng-deep .p-button{
+  font-size:0.8em;
+  height: 2.5rem;
+  color: #ffffff;
+  background: #E1742E;
+  border: 1px solid #fd7e14;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 6px;
+
+}
+
+
+
+
+
+
+

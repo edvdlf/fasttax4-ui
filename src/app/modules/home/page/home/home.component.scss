@@ -1,0 +1,57 @@
+@import "../../../login/login.component.scss";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+mat-drawer {
+  width: 260px;
+}
+mat-drawer-container {
+  height: 100%;
+}
+
+mat-drawer {
+  background: #E1742E;
+}
+
+.page {
+  color: white;
+  padding: 0 1rem;
+  background: #f1f5f9;
+  &__box {
+    min-height: 100px;
+    background: #E1742E;
+    margin: 0 -1rem;
+    font-size: 26px;
+  }
+  &__content {
+    min-height: calc(100vh - 178px);
+    border-radius: 10px;
+    margin-top: -2rem;
+    background: white;
+    color: black;
+    font-size: 2rem;
+    &-data {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+th, td {
+  text-align: center;
+  font-size: 0.8em;
+}
+
+:host ::ng-deep .p-button{
+  font-size:0.8em;
+  height: 2.5rem;
+}
+
+:host ::ng-deep .p-dropdown{
+  font-size:0.8em;
+  height: 2.5rem;
+}

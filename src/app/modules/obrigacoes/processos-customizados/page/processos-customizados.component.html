@@ -1,0 +1,15 @@
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="sideBarOpen">
+    <!-- <mat-drawer mode="side" opened="true"> -->
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-navbar (toggleSidebarForMe)="sideBarToggler()"></app-navbar>
+    <app-processoscustomizados-table [processosCustomizados]="processoCustomizadoDatas"
+    (processosCustomizadosEvent)="handleProcessoCustomizadoAction($event)"
+    (deleteProcessosCustomizadosEvent)="handleDeleteProcessoCustomizadoAction($event)"
+    ></app-processoscustomizados-table>
+
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

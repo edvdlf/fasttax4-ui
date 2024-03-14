@@ -1,0 +1,224 @@
+<div class="col-12">
+  <p-card
+      styleClass="shadow-3  text-orange-500"
+      header="Funcionalidades"
+    >
+    <div class="card flex justify-content-center">
+      <p-accordion [activeIndex]="0">
+        <p-accordionTab header="Opções de Filtros">
+          <label for="name" class="mr-2">Periodo: </label>
+        <p-dropdown
+          [options]="periodos"
+          optionValue="valor"
+          optionLabel="chave"
+          placeholder="Selecione..." >
+        </p-dropdown>
+         <label for="name" class="mr-2">Grupo: </label>
+          <p-dropdown
+          [options]="obrigacoesGrupo"
+          optionValue="valor"
+          optionLabel="chave"
+          placeholder="Selecione...">
+        </p-dropdown>
+
+        <p-button
+        styleClass="p-button-secondary p-button-sm"
+        icon="pi pi-filter"
+        pTooltip="Filtrar funcionalidades"
+        tooltipPosition="top"
+        size="small"
+    ></p-button>
+      </p-accordionTab>
+      </p-accordion>
+    </div>
+      <p-table
+        #funcionalidadesTable
+        [value]="funcionalidades"
+        [(selection)]="funcionalidadeSelected"
+        styleClass="p-datatable-sm"
+        [rows]="20"
+        [loading]="loading"
+        [paginator]="true"
+        [responsive]="true"
+        [globalFilterFields]="['grupo', 'id']"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm"
+        [rowHover]="true"
+        [showCurrentPageReport]="true"
+        dataKey="id"
+        [rowsPerPageOptions]="[5, 10, 20, 50, 100]"
+        currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} funcionalidades"
+      >
+      <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+          Listagem
+          <p-splitButton
+            label="Opções"
+            [model]="items"
+            styleClass="p-button-raised p-button-secondary mr-2 mb-2">
+          </p-splitButton>
+        </div>
+    </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 2%">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th pSortableColumn="id">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Id
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="id"></p-sortIcon>
+                  <p-columnFilter
+                    type="text"
+                    field="id"
+                    display="menu"
+                    matchMode="contains"
+                    [showMatchModes]="false"
+                    [showOperator]="false"
+                    [showAddButton]="false"
+                  ></p-columnFilter>
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="grupo">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Grupo
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="grupo"></p-sortIcon>
+                  <p-columnFilter
+                    type="text"
+                    field="grupo"
+                    display="menu"
+                    matchMode="contains"
+                    [showMatchModes]="false"
+                    [showOperator]="false"
+                    [showAddButton]="false"
+                  ></p-columnFilter>
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="titulo">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Titulo
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="titulo"></p-sortIcon>
+                  <p-columnFilter
+                    type="text"
+                    field="titulo"
+                    display="menu"
+                    matchMode="contains"
+                    [showMatchModes]="false"
+                    [showOperator]="false"
+                    [showAddButton]="false"
+                  ></p-columnFilter>
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="descricao">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Descrição
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="descricao"></p-sortIcon>
+                  <p-columnFilter
+                    type="text"
+                    field="descricao"
+                    display="menu"
+                    matchMode="contains"
+                    [showMatchModes]="false"
+                    [showOperator]="false"
+                    [showAddButton]="false"
+                  ></p-columnFilter>
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="pasta">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Pasta
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="pasta"></p-sortIcon>
+                  <p-columnFilter
+                    type="text"
+                    field="pasta"
+                    display="menu"
+                    matchMode="contains"
+                    [showMatchModes]="false"
+                    [showOperator]="false"
+                    [showAddButton]="false"
+                  ></p-columnFilter>
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="licenciado">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Licenciado
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="licenciado"></p-sortIcon>
+                  <p-columnFilter
+                    type="text"
+                    field="licenciado"
+                    display="menu"
+                    matchMode="contains"
+                    [showMatchModes]="false"
+                    [showOperator]="false"
+                    [showAddButton]="false"
+                  ></p-columnFilter>
+                </div>
+              </div>
+            </th>
+            <th>
+
+            </th>
+            <th>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-dados>
+          <tr>
+            <td>
+              <p-tableCheckbox [value]="dados"></p-tableCheckbox>
+          </td>
+            <td style="text-align: left">{{ dados.id }}</td>
+            <td style="text-align: left">{{ dados.grupo }}</td>
+            <td style="text-align: left">{{ dados.titulo }}</td>
+            <td
+              [pTooltip]="dados.descricao" tooltipPosition="top"
+              style="text-align: left"
+            >{{ dados.descricao |shorten :25 }}</td>
+            <td style="text-align: left">{{ dados.pasta }}</td>
+            <td style="text-align: left">{{ dados.licenciado }}</td>
+            <td style="text-align: center">
+              <p-button
+                icon="pi pi-file-edit"
+                styleClass="p-button-rounded p-button-secondary p-button-text"
+                pTooltip="Editar" tooltipPosition="top"
+              >
+              </p-button>
+            </td>
+            <td style="text-align: center">
+              <p-button
+                icon="pi pi-trash"
+                styleClass="p-button-rounded p-button-secondary p-button-text"
+                pTooltip="Excluir" tooltipPosition="top"
+              >
+              </p-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div>
+
+

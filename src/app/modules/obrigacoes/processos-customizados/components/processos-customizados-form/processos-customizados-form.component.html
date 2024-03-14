@@ -1,0 +1,171 @@
+<div>
+  <form [formGroup]="adicionarProcessoCustomizadoForm" (ngSubmit)="handleSubmitAdicionarProcessoCustomizado()" >
+    <div class="card">
+      <p-toolbar>
+        <div class="p-toolbar-group-star">
+        </div>
+        <div class="p-toolbar-group-end">
+            <p-button label="Salvar" icon="pi pi-save" severity="warning"
+            type="submit"
+            ></p-button>
+        </div>
+      </p-toolbar>
+      <div class="formgrid grid">
+        <div class="field col-12 md:col-3" >
+          <label for="state" class="ml-1">Periodos:</label>
+          <p-dropdown
+                      styleClass="w-full"
+                      [filter]="true"
+                      filterBy="chave"
+                      [showClear]="true"
+                       class="ml-1"
+                       [options]="periodos"
+                       optionValue="valor"
+                       optionLabel="chave"
+                       formControlName="periodo"
+                       placeholder="Selecione o período!" >
+          </p-dropdown>
+        </div>
+        <div class="field col-12 md:col-3">
+          <label for="lblIdentificador" class="ml-1">Identificador:</label>
+          <input id="txtIdentificador" formControlName="identificador" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full ml-1">
+        </div>
+
+        <div class="field col-12 md:col-5">
+          <label for="lblDescricao" class="ml-1">Descrição:</label>
+          <input id="txtDescricao" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full ml-1">
+        </div>
+
+        <div class="field col-11">
+          <label for="lblPlQsl" class="ml-1">Instrução Pl-SQL:</label>
+          <textarea id="txtPlSql" type="text" rows="4" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full ml-1 mr-1"></textarea>
+        </div>
+      </div>
+      <div class="formgrid grid">
+          <div class="field col-12 md:col-12">
+                  <div class="card flex flex-column md:flex-column">
+                      <div class="card flex justify-content-center">
+                           <p-table
+                               #funcionalidadesTable
+                               [value]="estabelecimentoDatas"
+                               [(selection)]="selectedEstabelecimento"
+                               styleClass="p-datatable-sm"
+                               [rows]="5"
+                               [paginator]="true"
+                               [globalFilterFields]="['grupo', 'id']"
+                               [tableStyle]="{ 'min-width': '50rem' }"
+                               styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm"
+                               [rowHover]="true"
+                               [showCurrentPageReport]="true"
+                               dataKey="id"
+                               [rowsPerPageOptions]="[5, 10, 20, 50, 100]"
+                               currentPageReportTemplate="Registros de: {first} até: {last} de {totalRecords} obrigacoes"
+                               >
+                               <ng-template pTemplate="caption">
+                                  <div class="flex align-items-center justify-content-between">
+                                     Listagem de Estabelecimentos
+                                  </div>
+                               </ng-template>
+                               <ng-template pTemplate="header">
+                                  <tr>
+                                     <th style="width: 2%">
+                                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                     </th>
+                                     <th pSortableColumn="estabelecimento">
+                                        <div class="flex justify-content-between align-items-center">
+                                           <div class="flex justify-content-between align-items-center">
+                                              Id
+                                           </div>
+                                           <div class="flex justify-content-between align-items-center">
+                                              <p-sortIcon field="estabelecimento"></p-sortIcon>
+                                              <p-columnFilter
+                                              type="text"
+                                              field="estabalecimento"
+                                              display="menu"
+                                              matchMode="contains"
+                                              [showMatchModes]="false"
+                                              [showOperator]="false"
+                                              [showAddButton]="false"
+                                              ></p-columnFilter>
+                                           </div>
+                                        </div>
+                                     </th>
+                                     <th pSortableColumn="nome">
+                                        <div class="flex justify-content-between align-items-center">
+                                           <div class="flex justify-content-between align-items-center">
+                                              Estabelecimento
+                                           </div>
+                                           <div class="flex justify-content-between align-items-center">
+                                              <p-sortIcon field="nome"></p-sortIcon>
+                                              <p-columnFilter
+                                              type="text"
+                                              field="nome"
+                                              display="menu"
+                                              matchMode="contains"
+                                              [showMatchModes]="false"
+                                              [showOperator]="false"
+                                              [showAddButton]="false"
+                                              ></p-columnFilter>
+                                           </div>
+                                        </div>
+                                     </th>
+                                     <th pSortableColumn="empresa">
+                                       <div class="flex justify-content-between align-items-center">
+                                          <div class="flex justify-content-between align-items-center">
+                                             Empresa
+                                          </div>
+                                          <div class="flex justify-content-between align-items-center">
+                                             <p-sortIcon field="empresa"></p-sortIcon>
+                                             <p-columnFilter
+                                             type="text"
+                                             field="empresa"
+                                             display="menu"
+                                             matchMode="contains"
+                                             [showMatchModes]="false"
+                                             [showOperator]="false"
+                                             [showAddButton]="false"
+                                             ></p-columnFilter>
+                                          </div>
+                                       </div>
+                                     </th>
+                                     <th pSortableColumn="uf">
+                                      <div class="flex justify-content-between align-items-center">
+                                         <div class="flex justify-content-between align-items-center">
+                                            UF
+                                         </div>
+                                         <div class="flex justify-content-between align-items-center">
+                                            <p-sortIcon field="uf"></p-sortIcon>
+                                            <p-columnFilter
+                                            type="text"
+                                            field="uf"
+                                            display="menu"
+                                            matchMode="contains"
+                                            [showMatchModes]="false"
+                                            [showOperator]="false"
+                                            [showAddButton]="false"
+                                            ></p-columnFilter>
+                                         </div>
+                                      </div>
+                                    </th>
+                                  </tr>
+                               </ng-template>
+                               <ng-template pTemplate="body" let-dados>
+                                  <tr>
+                                     <td>
+                                        <p-tableCheckbox [value]="dados"></p-tableCheckbox>
+                                     </td>
+                                     <td style="text-align: left">{{ dados.estabelecimento }}</td>
+                                     <td style="text-align: left">{{ dados.nome }}</td>
+                                     <td style="text-align: left">{{ dados.empresa }}</td>
+                                     <td style="text-align: left">{{ dados.uf }}</td>
+                                  </tr>
+                               </ng-template>
+                               </p-table>
+                      </div>
+                   </div>
+          </div>
+
+      </div>
+    </div>
+  </form>
+</div>

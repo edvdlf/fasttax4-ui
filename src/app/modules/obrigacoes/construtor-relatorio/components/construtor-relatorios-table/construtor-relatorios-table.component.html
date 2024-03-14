@@ -1,0 +1,42 @@
+<div class="col-12">
+  <p-card
+      styleClass="shadow-3  text-orange-500"
+      header="Construtor de Relatórios"
+    >
+    <div class="card flex justify-content-center">
+      <p-accordion [activeIndex]="0">
+        <p-accordionTab header="Periodos">
+          <label for="name" class="mr-2">Periodo: </label>
+          <div class="card p-fluid">
+
+            <p-dropdown
+              [options]="periodos"
+              optionValue="valor"
+              optionLabel="chave"
+              placeholder="Selecione o periodo" >
+            </p-dropdown>
+          </div>
+      </p-accordionTab>
+      </p-accordion>
+    </div>
+
+    <div class="card flex justify-content-center">
+      <p-accordion [activeIndex]="0">
+        <p-accordionTab header="Regras">
+
+      </p-accordionTab>
+      </p-accordion>
+    </div>
+
+    <div class="card flex justify-content-center">
+      <p-accordion [activeIndex]="0">
+        <p-accordionTab header="Estabeleciomentos">
+
+      </p-accordionTab>
+      </p-accordion>
+    </div>
+
+    </p-card>
+  </div>
+
+

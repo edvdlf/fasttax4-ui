@@ -1,0 +1,15 @@
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="sideBarOpen">
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-navbar (toggleSidebarForMe)="sideBarToggler()"></app-navbar>
+    <app-tarefas-automatizadas-table [tarefasAutomatizadas]="tarefasAutomatizadasDatas"
+    (tarefaAutomatizadaEvent)="handleTarefaAutomatizadaAction($event)"
+    (deleteTarefaAutomatizadaEvent)="handleDeleteTarefaAutomatizadaAction($event)"
+    >
+    </app-tarefas-automatizadas-table>
+    <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

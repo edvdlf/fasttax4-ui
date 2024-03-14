@@ -1,0 +1,287 @@
+<div class="col-12">
+
+  <p-card
+      styleClass="shadow-3  text-orange-500"
+      header="Tarefas Automatizadas"
+    >
+
+    <form [formGroup]="filtarTarefaForm" (ngSubmit)="handleSubmitFiltrarTarefa()">
+      <div class="formgrid grid">
+        <div class="field col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-start"></div>
+          <div class="p-toolbar-group-end">
+            <p-button id="CriaTarefa" pTooltip="Criar nova tarefa automatizada" tooltipPosition="top" icon="pi pi-plus" class="mr-2" (onClick)="handleTarefaAutomatizadaEvent(adicionarTarefaAutomatizadaEvent)"></p-button>
+            <p-button id="ExportaExcel" pTooltip="Exportar para excel" tooltipPosition="top" icon="pi pi-file-excel" class="mr-2"></p-button>
+          </div>
+        </p-toolbar>
+        <p-toolbar>
+          <div class="p-toolbar-group-start">
+            <label for="periodos" class="ml-3 mr-3">Periodos: </label>
+              <p-dropdown
+              [options]="periodos"
+               optionLabel="name"
+               [filter]="true"
+               filterBy="name"
+               [showClear]="true"
+               formControlName="periodo"
+               placeholder="Periodos...">
+                  <ng-template pTemplate="selectedItem" let-selectedOption>
+                      <div class="flex align-items-center gap-2">
+                          <div>{{ selectedOption.name }}</div>
+                      </div>
+                  </ng-template>
+                  <ng-template let-periodo pTemplate="item">
+                      <div class="flex align-items-center gap-2">
+                          <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + periodo.code.toLowerCase()" style="width: 18px"/>
+                          <div>{{ periodo.name }}</div>
+                      </div>
+                  </ng-template>
+              </p-dropdown>
+              <label for="obrigacoes" class="ml-3 mr-3">Obrigações: </label>
+              <p-dropdown
+              [options]="grupoObrigacoes"
+              optionLabel="name"
+              [filter]="true"
+              filterBy="name"
+              [showClear]="true"
+              formControlName="grupoobrigacao"
+              placeholder="Obrigações...">
+                <ng-template pTemplate="selectedItem" let-selectedOption>
+                    <div class="flex align-items-center gap-2">
+                        <div>{{ selectedOption.name }}</div>
+                    </div>
+                </ng-template>
+                <ng-template let-obrigacao pTemplate="item">
+                    <div class="flex align-items-center gap-2">
+                        <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + obrigacao.code.toLowerCase()" style="width: 18px"/>
+                        <div>{{ obrigacao.name }}</div>
+                    </div>
+                </ng-template>
+              </p-dropdown>
+
+          </div>
+          <div class="p-toolbar-group-end">
+            <div class="field col-4">
+              <p-button  icon="pi pi-sync" pTooltip="Atualiza a listagem conforme periodo e obrigações selecionados" tooltipPosition="top" severity="warning"
+              type="submit"
+              ></p-button>
+            </div>
+          </div>
+        </p-toolbar>
+        </div>
+      </div>
+    </form>
+
+
+
+    <div class="card flex justify-content-center mr-2">
+      <p-table
+        #funcionalidadesTable
+        [value]="tarefasAutomatizadas"
+        [(selection)]="tarefasAutomatizadaSelected"
+        styleClass="p-datatable-sm"
+        [rows]="20"
+        [paginator]="true"
+        [globalFilterFields]="['grupo', 'id']"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm"
+        [rowHover]="true"
+        [showCurrentPageReport]="true"
+        dataKey="id"
+        [rowsPerPageOptions]="[5, 10, 20, 50, 100]"
+        currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} funcionalidades"
+      >
+      <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+          Listagem de tarefas automatizadas
+        </div>
+      </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 2%">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th pSortableColumn="periodo">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Periodo
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="periodo"></p-sortIcon>
+                  <p-columnFilter
+                    type="text"
+                    field="periodo"
+                    display="menu"
+                    matchMode="contains"
+                    [showMatchModes]="false"
+                    [showOperator]="false"
+                    [showAddButton]="false"
+                  ></p-columnFilter>
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="grupo">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Grupo
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="grupo"></p-sortIcon>
+                  <p-columnFilter
+                    type="text"
+                    field="grupo"
+                    display="menu"
+                    matchMode="contains"
+                    [showMatchModes]="false"
+                    [showOperator]="false"
+                    [showAddButton]="false"
+                  ></p-columnFilter>
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="obrigacao">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Obrigação
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="obrigacao"></p-sortIcon>
+                  <p-columnFilter
+                    type="text"
+                    field="obrigacao"
+                    display="menu"
+                    matchMode="contains"
+                    [showMatchModes]="false"
+                    [showOperator]="false"
+                    [showAddButton]="false"
+                  ></p-columnFilter>
+                </div>
+              </div>
+            </th>
+
+            <th pSortableColumn="estabelecimento">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Estabelecimento
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="estabelecimento"></p-sortIcon>
+                  <p-columnFilter
+                    type="text"
+                    field="estabelecimento"
+                    display="menu"
+                    matchMode="contains"
+                    [showMatchModes]="false"
+                    [showOperator]="false"
+                    [showAddButton]="false"
+                  ></p-columnFilter>
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="codempresa">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Empresa
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="codempresa"></p-sortIcon>
+                  <p-columnFilter
+                    type="text"
+                    field="codempresa"
+                    display="menu"
+                    matchMode="contains"
+                    [showMatchModes]="false"
+                    [showOperator]="false"
+                    [showAddButton]="false"
+                  ></p-columnFilter>
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="descricao">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Descrição
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="descricao"></p-sortIcon>
+                  <p-columnFilter
+                    type="text"
+                    field="descricao"
+                    display="menu"
+                    matchMode="contains"
+                    [showMatchModes]="false"
+                    [showOperator]="false"
+                    [showAddButton]="false"
+                  ></p-columnFilter>
+                </div>
+              </div>
+            </th>
+
+            <th pSortableColumn="habilitado">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Status
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="habilitado"></p-sortIcon>
+                  <p-columnFilter
+                    type="text"
+                    field="habilitado"
+                    display="menu"
+                    matchMode="contains"
+                    [showMatchModes]="false"
+                    [showOperator]="false"
+                    [showAddButton]="false"
+                  ></p-columnFilter>
+                </div>
+              </div>
+            </th>
+            <th>
+
+            </th>
+            <th>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-dados>
+          <tr>
+            <td>
+              <p-tableCheckbox [value]="dados"></p-tableCheckbox>
+          </td>
+            <td style="text-align: left">{{ dados.periodo }}</td>
+            <td style="text-align: left">{{ dados.grupo }}</td>
+            <td style="text-align: left">{{ dados.obrigacao }}</td>
+            <td style="text-align: left">{{ dados.estabelecimento }}</td>
+            <td style="text-align: left">{{ dados.empresa }}</td>
+            <!--td style="text-align: left">{{ dados.descricao }}</td-->
+            <td [pTooltip]="dados?.descricao" tooltipPosition="top" style="text-align: left">
+              {{ dados?.descricao | shorten : 25 }}
+            </td>
+            <td><p-tag [value]="dados.status" [severity]="getStatus(dados.status)"></p-tag></td>
+
+
+            <td style="text-align: center">
+              <p-button
+                icon="pi pi-file-edit"
+                styleClass="p-button-rounded p-button-secondary p-button-text"
+                (onClick)="handleTarefaAutomatizadaEvent(editarTarefaAutomatizadaEvent, dados.id)"
+              >
+              </p-button>
+            </td>
+            <td style="text-align: center">
+              <p-button
+                icon="pi pi-trash"
+                styleClass="p-button-rounded p-button-secondary p-button-text"
+                (onClick)="handleDeleteTarefaAutomatizadaEvent(dados.id, dados.periodo)"
+              >
+              </p-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+
+    </div>
+  </p-card>
+</div>
+

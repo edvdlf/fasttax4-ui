@@ -1,0 +1,17 @@
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="sideBarOpen">
+    <!-- <mat-drawer mode="side" opened="true"> -->
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-navbar (toggleSidebarForMe)="sideBarToggler()"></app-navbar>
+    <div class="container-fluid">
+      <p-galleria [value]="images" [showIndicators]="true" [showThumbnails]="false" [changeItemOnIndicatorHover]="true" [responsiveOptions]="responsiveOptions" [containerStyle]="{ 'max-width': '1200px' }">
+          <ng-template pTemplate="item" let-item>
+              <img [src]="item.itemImageSrc" style="width: 100%; display: block;" />
+          </ng-template>
+      </p-galleria>
+  </div>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

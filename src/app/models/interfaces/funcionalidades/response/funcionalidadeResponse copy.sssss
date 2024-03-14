@@ -1,0 +1,9 @@
+export interface FuncionalidadeResponse {
+    Id: string,
+    Grupo: string,
+    Titulo: string,
+    Descricao: string,
+    Pasta: string,
+    Licenciado: string,
+}
+
