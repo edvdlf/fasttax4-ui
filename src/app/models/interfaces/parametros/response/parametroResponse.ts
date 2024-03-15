@@ -6,8 +6,9 @@ export interface ParametroResponse {
     valor: string,
     tipo: string,
     componente: string,
-    listadevalores: string,
+    lista: string,
     usuario: string,
-    dataalteracao:Date
+    ultimamodificacao:Date
 }
+
 

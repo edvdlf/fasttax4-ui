@@ -22,7 +22,7 @@ export class ParametrosService {
   constructor(private http: HttpClient, private cookie: CookieService) {}
 
   getAllParametros(): Observable<Array<ParametroResponse>> {
-    return this.http.get<Array<ParametroResponse>>(`${this.API_URL}/ParametrosMokers`)
+    return this.http.get<Array<ParametroResponse>>(`${this.API_URL}/ParametrosMockers`)
   }
 
 }
