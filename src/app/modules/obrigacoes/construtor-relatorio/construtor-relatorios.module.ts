@@ -18,6 +18,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { ConstrutorRelatoriosTableComponent } from './components/construtor-relatorios-table/construtor-relatorios-table.component';
 import { ConstrutorRelatorioFormsComponent } from './components/construtor-relatorio-forms/construtor-relatorio-forms.component';
+import { TabViewModule } from 'primeng/tabview';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
   declarations: [ConstrutorRelatoriosComponent, ConstrutorRelatoriosTableComponent, ConstrutorRelatorioFormsComponent],
@@ -35,9 +37,12 @@ import { ConstrutorRelatorioFormsComponent } from './components/construtor-relat
     CardModule,
     DropdownModule,
     TooltipModule,
+    TagModule,
+    TableModule,
+    TabViewModule,
     //Shared
     SharedModule,
-    TableModule
+
   ]
 })
 export class ConstrutorRelatorioModule { }

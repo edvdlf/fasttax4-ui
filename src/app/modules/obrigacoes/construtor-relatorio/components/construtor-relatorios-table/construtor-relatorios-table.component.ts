@@ -1,12 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { customersData } from '../dataTemp';
+import { UsuariosOnlineResponse } from './../../../../../models/interfaces/relatorios/usuariosOnlineResponse';
+import { Component, Input, OnInit } from '@angular/core';
 
-import { Customers } from '../interfaceTemp.model';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Periodos } from 'src/app/models/enums/periodos';
-
-
-
+import { LogProcessamentoResponse } from 'src/app/models/interfaces/relatorios/logProcessamentoResponse';
 
 @Component({
   selector: 'app-construtor-relatorios-table',
@@ -15,7 +12,8 @@ import { Periodos } from 'src/app/models/enums/periodos';
 })
 export class ConstrutorRelatoriosTableComponent implements OnInit{
 
-  customersData: Customers[] = [];
+  @Input() logProcessamentos: Array<LogProcessamentoResponse> = [];
+  @Input() usuariosOnline:Array<UsuariosOnlineResponse>=[];
 
   periodos: any[] = [{ chave: '', valor: '' }];
 
@@ -26,9 +24,18 @@ export class ConstrutorRelatoriosTableComponent implements OnInit{
       this.periodos.push({chave:keys, valor:values});
     }
   }
-  private _fetchData() {
-    this.customersData = customersData;
+
+
+  getStatus(status: string) {
+    switch (status) {
+        case 'Sucesso':
+            return 'success';
+        case 'OnLine':
+            return 'success';
+        case 'Falha':
+            return 'danger';
+        default:
+          return 'info'
+    }
   }
-
-
 }

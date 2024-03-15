@@ -25,7 +25,7 @@ export class SidebarComponent {
           label: 'Dashboard',
           icon: 'pi pi-fw pi-chart-pie',
           routerLink:"/dashboard",
-        
+
         },
         {
             label: 'Rotinas diarias',
@@ -69,7 +69,7 @@ export class SidebarComponent {
         items: [
 
             {
-                label: 'Construtor de relatorios',
+                label: 'Opções',
                 icon: 'pi pi-fw pi-table',
                 routerLink:"/construtor-relatorio"
             }
