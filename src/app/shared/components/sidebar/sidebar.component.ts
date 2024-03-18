@@ -69,10 +69,15 @@ export class SidebarComponent {
         items: [
 
             {
-                label: 'Opções',
+                label: 'Relatórios & Logs',
                 icon: 'pi pi-fw pi-table',
-                routerLink:"/construtor-relatorio"
-            }
+                routerLink:"/relatorios-logs"
+            },
+            {
+              label: 'Construtor de Relatórios',
+              icon: 'pi pi-fw pi-table',
+              routerLink:"/construtor-relatorio"
+          }
         ]
     },
         {

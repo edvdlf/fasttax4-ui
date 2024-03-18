@@ -83,9 +83,6 @@ import { TreeTableModule } from 'primeng/treetable';
     SidebarComponent,
     NavbarComponent,
     ShortenPipe,
-
-
-
   ],
   imports: [
     CommonModule,
@@ -108,10 +105,6 @@ import { TreeTableModule } from 'primeng/treetable';
     PanelMenuModule,
     CascadeSelectModule,
     RadioButtonModule,
-
-
-
-
     // * MATERIAL IMPORTS
     MatSidenavModule,
     MatToolbarModule,

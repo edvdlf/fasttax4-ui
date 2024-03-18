@@ -26,8 +26,6 @@ export class TarefasAutomatizadasTableComponent {
 
   public adicionarTarefaAutomatizadaEvent = TarefaAutomatizadaEvent.ADICIONAR_TAREFA_AUTOMATIZADA_EVENT;
   public editarTarefaAutomatizadaEvent = TarefaAutomatizadaEvent.EDITAR_TAREFA_AUTOMATIZADA_EVENT;
-  //public excluirTarefaAutomatizadaEvent = TarefaAutomatizadaEvent.EXCLUI_TAREFA_AUTOMATIZADA_EVENT;
-  //public filtrarTarefaAutomatizadaEvent = TarefaAutomatizadaEvent.FILTRAR_TAREFA_AUTOMATIZADA_EVENT;
 
   tarefas: any[] = [{ chave: '', valor: '' }];
   public tarefasAutomatizadasDatas: Array<TarefaAutomatizadaResponse> = [];
@@ -117,6 +115,8 @@ export class TarefasAutomatizadasTableComponent {
   handleTarefaAutomatizadaEvent(action: string, id?: string): void {
     if (action && action !== '') {
       const tarefaEventData = id && id !== '' ? { action, id } : { action };
+      //alert(tarefaEventData.action )
+      //alert(tarefaEventData.id )
       this.tarefaAutomatizadaEvent.emit(tarefaEventData);
     }
   }

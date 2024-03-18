@@ -1,14 +1,15 @@
 <div class="col-12">
   <div class="card">
     <p-tabView styleClass="tabview-custom">
-        <p-tabPanel header="Regras">
+        <p-tabPanel>
             <ng-template pTemplate="header">
-                <i class="pi pi-map"></i>
-                <span>Regras Relatório</span>
+                <i class="pi pi-users"></i>
+                <span>Usuários On-Line</span>
             </ng-template>
+            <p>
               <p-table
-                #logProcessamentoTable
-                [value]="regrasRelatorio"
+                #usuariosOnLineTable
+                [value]="usuariosOnline"
                 styleClass="p-datatable-sm"
                 [rows]="10"
                 [paginator]="true"
@@ -24,22 +25,23 @@
               >
               <ng-template pTemplate="caption">
                 <div class="flex align-items-center justify-content-between">
-                  Listagem de regras
-                  <p-button icon="pi pi-plus"></p-button>
+                  Listagem de usuários OnLine
+
                 </div>
             </ng-template>
                 <ng-template pTemplate="header">
                   <tr>
-                    <th pSortableColumn="id">
+
+                    <th pSortableColumn="login">
                       <div class="flex justify-content-between align-items-center">
                         <div class="flex justify-content-between align-items-center">
-                          Id
+                          Login
                         </div>
                         <div class="flex justify-content-between align-items-center">
-                          <p-sortIcon field="id"></p-sortIcon>
+                          <p-sortIcon field="login"></p-sortIcon>
                           <p-columnFilter
                             type="text"
-                            field="id"
+                            field="login"
                             display="menu"
                             matchMode="contains"
                             [showMatchModes]="false"
@@ -49,13 +51,13 @@
                         </div>
                       </div>
                     </th>
-                    <th pSortableColumn="nome">
+                    <th pSortableColumn="Nome">
                       <div class="flex justify-content-between align-items-center">
                         <div class="flex justify-content-between align-items-center">
                           Nome
                         </div>
                         <div class="flex justify-content-between align-items-center">
-                          <p-sortIcon field="nome"></p-sortIcon>
+                          <p-sortIcon field="periodo"></p-sortIcon>
                           <p-columnFilter
                             type="text"
                             field="nome"
@@ -69,16 +71,137 @@
                       </div>
                     </th>
 
-                    <th pSortableColumn="comando">
+                    <th pSortableColumn="online">
                       <div class="flex justify-content-between align-items-center">
                         <div class="flex justify-content-between align-items-center">
-                          Descrição
+                          On Line
                         </div>
                         <div class="flex justify-content-between align-items-center">
-                          <p-sortIcon field="descricao"></p-sortIcon>
+                          <p-sortIcon field="online"></p-sortIcon>
                           <p-columnFilter
                             type="text"
-                            field="descricao"
+                            field="online"
+                            display="menu"
+                            matchMode="contains"
+                            [showMatchModes]="false"
+                            [showOperator]="false"
+                            [showAddButton]="false"
+                          ></p-columnFilter>
+                        </div>
+                      </div>
+                    </th>
+
+                    <th pSortableColumn="ultimoacesso">
+                      <div class="flex justify-content-between align-items-center">
+                        <div class="flex justify-content-between align-items-center">
+                          Ultimo acesso
+                        </div>
+                        <div class="flex justify-content-between align-items-center">
+                          <p-sortIcon field="habilitado"></p-sortIcon>
+                          <p-columnFilter
+                            type="text"
+                            field="ultimoacesso"
+                            display="menu"
+                            matchMode="contains"
+                            [showMatchModes]="false"
+                            [showOperator]="false"
+                            [showAddButton]="false"
+                          ></p-columnFilter>
+                        </div>
+                      </div>
+                    </th>
+                  </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-dados>
+                  <tr>
+                    <td style="text-align: left">{{ dados.login }}</td>
+                    <td style="text-align: left">{{ dados.nome }}</td>
+                    <td><p-tag [value]="dados.onLine" [severity]="getStatus(dados.onLine)"></p-tag></td>
+                    <td style="text-align: left">{{ dados.ultimoAcessoDw }}</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </p>
+        </p-tabPanel>
+        <p-tabPanel header="Log Processamento">
+            <ng-template pTemplate="header">
+                <i class="pi pi-cog"></i>
+                <span>Log Processamento</span>
+            </ng-template>
+              <p-table
+                #logProcessamentoTable
+                [value]="logProcessamentos"
+                styleClass="p-datatable-sm"
+                [rows]="10"
+                [paginator]="true"
+                [responsive]="true"
+                [globalFilterFields]="['grupo', 'id']"
+                [tableStyle]="{ 'min-width': '50rem' }"
+                styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm"
+                [rowHover]="true"
+                [showCurrentPageReport]="true"
+                dataKey="id"
+                [rowsPerPageOptions]="[5, 10, 20, 50, 100]"
+                currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} funcionalidades"
+              >
+              <ng-template pTemplate="caption">
+                <div class="flex align-items-center justify-content-between">
+                  Listagem de processamento
+                  <p-button icon="pi pi-file-excel"></p-button>
+                </div>
+            </ng-template>
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th pSortableColumn="numeroProcesso">
+                      <div class="flex justify-content-between align-items-center">
+                        <div class="flex justify-content-between align-items-center">
+                          Processo No.
+                        </div>
+                        <div class="flex justify-content-between align-items-center">
+                          <p-sortIcon field="numeroProcesso"></p-sortIcon>
+                          <p-columnFilter
+                            type="text"
+                            field="numeroProcesso"
+                            display="menu"
+                            matchMode="contains"
+                            [showMatchModes]="false"
+                            [showOperator]="false"
+                            [showAddButton]="false"
+                          ></p-columnFilter>
+                        </div>
+                      </div>
+                    </th>
+                    <th pSortableColumn="nomeProcesso">
+                      <div class="flex justify-content-between align-items-center">
+                        <div class="flex justify-content-between align-items-center">
+                          Nome
+                        </div>
+                        <div class="flex justify-content-between align-items-center">
+                          <p-sortIcon field="nomeProcesso"></p-sortIcon>
+                          <p-columnFilter
+                            type="text"
+                            field="nomeProcesso"
+                            display="menu"
+                            matchMode="contains"
+                            [showMatchModes]="false"
+                            [showOperator]="false"
+                            [showAddButton]="false"
+                          ></p-columnFilter>
+                        </div>
+                      </div>
+                    </th>
+
+                    <th pSortableColumn="acao">
+                      <div class="flex justify-content-between align-items-center">
+                        <div class="flex justify-content-between align-items-center">
+                          Ação
+                        </div>
+                        <div class="flex justify-content-between align-items-center">
+                          <p-sortIcon field="acao"></p-sortIcon>
+                          <p-columnFilter
+                            type="text"
+                            field="acao"
                             display="menu"
                             matchMode="contains"
                             [showMatchModes]="false"
@@ -91,7 +214,7 @@
                     <th pSortableColumn="dataInicio">
                       <div class="flex justify-content-between align-items-center">
                         <div class="flex justify-content-between align-items-center">
-                          Query
+                          Início
                         </div>
                         <div class="flex justify-content-between align-items-center">
                           <p-sortIcon field="dataInicio"></p-sortIcon>
@@ -110,7 +233,7 @@
                     <th pSortableColumn="dataFim">
                       <div class="flex justify-content-between align-items-center">
                         <div class="flex justify-content-between align-items-center">
-                          Data
+                          Fim
                         </div>
                         <div class="flex justify-content-between align-items-center">
                           <p-sortIcon field="dataFim"></p-sortIcon>
@@ -126,66 +249,16 @@
                         </div>
                       </div>
                     </th>
-
-                  </tr>
-                </ng-template>
-
-                <ng-template pTemplate="body" let-dados>
-                  <tr>
-                    <td style="text-align: left">{{ dados.id }}</td>
-                    <td style="text-align: left">{{ dados.nome }}</td>
-                    <td [pTooltip]="dados?.descricao" tooltipPosition="top" style="text-align: left">
-                      {{ dados?.descricao | shorten : 25 }}
-                    </td>
-                    <td [pTooltip]="dados?.comando" tooltipPosition="top" style="text-align: left">
-                      {{ dados?.comando | shorten : 25 }}
-                    </td>
-                    <td style="text-align: left">{{ dados.data }}</td>
-
-                  </tr>
-                </ng-template>
-              </p-table>
-        </p-tabPanel>
-        <p-tabPanel header="Construtor">
-            <ng-template pTemplate="header">
-                <i class="pi pi-file-edit"></i>
-                <span>Construtor de Relatórios</span>
-            </ng-template>
-            <p>
-              <p-table
-                #usuariosOnLineTable
-                [value]="construtorRelatorio"
-                styleClass="p-datatable-sm"
-                [rows]="10"
-                [paginator]="true"
-                [responsive]="true"
-                [globalFilterFields]="['grupo', 'id']"
-                [tableStyle]="{ 'min-width': '50rem' }"
-                styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm"
-                [rowHover]="true"
-                [showCurrentPageReport]="true"
-                dataKey="id"
-                [rowsPerPageOptions]="[5, 10, 20, 50, 100]"
-                currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} funcionalidades"
-              >
-              <ng-template pTemplate="caption">
-                <div class="flex align-items-center justify-content-between">
-                  Listagem de relátorios construidos
-                  <p-button icon="pi pi-plus" (onClick)="handleConstrutorRelatorioEvent(adicionarConstrutorRelatorioEvent)"></p-button>
-                </div>
-            </ng-template>
-                <ng-template pTemplate="header">
-                  <tr>
-                    <th pSortableColumn="periodo">
+                    <th pSortableColumn="status">
                       <div class="flex justify-content-between align-items-center">
                         <div class="flex justify-content-between align-items-center">
-                          Periodo
+                          Status
                         </div>
                         <div class="flex justify-content-between align-items-center">
-                          <p-sortIcon field="periodo"></p-sortIcon>
+                          <p-sortIcon field="status"></p-sortIcon>
                           <p-columnFilter
                             type="text"
-                            field="periodo"
+                            field="status"
                             display="menu"
                             matchMode="contains"
                             [showMatchModes]="false"
@@ -193,118 +266,6 @@
                             [showAddButton]="false"
                           ></p-columnFilter>
                         </div>
-                      </div>
-                    </th>
-                    <th pSortableColumn="empresa">
-                      <div class="flex justify-content-between align-items-center">
-                        <div class="flex justify-content-between align-items-center">
-                          Empresa
-                        </div>
-                        <div class="flex justify-content-between align-items-center">
-                          <p-sortIcon field="empresa"></p-sortIcon>
-                          <p-columnFilter
-                            type="text"
-                            field="empresa"
-                            display="menu"
-                            matchMode="contains"
-                            [showMatchModes]="false"
-                            [showOperator]="false"
-                            [showAddButton]="false"
-                          ></p-columnFilter>
-                        </div>
-                      </div>
-                    </th>
-                    <th pSortableColumn="Nome">
-                      <div class="flex justify-content-between align-items-center">
-                        <div class="flex justify-content-between align-items-center">
-                          Nome
-                        </div>
-                        <div class="flex justify-content-between align-items-center">
-                          <p-sortIcon field="nome"></p-sortIcon>
-                          <p-columnFilter
-                            type="text"
-                            field="nome"
-                            display="menu"
-                            matchMode="contains"
-                            [showMatchModes]="false"
-                            [showOperator]="false"
-                            [showAddButton]="false"
-                          ></p-columnFilter>
-                        </div>
-                      </div>
-                    </th>
-
-                    <th pSortableColumn="regras">
-                      <div class="flex justify-content-between align-items-center">
-                        <div class="flex justify-content-between align-items-center">
-                          Regras
-                        </div>
-                        <div class="flex justify-content-between align-items-center">
-                          <p-sortIcon field="regras"></p-sortIcon>
-                          <p-columnFilter
-                            type="text"
-                            field="regras"
-                            display="menu"
-                            matchMode="contains"
-                            [showMatchModes]="false"
-                            [showOperator]="false"
-                            [showAddButton]="false"
-                          ></p-columnFilter>
-                        </div>
-                      </div>
-                    </th>
-
-                    <th pSortableColumn="comando">
-                      <div class="flex justify-content-between align-items-center">
-                        <div class="flex justify-content-between align-items-center">
-                          Comando SQL
-                        </div>
-                        <div class="flex justify-content-between align-items-center">
-                          <p-sortIcon field="comando"></p-sortIcon>
-                          <p-columnFilter
-                            type="text"
-                            field="comando"
-                            display="menu"
-                            matchMode="contains"
-                            [showMatchModes]="false"
-                            [showOperator]="false"
-                            [showAddButton]="false"
-                          ></p-columnFilter>
-                        </div>
-                      </div>
-                    </th>
-                    <th pSortableColumn="data">
-                      <div class="flex justify-content-between align-items-center">
-                        <div class="flex justify-content-between align-items-center">
-                          Ultima execução
-                        </div>
-                        <div class="flex justify-content-between align-items-center">
-                          <p-sortIcon field="data"></p-sortIcon>
-                          <p-columnFilter
-                            type="text"
-                            field="data"
-                            display="menu"
-                            matchMode="contains"
-                            [showMatchModes]="false"
-                            [showOperator]="false"
-                            [showAddButton]="false"
-                          ></p-columnFilter>
-                        </div>
-                      </div>
-                    </th>
-                    <th>
-                      <div class="flex justify-content-between align-items-center">
-                        Executar
-                      </div>
-                    </th>
-                    <th>
-                      <div class="flex justify-content-between align-items-center">
-                        Editar
-                      </div>
-                    </th>
-                    <th>
-                      <div class="flex justify-content-between align-items-center">
-                        Excluir
                       </div>
                     </th>
                   </tr>
@@ -312,44 +273,22 @@
 
                 <ng-template pTemplate="body" let-dados>
                   <tr>
-                    <td style="text-align: left">{{ dados.periodo }}</td>
-                    <td style="text-align: left">{{ dados.estabelecimentos }}</td>
-                    <td style="text-align: left">{{ dados.nome }}</td>
-                    <td style="text-align: left">{{ dados.regras }}</td>
-                    <td [pTooltip]="dados?.comando" tooltipPosition="top" style="text-align: left">
-                      {{ dados?.comando | shorten : 25 }}
-                    </td>
-                    <td style="text-align: left">{{ dados.data }}</td>
-                    <td style="text-align: center">
-                      <p-button
-                        icon="pi pi-caret-right"
-                        styleClass="p-button-rounded p-button-secondary p-button-text"
-                      >
-                      </p-button>
-                    </td>
-                    <td style="text-align: center">
-                      <p-button
-                        icon="pi pi-file-edit"
-                        styleClass="p-button-rounded p-button-secondary p-button-text"
+                    <td style="text-align: left">{{ dados.numeroProcesso }}</td>
+                    <td style="text-align: left">{{ dados.nomeProcesso }}</td>
+                    <td style="text-align: left">{{ dados.acao }}</td>
+                    <td style="text-align: left">{{ dados.dataInicio }}</td>
+                    <td style="text-align: left">{{ dados.dataFim }}</td>
+                    <td><p-tag [value]="dados.status" [severity]="getStatus(dados.status)"></p-tag></td>
 
-                      >
-                      </p-button>
-                    </td>
-                    <td style="text-align: center">
-                      <p-button
-                        icon="pi pi-trash"
-                        styleClass="p-button-rounded p-button-secondary p-button-text"
 
-                      >
-                      </p-button>
-                    </td>
                   </tr>
                 </ng-template>
               </p-table>
-            </p>
         </p-tabPanel>
+        
     </p-tabView>
 </div>
 </div>
+
 
 

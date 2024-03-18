@@ -5,12 +5,13 @@
   </mat-drawer>
   <mat-drawer-content>
     <app-navbar (toggleSidebarForMe)="sideBarToggler()"></app-navbar>
-    <div class="container-fluid">
-      <p-galleria [value]="images" [showIndicators]="true" [showThumbnails]="false" [changeItemOnIndicatorHover]="true" [responsiveOptions]="responsiveOptions" [containerStyle]="{ 'max-width': '1200px' }">
+    <div>
+      <p-galleria  [value]="images" [showIndicators]="true" [showThumbnails]="false" [changeItemOnIndicatorHover]="true" [circular]="false" [responsiveOptions]="responsiveOptions" [containerStyle]="{ 'max-width': '100%'  }">
           <ng-template pTemplate="item" let-item>
-              <img [src]="item.itemImageSrc" style="width: 100%; display: block;" />
+              <img [src]="item.itemImageSrc" style="width: 100%; height: 480px; display: block;" />
           </ng-template>
       </p-galleria>
+
   </div>
     <router-outlet></router-outlet>
   </mat-drawer-content>

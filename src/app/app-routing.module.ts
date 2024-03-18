@@ -1,3 +1,4 @@
+import { RelatoriosLogsModule } from './modules/obrigacoes/relatorios-logs/relatorios-logs.module';
 import { TarefasAutomatizadasComponent } from './modules/obrigacoes/tarefas-automatizadas/page/tarefas-automatizadas.component';
 
 import { FuncionalidadesComponent } from './modules/obrigacoes/funcionalidades/page/funcionalidades.component';
@@ -70,6 +71,13 @@ const routes: Routes = [
     path: 'tarefas-automatizadas',
     loadChildren: () => import('./modules/obrigacoes/tarefas-automatizadas/tarefas-automatizadas.module')
       .then((m)=>m.TarefasAutomatizadasModule
+      ),
+      canActivate: [AuthGuard]
+  },
+  {
+    path: 'relatorios-logs',
+    loadChildren: () => import('./modules/obrigacoes/relatorios-logs/relatorios-logs.module')
+      .then((m)=>m.RelatoriosLogsModule
       ),
       canActivate: [AuthGuard]
   },

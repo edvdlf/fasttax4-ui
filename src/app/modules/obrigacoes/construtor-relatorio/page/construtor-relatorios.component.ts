@@ -1,11 +1,15 @@
-import { UsuariosOnlineResponse } from './../../../../models/interfaces/relatorios/usuariosOnlineResponse';
+import { UsuariosOnlineResponse } from '../../../../models/interfaces/relatorios/response/usuariosOnlineResponse';
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { DialogService } from 'primeng/dynamicdialog';
-import { Subject } from 'rxjs';
-import { LogProcessamentoResponse } from 'src/app/models/interfaces/relatorios/logProcessamentoResponse';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Subject, takeUntil } from 'rxjs';
+import { EventAction } from 'src/app/models/event/EventAction';
+import { LogProcessamentoResponse } from 'src/app/models/interfaces/relatorios/response/logProcessamentoResponse';
 import { RelatorioService } from 'src/app/services/relatorio/relatorio.service';
+import { ConstrutorRelatorioFormsComponent } from '../components/construtor-relatorio-forms/construtor-relatorio-forms.component';
+import { ConstrutorRelatorioResponse } from 'src/app/models/interfaces/relatorios/response/construtorRelatorioResponse';
+import { RegrasRelatorioResponse } from 'src/app/models/interfaces/relatorios/response/regrasRelatorioResponse';
 
 @Component({
   selector: 'app-construtor-relatorios',
@@ -21,33 +25,36 @@ export class ConstrutorRelatoriosComponent implements OnInit, OnDestroy {
   }
 
   private destroy$ = new Subject<void>();
-  //private ref!: DynamicDialogRef
-  public logProcessamentosDatas: Array<LogProcessamentoResponse> = [];
-  public usuariosOnlineDatas: Array<UsuariosOnlineResponse> = [];
+  private ref!: DynamicDialogRef
+  public regrasRelatorioDatas: Array<RegrasRelatorioResponse> = [];
+
+  public construtorRelatoriosDatas: Array<ConstrutorRelatorioResponse> = [];
 
   constructor(
     private relatorioService: RelatorioService,
     private messageService: MessageService,
+    private dialogService: DialogService,
+    private confirmationService: ConfirmationService,
 
   ) {}
 
   ngOnInit(): void {
-    this.getUsuariosOnLineDatas();
-    this.getLogProcessamentosDatas();
+    this.getRegrasRelatorioDatas();
+    this.getConstrutorRelatoriosDatas();
   }
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
 
-  getLogProcessamentosDatas(): void {
+  getRegrasRelatorioDatas(): void {
     this.relatorioService
-      .getAllLogProcessamentos()
+      .getAllRegrasRelatorio()
              .subscribe({
         next: (response) => {
           if (response.length > 0) {
             console.log(response)
-            this.logProcessamentosDatas = response;
+            this.regrasRelatorioDatas = response;
           }
         },
         error: (err) => {
@@ -55,21 +62,23 @@ export class ConstrutorRelatoriosComponent implements OnInit, OnDestroy {
           this.messageService.add({
             severity: 'error',
             summary: 'Erro',
-            detail: 'Não foi possível buscar o log de Processamentos!',
+            detail: 'Não foi possível buscar regras relatório!',
             life: 2500,
           });
         },
       });
   }
 
-  getUsuariosOnLineDatas(): void {
+
+
+  getConstrutorRelatoriosDatas(): void {
     this.relatorioService
-      .getAllUsuariosOnLine()
+      .getAllConstrutorRelatorios()
              .subscribe({
         next: (response) => {
           if (response.length > 0) {
             console.log(response)
-            this.usuariosOnlineDatas = response;
+            this.construtorRelatoriosDatas = response;
           }
         },
         error: (err) => {
@@ -77,14 +86,31 @@ export class ConstrutorRelatoriosComponent implements OnInit, OnDestroy {
           this.messageService.add({
             severity: 'error',
             summary: 'Erro',
-            detail: 'Não foi possível buscar Usuários Online!',
+            detail: 'Não foi possível buscar Relatorios construidos!',
             life: 2500,
           });
         },
       });
   }
 
-
+  handleConstrutorRelatorioAction(event: EventAction): void {
+    if (event) {
+      this.ref = this.dialogService.open(ConstrutorRelatorioFormsComponent, {
+        header: event?.action,
+        width: '85%',
+        contentStyle: { overflow: 'auto' },
+        baseZIndex: 10000,
+        maximizable: true,
+        data: {
+          event: event,
+          construtorRelatorioDatas: this.construtorRelatoriosDatas,
+        },
+      });
+      this.ref.onClose.pipe(takeUntil(this.destroy$)).subscribe({
+        next: () => this.getConstrutorRelatoriosDatas(),
+      });
+    }
+  }
 
 
 }

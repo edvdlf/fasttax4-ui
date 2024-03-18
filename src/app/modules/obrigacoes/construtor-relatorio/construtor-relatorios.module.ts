@@ -20,6 +20,9 @@ import { ConstrutorRelatoriosTableComponent } from './components/construtor-rela
 import { ConstrutorRelatorioFormsComponent } from './components/construtor-relatorio-forms/construtor-relatorio-forms.component';
 import { TabViewModule } from 'primeng/tabview';
 import { TagModule } from 'primeng/tag';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 @NgModule({
   declarations: [ConstrutorRelatoriosComponent, ConstrutorRelatoriosTableComponent, ConstrutorRelatorioFormsComponent],
@@ -37,12 +40,14 @@ import { TagModule } from 'primeng/tag';
     CardModule,
     DropdownModule,
     TooltipModule,
+    DynamicDialogModule,
+    ConfirmDialogModule,
     TagModule,
     TableModule,
     TabViewModule,
     //Shared
     SharedModule,
-
-  ]
+  ],
+  providers: [DialogService, ConfirmationService],
 })
 export class ConstrutorRelatorioModule { }

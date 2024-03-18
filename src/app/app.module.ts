@@ -68,6 +68,7 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 import { UsuariosComponent } from './modules/usuarios/page/usuarios.component';
 import { UsuariosTableComponent } from './modules/usuarios/components/usuarios-table/usuarios-table.component';
 import { UsuariosFormComponent } from './modules/usuarios/components/usuarios-form/usuarios-form.component';
+import { RelatoriosLogsComponent } from './modules/obrigacoes/relatorios-logs/page/relatorios-logs.component';
 
 
 @NgModule({
@@ -75,9 +76,10 @@ import { UsuariosFormComponent } from './modules/usuarios/components/usuarios-fo
     AppComponent,
     LoginComponent,
     LoadingComponent,
-    UsuariosComponent,
-    UsuariosTableComponent,
-    UsuariosFormComponent,
+    //UsuariosComponent,
+    //UsuariosTableComponent,
+    //UsuariosFormComponent,
+    //RelatoriosLogsComponent,
 
   ],
   imports: [
