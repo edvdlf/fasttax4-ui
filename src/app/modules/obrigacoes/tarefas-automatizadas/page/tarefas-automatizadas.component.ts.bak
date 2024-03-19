@@ -72,7 +72,7 @@ ngOnDestroy(): void {
         icon: 'pi pi-exclamation-triangle',
         acceptLabel: 'Sim',
         rejectLabel: 'Não',
-        accept: () => this.deleteTarefaAutomatizada(event?.id),
+        //accept: () => this.deleteTarefaAutomatizada(event?.id),
 
         })
     }
@@ -116,6 +116,8 @@ ngOnDestroy(): void {
           if (response.length > 0) {
             console.log(response)
             this.tarefasAutomatizadasDatas = response;
+            console.log(this.tarefasAutomatizadasDatas)
+
           }
         },
         error: (err) => {

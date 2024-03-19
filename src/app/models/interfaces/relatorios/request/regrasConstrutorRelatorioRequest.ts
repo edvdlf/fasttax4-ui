@@ -1,4 +1,4 @@
-export interface RegrasRelatorioResponse{
+export interface RegrasConstrutorRelatorioRequest{
   id: string;
   nome: string;
   descricao: string;

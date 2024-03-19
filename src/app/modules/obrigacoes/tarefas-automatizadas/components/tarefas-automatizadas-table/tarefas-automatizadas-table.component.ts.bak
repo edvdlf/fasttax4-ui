@@ -102,6 +102,8 @@ export class TarefasAutomatizadasTableComponent {
 
   })
 
+
+
   ngOnInit(): void {
     for (const [values, keys] of Object.entries(Tarefas)) {
       this.tarefas.push({chave:keys, valor:values});

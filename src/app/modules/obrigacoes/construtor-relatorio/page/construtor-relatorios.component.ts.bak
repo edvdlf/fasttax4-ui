@@ -109,6 +109,7 @@ deleteConstrutorRelatorio(id: string) {
     }
   }
 
+
   getRegrasRelatorioDatas(): void {
     this.relatorioService
       .getAllRegrasRelatorio()

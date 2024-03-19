@@ -7,6 +7,8 @@
       <app-construtor-relatorios-table
         [regrasRelatorio]="regrasRelatorioDatas"
         [construtorRelatorio]="construtorRelatoriosDatas"
+        (construtorRelatorioEvent)="handleConstrutorRelatorioAction($event)"
+        (deleteConstrutorRelatorioEvent)="handleDeleteConstrutorRelatorioAction($event)"
       ></app-construtor-relatorios-table>
     <router-outlet></router-outlet>
   </mat-drawer-content>

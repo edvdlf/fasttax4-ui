@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CONSTRUTORRELATORIO_ROUTES } from './construtorrelatorio.routing';
-import {ConstrutorRelatoriosComponent} from './page/construtor-relatorios.component'
+import { TAREFASAUTOMATIZADAS_ROUTES } from './tarefas-automatizadas.routing';
+import { TarefasAutomatizadasComponent } from './page/tarefas-automatizadas.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SidebarModule } from 'primeng/sidebar';
@@ -20,23 +20,23 @@ import { TooltipModule } from 'primeng/tooltip';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { DividerModule } from 'primeng/divider';
-import { ConstrutorRelatoriosTableComponent } from './components/construtor-relatorios-table/construtor-relatorios-table.component';
-import { ConstrutorRelatorioFormsComponent } from './components/construtor-relatorio-forms/construtor-relatorio-forms.component';
+import { TarefasAutomatizadasTableComponent } from './components/tarefas-automatizadas-table/tarefas-automatizadas-table.component';
+import { TarefasAutomatizadasFormComponent } from './components/tarefas-automatizadas-form/tarefas-automatizadas-form.component';
 import { RouterModule } from '@angular/router';
 
 
 
 @NgModule({
   declarations: [
-  	ConstrutorRelatoriosComponent,
-  	ConstrutorRelatoriosTableComponent,
-  	ConstrutorRelatorioFormsComponent],
+    TarefasAutomatizadasComponent,
+    TarefasAutomatizadasTableComponent,
+    TarefasAutomatizadasFormComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forChild(CONSTRUTORRELATORIO_ROUTES),
+    RouterModule.forChild(TAREFASAUTOMATIZADAS_ROUTES),
     //PrimeNg
     SidebarModule,
     ButtonModule,
@@ -45,17 +45,18 @@ import { RouterModule } from '@angular/router';
     CardModule,
     DropdownModule,
     TooltipModule,
-	TableModule,
+    TableModule,
     DynamicDialogModule,
-	DropdownModule,
+    DropdownModule,
     ConfirmDialogModule,
-	TabViewModule,
+    TabViewModule,
     TagModule,
     MultiSelectModule,
     DividerModule,
+
     //Shared
     SharedModule,
   ],
   providers: [DialogService, ConfirmationService],
 })
-export class ConstrutorRelatorioModule { }
+export class TarefasAutomatizadasModule {}

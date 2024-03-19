@@ -185,10 +185,10 @@ SubmitTarefaAutomatizada(tarefaAutomatizadaRequest:TarefaAutomatizadaRequest):vo
     this.adicionarTarefaForm.reset();
 }
 
-  handleSubmitEditarTarefa():void{
+handleSubmitEditarTarefa():void{
 
 
-  }
+}
 
 getEstabelecimentosDatas(): void {
   this.estabelecimentoService
@@ -211,7 +211,6 @@ getEstabelecimentosDatas(): void {
     });
 }
   getTarefaAutomatizadaDatas(): void {
-
   this.tarefasAutomatizadasService
     .getAllTarefasAutomatizadas()
            .subscribe({
@@ -268,9 +267,6 @@ obrigacaoAbreviada(obrigacao:string): string{
   }
   return obrigacaoAbreviada;
 }
-
-
-
   ngOnInit(): void {
     for (const [values, keys] of Object.entries(Periodos)) {
       this.periodos.push({chave:keys, valor:values});
@@ -278,12 +274,11 @@ obrigacaoAbreviada(obrigacao:string): string{
     this.tarefaAutomatizadaAction = this.ref.data;
     this.getEstabelecimentosDatas()
     this.getObrigacoesFiscaisAllDatas()
-
    }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
 
   }
-
 }

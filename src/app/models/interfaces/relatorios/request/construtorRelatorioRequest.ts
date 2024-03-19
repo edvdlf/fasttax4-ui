@@ -1,5 +1,5 @@
-export interface ConstrutorRelatorioResponse{
-  id: string;
+export interface ConstrutorRelatorioRequest{
+  
   periodo: string;
   empresa: string;
   estabelecimento: string;

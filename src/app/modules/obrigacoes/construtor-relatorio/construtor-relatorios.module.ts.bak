@@ -51,8 +51,8 @@ import { RouterModule } from '@angular/router';
     ConfirmDialogModule,
 	TabViewModule,
     TagModule,
-    MultiSelectModule,
-    DividerModule,
+    
+    
     //Shared
     SharedModule,
   ],

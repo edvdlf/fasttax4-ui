@@ -1,4 +1,5 @@
-import { RegrasRelatorioResponse } from './../../models/interfaces/relatorios/response/regrasRelatorioResponse';
+import { RegrasConstrutorRelatorioRequest } from './../../models/interfaces/relatorios/request/regrasConstrutorRelatorioRequest';
+
 import { UsuariosOnlineResponse } from '../../models/interfaces/relatorios/response/usuariosOnlineResponse';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -7,6 +8,8 @@ import { Observable } from 'rxjs';
 import { LogProcessamentoResponse } from 'src/app/models/interfaces/relatorios/response/logProcessamentoResponse';
 import { environment } from 'src/environments/environment';
 import { ConstrutorRelatorioResponse } from 'src/app/models/interfaces/relatorios/response/construtorRelatorioResponse';
+import { ConstrutorRelatorioRequest } from 'src/app/models/interfaces/relatorios/request/construtorRelatorioRequest';
+import { RegrasConstrutorRelatorioResponse } from 'src/app/models/interfaces/relatorios/response/regrasConstrutorRelatorioResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -36,12 +39,30 @@ export class RelatorioService {
     return this.http.get<Array<ConstrutorRelatorioResponse>>(`${this.API_URL}/ConstrutorRelatoriosMockers`)
   }
 
-  getAllRegrasRelatorio(): Observable<Array<RegrasRelatorioResponse>> {
-    return this.http.get<Array<RegrasRelatorioResponse>>(`${this.API_URL}/RegrasMockers`)
+  getAllRegrasRelatorio(): Observable<Array<RegrasConstrutorRelatorioResponse>> {
+    return this.http.get<Array<RegrasConstrutorRelatorioResponse>>(`${this.API_URL}/RegrasMockers`)
   }
 
+  adicionarContrutorRelatorio(
+    requestDatas: ConstrutorRelatorioRequest): Observable<ConstrutorRelatorioResponse> {
+    return this.http.post<ConstrutorRelatorioResponse>(
+      `${this.API_URL}/ConstrutorRelatoriosMockers`, requestDatas
+    );
+  }
 
+  adicionarRegraContrutorRelatorio(
+    requestDatas: RegrasConstrutorRelatorioRequest): Observable<RegrasConstrutorRelatorioResponse> {
+    return this.http.post<RegrasConstrutorRelatorioResponse>(
+      `${this.API_URL}/RegrasMockers`, requestDatas
+    );
+  }
 
+  editarContrutorRelatorio(id: string,requestDatas: ConstrutorRelatorioRequest ): Observable<ConstrutorRelatorioRequest> {
+    return this.http.put<ConstrutorRelatorioRequest>(`${this.API_URL}/ConstrutorRelatoriosMockers/${id}`, requestDatas);
+  }
 
+  deleteContrutorRelatorio(id: string): Observable<ConstrutorRelatorioRequest> {
+    return this.http.delete<ConstrutorRelatorioRequest>(`${this.API_URL}/ConstrutorRelatoriosMockers/${id}`);
+  }
 
 }
