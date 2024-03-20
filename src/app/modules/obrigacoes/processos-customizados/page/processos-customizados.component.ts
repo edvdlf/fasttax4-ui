@@ -102,32 +102,31 @@ export class ProcessosCustomizadosComponent {
   deleteProcessoCustomizado(id: string) {
     if (id) {
       this.processosCustomizadosService
+      .deleteProcessosCustomizado(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+       next: (response) => {
+       this.getProcessosCustomizadosDatas();
+            this.messageService.add({
+            severity: 'success',
+            summary: 'Sucesso',
+            detail: 'Processo customizado excluído com sucesso!',
+            life: 3000,
+        });
+        },
+          error: (err) => {
+          console.log(err);
+          this.getProcessosCustomizadosDatas();
+          this.messageService.add({
+           severity: 'error',
+           summary: 'Erro',
+           detail: 'Não foi possível excluir o processo customizado!',
+           life: 3000,
+          });
+          },
+        });
 
-      //.deleteTarefaAutomatizada(id)
-      //.pipe(takeUntil(this.destroy$))
-      //.subscribe({
-       //next: (response) => {
-       //this.getProcessosCustomizadosDatas();
-            //this.messageService.add({
-            //severity: 'success',
-            //summary: 'Sucesso',
-            //detail: 'Processo customizado excluído com sucesso!',
-            //life: 3000,
-        //});
-        //},
-          //error: (err) => {
-          //console.log(err);
-          //this.getProcessosCustomizadosDatas();
-          //this.messageService.add({
-           // severity: 'error',
-            //summary: 'Erro',
-            //detail: 'Não foi possível excluir o processo customizado!',
-            //life: 3000,
-          //});
-          //},
-        //});
-
-      //this.getProcessosCustomizadosDatas();
+      this.getProcessosCustomizadosDatas();
     }
   }
 

@@ -238,8 +238,48 @@
 </div>
 <div *ngIf="tarefaAutomatizadaAction?.event?.action===editarTarefaAutomatizadaAction">
   <form [formGroup]="editarTarefaForm" (ngSubmit)="handleSubmitEditarTarefa()">
-    <div class="card flex flex-column md:flex-column gap-3">
+    <div class="card">
+      <p-toolbar>
+        <div class="p-toolbar-group-start">
+          <label for="name" >Periodos: </label>
+             <p-dropdown
+                styleClass="w-full"
+                [filter]="true"
+                filterBy="chave"
+                [showClear]="true"
+                 class="ml-3 mr-3"
+                 [options]="periodos"
+                 optionValue="valor"
+                 optionLabel="chave"
+                 formControlName="periodo"
+                 placeholder="Selecione o período!" >
+             </p-dropdown>
+        </div>
+        <div class="p-toolbar-group-end">
+          <p-button
+          icon="pi pi-save" severity="warning"
+          type="submit"
+          pTooltip="Clique para salvar a nova tarefa automatizada"
+          tooltipPosition="top"
+        ></p-button>
+        </div>
+      </p-toolbar>
+      <div class="formgrid grid">
+        <div class="field col-12 md:col-6">
+              <div class="card flex flex-column md:flex-column">
+                <div class="card flex justify-content-center">
 
-    </div>
+                </div>
+             </div>
+        </div>
+        <div class="field col-12 md:col-6">
+            <div class="card flex flex-column md:flex-column">
+                <div class="card flex justify-content-center">
+                     
+                </div>
+             </div>
+        </div>
+      </div>
+</div>
   </form>
 </div>

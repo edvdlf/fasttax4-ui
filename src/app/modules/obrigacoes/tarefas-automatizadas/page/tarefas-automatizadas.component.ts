@@ -28,7 +28,7 @@ export class TarefasAutomatizadasComponent implements OnInit, OnDestroy {
   public tarefasAutomatizadasDatas: Array<TarefaAutomatizadaResponse> = [];
 
   constructor(
-    private router: Router,
+    //private router: Router,
     private messageService: MessageService,
     private tarefasAutomatizadasService: TarefasAutomatizadasService,
     private dialogService: DialogService,

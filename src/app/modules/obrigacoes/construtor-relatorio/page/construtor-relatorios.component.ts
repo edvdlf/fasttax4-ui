@@ -45,9 +45,11 @@ export class ConstrutorRelatoriosComponent implements OnInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
   }
-  
+
   handleConstrutorRelatorioAction(event: EventAction): void {
     if (event) {
+      //alert(event.action)
+      //alert(event.id)
       this.ref = this.dialogService.open(ConstrutorRelatorioFormsComponent, {
         header: event?.action,
         width: '85%',
@@ -153,8 +155,8 @@ deleteConstrutorRelatorio(id: string) {
       });
   }
 
-  
 
-  
-  
+
+
+
 }

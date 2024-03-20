@@ -26,7 +26,7 @@ export class ConstrutorRelatorioFormsComponent implements OnInit, OnDestroy {
   public estabelecimentos: Array<EstabelecimentoResponse> = [];
   public regras: Array<RegrasConstrutorRelatorioResponse>=[];
 
-  
+
   public construtorRelatorioAction!:{
     event: EventAction;
     construtorRelatorioDatas: Array<ConstrutorRelatorioResponse>
@@ -102,6 +102,58 @@ getRegrasRelatorioDatas(): void {
 }
 
 handleSubmitAdicionarConstrutorRelatorio():void{
+
+  if (this.adicionarConstrutorRelatorioForm?.value && this.adicionarConstrutorRelatorioForm?.valid) {
+    let qtdEstabelecimentos = 0;
+    var qtdSelectedRegras = 0;
+    let _periodo = "";
+    let _regra = "";
+    let _comando = "";
+    let _descricao = "";
+    let _empresa = "";
+    let _estabelecimento = "";
+    let _uf = "";
+    let _grupo = "";
+    if(this.selectedEstabelecimento){
+      qtdEstabelecimentos = this.selectedEstabelecimento.length;
+      qtdSelectedRegras = this.selectedRegras.length;
+
+    }
+      _periodo = this.adicionarConstrutorRelatorioForm.value.periodo as string;
+
+    if(qtdEstabelecimentos > 0){
+      for (var i = 0; i < this.selectedEstabelecimento.length; i++) {
+        _empresa = this.selectedEstabelecimento[i].empresa;
+        _estabelecimento = this.selectedEstabelecimento[i].nome;
+        _uf = this.selectedEstabelecimento[i].uf;
+       for(var index = 0; index < this.selectedRegras.length; index++){
+          _regra = this.selectedRegras[index].nome;
+          _comando = this.selectedRegras[index].comando;
+
+          const requestAdicionarConstrutor: ConstrutorRelatorioRequest = {
+            periodo: _periodo,
+            empresa: _empresa,
+            estabelecimento: _estabelecimento,
+            resumo: "Periodo: " + _periodo + " Empresa: " + _empresa + " Estabelecimento: " + _estabelecimento,
+            comando: _comando,
+            nome: "Teste",
+            regra:_regra,
+            data: "2024-03-18T00:00:00",
+
+          }
+            this.SubmitConstrutorRelatorio(requestAdicionarConstrutor)
+            //console.log(requestAdicionarConstrutor)
+        }
+      };
+    }
+    else{
+      //alert("Selecione pelo menos um estabelecimento!")
+      this.messageService.add({ severity: 'error', summary: 'Atenção!', detail: 'Selecione pelo menos um estabelecimento!' });
+    }
+  }
+}
+
+handleSubmitEditarConstrutorRelatorio():void{
 
   if (this.adicionarConstrutorRelatorioForm?.value && this.adicionarConstrutorRelatorioForm?.valid) {
     let qtdEstabelecimentos = 0;

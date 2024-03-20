@@ -1,4 +1,4 @@
-<div *ngIf="construtorRelatorioAction?.event?.action===adicionarConstrutorRelatorioAction">
+<div >
   <form [formGroup]="adicionarConstrutorRelatorioForm" (ngSubmit)="handleSubmitAdicionarConstrutorRelatorio()" >
     <div class="card">
             <p-toolbar>
@@ -304,4 +304,12 @@
     </div>
   </form>
 </div>
+
+<!--div *ngIf="construtorRelatorioAction?.event?.action===editarConstrutorRelatorioAction">
+  <form [formGroup]="editarConstrutorRelatorioForm" (ngSubmit)="handleSubmitEditarConstrutorRelatorio()">
+    <div class="card flex flex-column md:flex-column gap-3">
+
+    </div>
+  </form>
+</div-->
 

@@ -38,7 +38,7 @@ export class ProcessosCustomizadosService {
     //return this.http.put<ProcessoCustomizadoDeleteRequest>(`${this.API_URL}/ProcessosCustomizadosMockers/${id}`, requestDatas);
   //}
 
-  //deleteTarefaAutomatizada(id: string): Observable<ProcessoCustomizadoDeleteRequest> {
-    //return this.http.delete<ProcessoCustomizadoDeleteRequest>(`${this.API_URL}/TarefasAutomatizadasMockers/${id}`);
-  //}
+  deleteProcessosCustomizado(id: string): Observable<ProcessoCustomizadoResponse> {
+    return this.http.delete<ProcessoCustomizadoResponse>(`${this.API_URL}/ProcessosCustomizadosMockers/${id}`);
+  }
 }
