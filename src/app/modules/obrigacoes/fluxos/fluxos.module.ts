@@ -1,7 +1,5 @@
-import { NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TAREFASAUTOMATIZADAS_ROUTES } from './tarefas-automatizadas.routing';
-import { TarefasAutomatizadasComponent } from './page/tarefas-automatizadas.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SidebarModule } from 'primeng/sidebar';
@@ -20,23 +18,27 @@ import { TooltipModule } from 'primeng/tooltip';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { DividerModule } from 'primeng/divider';
-import { TarefasAutomatizadasTableComponent } from './components/tarefas-automatizadas-table/tarefas-automatizadas-table.component';
-import { TarefasAutomatizadasFormComponent } from './components/tarefas-automatizadas-form/tarefas-automatizadas-form.component';
 import { RouterModule } from '@angular/router';
-
+import { FluxosComponent } from './page/fluxos.component';
+import { FluxosTableComponent } from './conponents/fluxos-table/fluxos-table.component';
+import { FluxosFormComponent } from './conponents/fluxos-form/fluxos-form.component';
+import { FLUXOS_ROUTES } from './fluxos.routing';
+import { StepperModule } from 'primeng/stepper';
+import { StepsModule } from 'primeng/steps';
 
 
 @NgModule({
   declarations: [
-    TarefasAutomatizadasComponent,
-    TarefasAutomatizadasTableComponent,
-    TarefasAutomatizadasFormComponent],
+    FluxosComponent,
+    FluxosTableComponent,
+    FluxosFormComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forChild(TAREFASAUTOMATIZADAS_ROUTES),
+    RouterModule.forChild(FLUXOS_ROUTES),
     //PrimeNg
     SidebarModule,
     ButtonModule,
@@ -53,10 +55,12 @@ import { RouterModule } from '@angular/router';
     TagModule,
     MultiSelectModule,
     DividerModule,
+    StepsModule,
+    //StepperModule,
 
     //Shared
     SharedModule,
   ],
   providers: [DialogService, ConfirmationService],
 })
-export class TarefasAutomatizadasModule {}
+export class FluxosModule { }

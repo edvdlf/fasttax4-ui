@@ -10,8 +10,6 @@ import { Subject, takeUntil } from 'rxjs';
 import { ConstrutorRelatorioFormsComponent } from '../components/construtor-relatorio-forms/construtor-relatorio-forms.component';
 import { EventAction } from 'src/app/models/event/EventAction';
 
-
-
 @Component({
   selector: 'app-construtor-relatorios',
   templateUrl: './construtor-relatorios.component.html',

@@ -35,7 +35,12 @@ export class SidebarComponent {
                     label: 'Tarefas Automatizadas',
                     icon: 'pi pi-spin pi-cog',
                     routerLink:"/tarefas-automatizadas"
-                }
+                },
+                {
+                  label: 'Manutenção de Fluxos',
+                  icon: 'pi pi-spin pi-cog',
+                  routerLink:"/fluxos"
+              }
 
             ]
         },

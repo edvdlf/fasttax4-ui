@@ -77,6 +77,8 @@ import { TreeSelectModule } from 'primeng/treeselect';
 import { TreeTableModule } from 'primeng/treetable';
 //import { LoadingComponent } from './components/loading/loading.component';
 
+import { StepsModule } from 'primeng/steps';
+
 
 @NgModule({
   declarations: [
@@ -105,6 +107,7 @@ import { TreeTableModule } from 'primeng/treetable';
     PanelMenuModule,
     CascadeSelectModule,
     RadioButtonModule,
+    StepsModule,
     // * MATERIAL IMPORTS
     MatSidenavModule,
     MatToolbarModule,

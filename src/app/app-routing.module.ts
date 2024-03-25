@@ -81,6 +81,13 @@ const routes: Routes = [
       ),
       canActivate: [AuthGuard]
   },
+  {
+    path: 'fluxos',
+    loadChildren: () => import('./modules/obrigacoes/fluxos/fluxos.module')
+      .then((m)=>m.FluxosModule
+      ),
+      canActivate: [AuthGuard]
+  },
 
 ];
 
