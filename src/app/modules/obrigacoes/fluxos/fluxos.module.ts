@@ -23,15 +23,17 @@ import { FluxosComponent } from './page/fluxos.component';
 import { FluxosTableComponent } from './conponents/fluxos-table/fluxos-table.component';
 import { FluxosFormComponent } from './conponents/fluxos-form/fluxos-form.component';
 import { FLUXOS_ROUTES } from './fluxos.routing';
-import { StepperModule } from 'primeng/stepper';
 import { StepsModule } from 'primeng/steps';
+import { StepperModule  } from 'primeng/stepper';
+
 
 
 @NgModule({
   declarations: [
     FluxosComponent,
     FluxosTableComponent,
-    FluxosFormComponent
+    FluxosFormComponent,
+
   ],
   imports: [
     CommonModule,
@@ -56,7 +58,7 @@ import { StepsModule } from 'primeng/steps';
     MultiSelectModule,
     DividerModule,
     StepsModule,
-    //StepperModule,
+    StepperModule,
 
     //Shared
     SharedModule,

@@ -1,32 +1,46 @@
-<div class="card flex justify-content-center">
-    <p-stepper>
-        <p-stepperPanel header="Header I">
-            <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
-                <div class="flex flex-column h-12rem">
-                    <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">Content I</div>
+<div >
+  <form [formGroup]="adicionarFluxoForm" (ngSubmit)="handleSubmitFluxo()">
+    <p-stepper [linear]="true">
+      <p-stepperPanel  header="Criar Fluxo">
+
+          <ng-template pTemplate="content"  let-nextCallback="nextCallback" let-index="index">
+              <!--p-card-->
+              <label>Você deverá criar um fluxo, para no próximo passo adicionar as tarefas automatizadas já cadastradas no sistema</label>
+
+                <div class="field col-12 md:col-6">
+                  <label for="lblNomeFluxo" class="ml-1">Nome do fluxo:</label>
+                  <input id="txtNomeFluxo" placeholder="Defina um nome para o fluxo a ser criado!" formControlName="nomeFluxo" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full ml-1">
+                </div>
+
+                <div class="field col-12 md:col-12">
+                  <label for="lblDescricao" class="ml-1">Descrição:</label>
+                  <input id="txtDescricao" placeholder="Descreva o fluxo a ser criado!" formControlName="descricaoFluxo" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full ml-1">
                 </div>
                 <div class="flex pt-4 justify-content-end">
-                    <p-button label="Next" icon="pi pi-arrow-right" iconPos="right" (onClick)="nextCallback.emit()" /></div
-            ></ng-template>
-        </p-stepperPanel>
-        <p-stepperPanel header="Header II">
-            <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback" let-index="index">
-                <div class="flex flex-column h-12rem">
-                    <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">Content II</div>
+                  <p-button label="Salvar"  />
                 </div>
-                <div class="flex pt-4 justify-content-between">
-                    <p-button label="Back" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()" />
-                    <p-button label="Next" icon="pi pi-arrow-right" iconPos="right" (onClick)="nextCallback.emit()" /></div
-            ></ng-template>
-        </p-stepperPanel>
-        <p-stepperPanel header="Header III">
-            <ng-template pTemplate="content" let-prevCallback="prevCallback" let-index="index">
-                <div class="flex flex-column h-12rem">
-                    <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">Content III</div>
-                </div>
-                <div class="flex pt-4 justify-content-start">
-                    <p-button label="Back" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()" /></div
-            ></ng-template>
-        </p-stepperPanel>
-    </p-stepper>
+              <!--/p-card-->
+              <div class="flex pt-4 justify-content-end">
+                  <p-button label="Próximo" icon="pi pi-arrow-right" iconPos="right" (onClick)="nextCallback.emit()" /></div
+          ></ng-template>
+      </p-stepperPanel>
+      <p-stepperPanel header="Adicionar Tarefas">
+          <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback" let-index="index">
+
+              <div class="flex pt-4 justify-content-between">
+                  <p-button label="Anterior" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()" />
+                  <p-button label="Próximo" icon="pi pi-arrow-right" iconPos="right" (onClick)="nextCallback.emit()" /></div
+          ></ng-template>
+      </p-stepperPanel>
+      <p-stepperPanel header="Header III">
+          <ng-template pTemplate="content" let-prevCallback="prevCallback" let-index="index">
+              <div class="flex flex-column h-12rem">
+                  <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">Content III</div>
+              </div>
+              <div class="flex pt-4 justify-content-start">
+                  <p-button label="Anterior" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()" /></div
+          ></ng-template>
+      </p-stepperPanel>
+  </p-stepper>
+  </form>
 </div>
