@@ -25,6 +25,8 @@ import { FluxosFormComponent } from './conponents/fluxos-form/fluxos-form.compon
 import { FLUXOS_ROUTES } from './fluxos.routing';
 import { StepsModule } from 'primeng/steps';
 import { StepperModule  } from 'primeng/stepper';
+import { PickListModule } from 'primeng/picklist';
+import { ProductService } from 'src/app/services/fluxo/fluxo-steps.service';
 
 
 
@@ -59,10 +61,11 @@ import { StepperModule  } from 'primeng/stepper';
     DividerModule,
     StepsModule,
     StepperModule,
+    PickListModule,
 
     //Shared
     SharedModule,
   ],
-  providers: [DialogService, ConfirmationService],
+  providers: [DialogService, ConfirmationService, ProductService],
 })
 export class FluxosModule { }

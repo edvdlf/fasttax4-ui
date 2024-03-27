@@ -43,9 +43,7 @@ export class FluxosComponent implements OnInit, OnDestroy {
 
   handleFluxoAction(event: EventAction): void {
     if (event) {
-      //alert(event.action)
-      //alert(event.id)
-      this.ref = this.dialogService.open(FluxosFormComponent, {
+     this.ref = this.dialogService.open(FluxosFormComponent, {
         header: event?.action,
         width: '85%',
         contentStyle: { overflow: 'auto' },

@@ -1,11 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Subject } from 'rxjs';
+//import { ConfirmationService, MessageService } from 'primeng/api';
+//import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+//import { Subject } from 'rxjs';
 import { ConstrutorRelatorioResponse } from 'src/app/models/interfaces/relatorios/response/construtorRelatorioResponse';
 import { LogProcessamentoResponse } from 'src/app/models/interfaces/relatorios/response/logProcessamentoResponse';
 import { UsuariosOnlineResponse } from 'src/app/models/interfaces/relatorios/response/usuariosOnlineResponse';
-import { RelatorioService } from 'src/app/services/relatorio/relatorio.service';
+//import { RelatorioService } from 'src/app/services/relatorio/relatorio.service';
 
 @Component({
   selector: 'app-relatorios-logs-table',
@@ -22,16 +22,16 @@ export class RelatoriosLogsTableComponent{
     this.sideBarOpen = !this.sideBarOpen;
   }
 
-  private destroy$ = new Subject<void>();
-  private ref!: DynamicDialogRef
+  //private destroy$ = new Subject<void>();
+  //private ref!: DynamicDialogRef
 
   public construtorRelatoriosDatas: Array<ConstrutorRelatorioResponse> = [];
 
   constructor(
-    private relatorioService: RelatorioService,
-    private messageService: MessageService,
-    private dialogService: DialogService,
-    private confirmationService: ConfirmationService,
+    //private relatorioService: RelatorioService,
+    //private messageService: MessageService,
+    //private dialogService: DialogService,
+    //private confirmationService: ConfirmationService,
 
   ) {}
 

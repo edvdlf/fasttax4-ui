@@ -1,85 +1,77 @@
 <div class="grid">
   <div class="col-12">
-    <div
-      class="flex justify-content-center align-content-center text-align-center"
-    >
-
-      <!-- LOGIN -->
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmitLoginForm()">
-
-
+     <div
+        class="flex justify-content-center align-content-center text-align-center"
+        >
+        <!-- LOGIN -->
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmitLoginForm()">
         <p-card
-        text-align-header="center"
-          styleClass="mt-10"
-          header="Login"
-          *ngIf="loginCard">
-          <div class="text-center" styleClass="mt-10 gap-3">
-            <div class="card flex flex-column align-items-center gap-3 "></div>
-
+           text-align-header="center"
+           styleClass="mt-10"
+           header="Login"
+           *ngIf="loginCard">
+           <div class="text-center" styleClass="mt-10 gap-3">
+              <div class="card flex flex-column align-items-center gap-3 "></div>
               <a routerLink="" class="authentication-logo"><img src="assets/img/logoFastTaxworg.png" height="25" alt="logo"></a>
-
-          </div>
-          <div class="p-inputgroup mt-5">
-            <span class="p-inputgroup-addon">
-                <i class="pi pi-user"></i>
+           </div>
+           <div class="p-inputgroup mt-5">
+              <span class="p-inputgroup-addon">
+              <i class="pi pi-user"></i>
               </span>
               <input type="email" pInputText id="email"  class="p-inputtext-sm" placeholder="Informe o Email" formControlName="email" />
-          </div>
-
-          <div class="p-inputgroup mt-3">
-            <span class="p-inputgroup-addon">
+           </div>
+           <div class="p-inputgroup mt-3">
+              <span class="p-inputgroup-addon">
               <i class="pi pi-key"></i>
-            </span>
-            <p-password class="flex p-inputtext-sm" placeholder="Informe a senha" formControlName="password" [toggleMask]="true" />
-          </div>
-
-          <div class="card flex justify-content-center mt-3 v-btn">
-            <button type="submit" size="small" severity="warning" pButton pRipple label="Login" ></button>
-          </div>
-          <!--div class="card flex flex-column align-items-center gap-5 ">
-            <span
-            class="flex justify-content-center align-content-center text-align-center mt-3  font-semibold"
-            (click)="loginCard = !loginCard"
-            style="cursor: pointer;"
-            >Criar Conta</span
-          ></div-->
+              </span>
+              <p-password class="flex p-inputtext-sm" placeholder="Informe a senha" formControlName="password" [toggleMask]="true" />
+           </div>
+           <div class="card flex justify-content-center mt-3 v-btn">
+              <button type="submit" size="small" severity="warning" pButton pRipple label="Login" ></button>
+           </div>
+           <!--div class="card flex flex-column align-items-center gap-5 ">
+              <span
+              class="flex justify-content-center align-content-center text-align-center mt-3  font-semibold"
+              (click)="loginCard = !loginCard"
+              style="cursor: pointer;"
+              >Criar Conta</span
+              ></div-->
         </p-card>
-      </form>
-
-      <!-- SIGNUP -->
-      <form [formGroup]="signupForm" (ngSubmit)="onSubmitSignupForm()">
+        </form>
+        <!-- SIGNUP -->
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmitSignupForm()">
         <p-card
-          styleClass="mt-10"
-          header="Criar conta"
-          subheader="Crie já sua conta gratuita!"
-          *ngIf="!loginCard"
-        >
-          <div
-            class="flex justify-content-center align-content-center text-align-center"
-          >
-            <input type="text" pInputText placeholder="Nome" formControlName="name"/>
-          </div>
-          <div
-            class="flex justify-content-center align-content-center text-align-center mt-3"
-          >
-            <input type="email" pInputText placeholder="Email" formControlName="email" />
-          </div>
-          <div
-            class="flex justify-content-center align-content-center text-align-center mt-3"
-          >
-            <input type="password" pInputText placeholder="Senha" formControlName="password" />
-          </div>
-          <div class="card flex justify-content-center mt-3">
-            <button type="submit" pButton my-component pRipple label="Criar conta" [disabled]="!this.signupForm.valid"></button>
-          </div>
-          <span
-            class="flex justify-content-center align-content-center text-align-center mt-3 text-red-600 font-semibold"
-            style="cursor: pointer;"
-            (click)="loginCard = !loginCard"
-            >Fazer login</span
-          >
+           styleClass="mt-10"
+           header="Criar conta"
+           subheader="Crie já sua conta gratuita!"
+           *ngIf="!loginCard"
+           >
+           <div
+              class="flex justify-content-center align-content-center text-align-center"
+              >
+              <input type="text" pInputText placeholder="Nome" formControlName="name"/>
+           </div>
+           <div
+              class="flex justify-content-center align-content-center text-align-center mt-3"
+              >
+              <input type="email" pInputText placeholder="Email" formControlName="email" />
+           </div>
+           <div
+              class="flex justify-content-center align-content-center text-align-center mt-3"
+              >
+              <input type="password" pInputText placeholder="Senha" formControlName="password" />
+           </div>
+           <div class="card flex justify-content-center mt-3">
+              <button type="submit" pButton my-component pRipple label="Criar conta" [disabled]="!this.signupForm.valid"></button>
+           </div>
+           <span
+              class="flex justify-content-center align-content-center text-align-center mt-3 text-red-600 font-semibold"
+              style="cursor: pointer;"
+              (click)="loginCard = !loginCard"
+              >Fazer login</span
+              >
         </p-card>
-      </form>
-    </div>
+        </form>
+     </div>
   </div>
 </div>

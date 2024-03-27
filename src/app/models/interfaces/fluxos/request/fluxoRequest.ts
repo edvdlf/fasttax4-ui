@@ -1,8 +1,8 @@
 export  interface FluxoRequest{
-  
+
   nome: string,
   descricao: string,
-  dataCriacao: string
+  dataCriacao: string;
   contemVinculo: string;
-  dataUltimaExecucao: Date;
+  dataUltimaExecucao: string;
 }

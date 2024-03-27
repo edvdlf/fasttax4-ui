@@ -33,12 +33,12 @@ export class SidebarComponent {
             items: [
                {
                     label: 'Tarefas Automatizadas',
-                    icon: 'pi pi-spin pi-cog',
+                    icon: 'pi  pi-cog',
                     routerLink:"/tarefas-automatizadas"
                 },
                 {
                   label: 'Manutenção de Fluxos',
-                  icon: 'pi pi-spin pi-cog',
+                  icon: 'pi pi-sliders-h',
                   routerLink:"/fluxos"
               }
 

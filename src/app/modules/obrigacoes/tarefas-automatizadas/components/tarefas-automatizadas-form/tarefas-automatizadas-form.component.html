@@ -1,6 +1,7 @@
 <div *ngIf="tarefaAutomatizadaAction?.event?.action===adicionarTarefaAutomatizadaAction">
   <form [formGroup]="adicionarTarefaForm" (ngSubmit)="handleSubmitAdicionarTarefa()" >
     <div class="card">
+
             <p-toolbar>
               <div class="p-toolbar-group-start">
                 <label for="name" >Periodos: </label>
@@ -16,6 +17,9 @@
                        formControlName="periodo"
                        placeholder="Selecione o período!" >
                    </p-dropdown>
+                   <small class="p-error" *ngIf="submited && !adicionarTarefaForm.value.periodo">
+                    O campo Nome é obrigatorio!
+                  </small>
               </div>
               <div class="p-toolbar-group-end">
                 <p-button
@@ -275,7 +279,7 @@
         <div class="field col-12 md:col-6">
             <div class="card flex flex-column md:flex-column">
                 <div class="card flex justify-content-center">
-                     
+
                 </div>
              </div>
         </div>

@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RelatoriosLogsTablesComponent } from './relatorios-logs-table.component';
 
 describe('RelatoriosLogsTablesComponent', () => {
   let component: RelatoriosLogsTablesComponent;

@@ -1,9 +1,15 @@
 <div class="col-12">
+
   <p-card
       styleClass="shadow-3  text-orange-500"
       header="Tarefas Automatizadas"
     >
-
+    <div class="col-sm-12">
+      <ol class="breadcrumb float-sm-right">
+        <li class="breadcrumb-item active">Tarefas Automatizadas</li>
+          <li class="breadcrumb-item"><a href="/fluxos">Fluxos</a></li>
+      </ol>
+    </div>
     <form [formGroup]="filtarTarefaForm" (ngSubmit)="handleSubmitFiltrarTarefa()">
       <div class="formgrid grid">
         <div class="field col-12">
@@ -76,7 +82,7 @@
 
     <div class="card flex justify-content-center mr-2">
       <p-table
-        #funcionalidadesTable
+        #tarefasAutomatizadasTable
         [value]="tarefasAutomatizadas"
         [(selection)]="tarefasAutomatizadaSelected"
         [rows]="20"

@@ -1,11 +1,16 @@
-
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { MenuItem, MessageService } from 'primeng/api';
+import { FluxoRequest } from 'src/app/models/interfaces/fluxos/request/fluxoRequest';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { Subscription } from 'rxjs';
-import { FluxoStepsService } from 'src/app/services/fluxo/fluxo-steps.service';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 import { FluxoService } from 'src/app/services/fluxo/fluxo.service';
+import { MessageService } from 'primeng/api';
+import { FluxoResponse } from 'src/app/models/interfaces/fluxos/response/fluxoResponse';
+import { TarefaAutomatizadaResponse } from 'src/app/models/interfaces/tarefasautomatizadas/response/tarefaAutomatizadaResponse';
+import { TarefasAutomatizadasService } from 'src/app/services/obrigacoes/tarefas-automatizadas/tarefas-automatizadas.service';
+import { Product } from './product';
+import { ProductService } from 'src/app/services/fluxo/fluxo-steps.service';
+
 
 
 @Component({
@@ -15,31 +20,156 @@ import { FluxoService } from 'src/app/services/fluxo/fluxo.service';
 })
 export class FluxosFormComponent implements OnInit, OnDestroy {
 
+  sourceProducts!: Product[];
+  targetProducts!: Product[];
+  //sourceProducts!: TarefaAutomatizadaResponse[];
+  //targetProducts!: Product[];
 
+  private readonly destroy$: Subject<void> = new Subject();
+  fluxosDatas: Array<FluxoResponse> =[]
+  public tarefasAutomatizadaSelected!:TarefaAutomatizadaResponse;
+  tarefasAutomatizadasDatas: Array<TarefaAutomatizadaResponse> = [];
+
+  submited:boolean=false;
 
   constructor(
-
     public fluxoService: FluxoService,
+    private tarefasAutomatizadasService: TarefasAutomatizadasService,
     public ref: DynamicDialogConfig,
     private formBuilder: FormBuilder,
     private messageService: MessageService,
-
-
+    private carService: ProductService,
+    private cdr: ChangeDetectorRef,
     ) {}
 
     public adicionarFluxoForm = this.formBuilder.group({
-      periodo:[''],
-      lista:['']
+      nomeFluxo:['', Validators.required],
+      descricaoFluxo:['', Validators.required]
 
     })
 
     handleSubmitFluxo():void{
+      if(this.adicionarFluxoForm.value && this.adicionarFluxoForm.valid){
+        this.submited=true;
 
+        const fluxoRequest: FluxoRequest = {
+          nome : this.adicionarFluxoForm.value.nomeFluxo as string,
+          descricao: this.adicionarFluxoForm.value.descricaoFluxo as string,
+          contemVinculo: "Não",
+          dataCriacao: "2024-03-18T00:00:00",
+          dataUltimaExecucao: "2024-03-18T00:00:00",
+        }
+        console.log(fluxoRequest)
+        this.submitFluxo(fluxoRequest)
+      }
+      else{
+        this.submited=true;
+      }
+    }
+
+    submitFluxo(fluxoRequest:FluxoRequest):void{
+      this.fluxoService
+          .adicionarFluxo(fluxoRequest)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe({
+            next: (response) => {
+           if (response) {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Sucesso',
+                detail: 'Relatório criado com sucesso!',
+                life: 2500,
+              });
+            }
+          },
+          error: (err) => {
+            console.log(err);
+            this.messageService.add({
+             severity: 'error',
+             summary: 'Erro',
+              detail: 'Não foi possivel adicionar relatório!',
+              life: 2500,
+            });
+         },
+      })
+      this.adicionarFluxoForm.reset();
+    }
+    getTarefasAutomatizadasDatas(): void {
+      this.tarefasAutomatizadasService
+        .getAllTarefasAutomatizadas()
+               .subscribe({
+          next: (response) => {
+            if (response.length > 0) {
+              console.log(response)
+              this.tarefasAutomatizadasDatas = response;
+
+            }
+          },
+          error: (err) => {
+            console.log(err);
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Erro',
+              detail: 'Não foi possivel buscar Tarefas Automatizadas!',
+              life: 2500,
+            });
+          },
+        });
+    }
+
+    getFluxosDatas(): void {
+      this.fluxoService
+        .getAllFluxos()
+               .subscribe({
+          next: (response) => {
+            if (response.length > 0) {
+              console.log(response)
+              this.fluxosDatas = response;
+            }
+          },
+          error: (err) => {
+            console.log(err);
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Erro',
+              detail: 'Não foi possível buscar regras relatório!',
+              life: 2500,
+            });
+          },
+        });
     }
 
   ngOnInit() {
+      this.getFluxosDatas();
+      this.getTarefasAutomatizadasDatas();
+
+      this.carService.getProductsSmall().then(products => {
+        this.sourceProducts = products;
+        //this.cdr.markForCheck();
+    });
+    this.targetProducts = [];
+
+      //this.carService.getProductsSmall().then(products => {
+        //this.sourceProducts = this.tarefasAutomatizadasDatas;
+        //this.cdr.markForCheck();
+    //});
+    this.targetProducts = [];
+
   }
   ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  getStatus(status: string) {
+    switch (status) {
+        case 'habilitado':
+            return 'success';
+        case 'desabilitado':
+            return 'warning';
+        default:
+          return 'info'
+    }
   }
 
 }

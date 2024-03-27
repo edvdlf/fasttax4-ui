@@ -49,12 +49,12 @@ obrigacoesFiscaisAll: any[] = [];
 periodos: any[] = [{ chave: '', valor: '' }];
 selectedEstabelecimento!: EstabelecimentoResponse[];
 selectedObrigacoes!: ObrigacoesFiscaisAll[];
-
+submited:boolean=false;
 
 
 
 public adicionarTarefaForm = this.formBuilder.group({
-  periodo:[''],
+  periodo:['', Validators.required],
   lista:['']
 
 })
@@ -106,9 +106,10 @@ getObrigacoesFiscaisAllDatas(){
 handleSubmitAdicionarTarefa():void{
 
   if (this.adicionarTarefaForm?.value && this.adicionarTarefaForm?.valid) {
+    this.submited=true;
     let cont = 0;
     var qtdSelectedObrigacoes = 0;
-    let _periodo = "";
+    var _periodo = "";
     let _programa = "";
     let _obrigacao = "";
     let _descricao = "";
@@ -131,8 +132,8 @@ handleSubmitAdicionarTarefa():void{
         for(var index = 0; index < this.selectedObrigacoes.length; index++){
           _obrigacao = this.selectedObrigacoes[index].chave;
           _grupo = this.selectedObrigacoes[index].grupo;
-          _programa = _obrigacao + "_" + _empresa + "_" + _estabelecimento + "_" + _uf;
-          _descricao = "OBRIGAÇÃO: " +_obrigacao + " EMPRESA: " + _empresa + " ESTABELECIMENTO: " + _estabelecimento + " UF: " + _uf;
+          _programa = _periodo + "_" +   _obrigacao + "_" + _empresa + "_" + _estabelecimento + "_" + _uf;
+          _descricao = "Período: " + _periodo +  " Obrigação: " +_obrigacao + " Empresa: " + _empresa + " Estabelecimento: " + _estabelecimento + " Estado: " + _uf;
           const requestAdicionarTarefa: TarefaAutomatizadaRequest = {
             periodo: _periodo,
             programa: _programa,
@@ -152,6 +153,7 @@ handleSubmitAdicionarTarefa():void{
     }
     else{
       //alert("Selecione pelo menos um estabelecimento!")
+      this.submited=true;
       this.messageService.add({ severity: 'error', summary: 'Atenção!', detail: 'Selecione pelo menos um estabelecimento!' });
     }
   }
@@ -182,6 +184,7 @@ SubmitTarefaAutomatizada(tarefaAutomatizadaRequest:TarefaAutomatizadaRequest):vo
           });
        },
     })
+    this.submited=false;
     this.adicionarTarefaForm.reset();
 }
 

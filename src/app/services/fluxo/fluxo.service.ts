@@ -29,6 +29,13 @@ export class FluxoService {
     return this.http.delete<FluxoRequest>(`${this.API_URL}/FluxosMockers/${id}`);
   }
 
+  adicionarFluxo(
+    requestDatas: FluxoRequest): Observable<FluxoResponse> {
+    return this.http.post<FluxoResponse>(
+      `${this.API_URL}/FluxosMockers`, requestDatas
+    );
+  }
+
 
 
 }
