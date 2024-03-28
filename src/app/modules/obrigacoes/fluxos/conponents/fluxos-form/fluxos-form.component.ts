@@ -8,8 +8,7 @@ import { MessageService } from 'primeng/api';
 import { FluxoResponse } from 'src/app/models/interfaces/fluxos/response/fluxoResponse';
 import { TarefaAutomatizadaResponse } from 'src/app/models/interfaces/tarefasautomatizadas/response/tarefaAutomatizadaResponse';
 import { TarefasAutomatizadasService } from 'src/app/services/obrigacoes/tarefas-automatizadas/tarefas-automatizadas.service';
-import { Product } from './product';
-import { ProductService } from 'src/app/services/fluxo/fluxo-steps.service';
+
 
 
 
@@ -20,10 +19,9 @@ import { ProductService } from 'src/app/services/fluxo/fluxo-steps.service';
 })
 export class FluxosFormComponent implements OnInit, OnDestroy {
 
-  sourceProducts!: Product[];
-  targetProducts!: Product[];
-  //sourceProducts!: TarefaAutomatizadaResponse[];
-  //targetProducts!: Product[];
+
+  sourceTarefasAutomatizadas!: TarefaAutomatizadaResponse[];
+  targetTarefasAutomatizadas!: TarefaAutomatizadaResponse[];
 
   private readonly destroy$: Subject<void> = new Subject();
   fluxosDatas: Array<FluxoResponse> =[]
@@ -38,13 +36,18 @@ export class FluxosFormComponent implements OnInit, OnDestroy {
     public ref: DynamicDialogConfig,
     private formBuilder: FormBuilder,
     private messageService: MessageService,
-    private carService: ProductService,
     private cdr: ChangeDetectorRef,
     ) {}
 
     public adicionarFluxoForm = this.formBuilder.group({
       nomeFluxo:['', Validators.required],
       descricaoFluxo:['', Validators.required]
+
+    })
+
+    public adicionarTarefasFluxoForm = this.formBuilder.group({
+      nomeFluxoTarefa:['', Validators.required],
+
 
     })
 
@@ -94,6 +97,27 @@ export class FluxosFormComponent implements OnInit, OnDestroy {
       })
       this.adicionarFluxoForm.reset();
     }
+
+    handleSubmitTarefaFluxo():void{
+      alert("ok")
+      if(this.adicionarTarefasFluxoForm.value && this.adicionarTarefasFluxoForm.valid){
+        this.submited=true;
+
+        //const fluxoRequest: FluxoRequest = {
+          //nome : this.adicionarFluxoForm.value.nomeFluxo as string,
+          //descricao: this.adicionarFluxoForm.value.descricaoFluxo as string,
+          //contemVinculo: "Não",
+          //dataCriacao: "2024-03-18T00:00:00",
+          //dataUltimaExecucao: "2024-03-18T00:00:00",
+        //}
+        //console.log(fluxoRequest)
+        //this.submitFluxo(fluxoRequest)
+      }
+      else{
+        this.submited=true;
+      }
+    }
+
     getTarefasAutomatizadasDatas(): void {
       this.tarefasAutomatizadasService
         .getAllTarefasAutomatizadas()
@@ -102,6 +126,7 @@ export class FluxosFormComponent implements OnInit, OnDestroy {
             if (response.length > 0) {
               console.log(response)
               this.tarefasAutomatizadasDatas = response;
+              this.sourceTarefasAutomatizadas = this.tarefasAutomatizadasDatas
 
             }
           },
@@ -142,20 +167,9 @@ export class FluxosFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
       this.getFluxosDatas();
       this.getTarefasAutomatizadasDatas();
-
-      this.carService.getProductsSmall().then(products => {
-        this.sourceProducts = products;
-        //this.cdr.markForCheck();
-    });
-    this.targetProducts = [];
-
-      //this.carService.getProductsSmall().then(products => {
-        //this.sourceProducts = this.tarefasAutomatizadasDatas;
-        //this.cdr.markForCheck();
-    //});
-    this.targetProducts = [];
-
+      this.targetTarefasAutomatizadas = [];
   }
+
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();

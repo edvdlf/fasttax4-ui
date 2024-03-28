@@ -1220,4 +1220,39 @@ export class ProductService {
     getProductsWithOrders() {
         return Promise.resolve(this.getProductsWithOrdersData());
     }
+
+
+getTarefasData(){
+  return [
+    
+      {
+          "id": 277,
+          "periodo": "ANO_ANTERIOR",
+          "programa": "ANO_ANTERIOR_LIMPEZA_DWT_29_PRODUZIR-FOMENTO - AGR COM EXP SP_SP",
+          "descricao": "Período: ANO_ANTERIOR Obrigação: LIMPEZA_DWT Empresa: 29 Estabelecimento: PRODUZIR-FOMENTO - AGR COM EXP SP Estado: SP",
+          "status": "desabilitado",
+          "obrigacao": "LIMPEZA_DWT",
+          "estabelecimento": "PRODUZIR-FOMENTO - AGR COM EXP SP",
+          "empresa": "29",
+          "grupo": "BASICOS"
+      },
+      {
+          "id": 278,
+          "periodo": "MES_ANTERIOR",
+          "programa": "MES_ANTERIOR_GIARJ_29_PRODUZIR -FOMENTO AGR COM EXP GO_GO",
+          "descricao": "Período: MES_ANTERIOR Obrigação: GIARJ Empresa: 29 Estabelecimento: PRODUZIR -FOMENTO AGR COM EXP GO Estado: GO",
+          "status": "desabilitado",
+          "obrigacao": "GIARJ",
+          "estabelecimento": "PRODUZIR -FOMENTO AGR COM EXP GO",
+          "empresa": "29",
+          "grupo": "ESTADUAL"
+      }
+  ]
+
+}
+
+
+
+
+
 };

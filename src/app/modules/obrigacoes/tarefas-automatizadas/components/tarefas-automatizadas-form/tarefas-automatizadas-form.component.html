@@ -200,25 +200,7 @@
                                           </div>
                                        </div>
                                      </th>
-                                     <th pSortableColumn="uf">
-                                      <div class="flex justify-content-between align-items-center">
-                                         <div class="flex justify-content-between align-items-center">
-                                            UF
-                                         </div>
-                                         <div class="flex justify-content-between align-items-center">
-                                            <p-sortIcon field="uf"></p-sortIcon>
-                                            <p-columnFilter
-                                            type="text"
-                                            field="uf"
-                                            display="menu"
-                                            matchMode="contains"
-                                            [showMatchModes]="false"
-                                            [showOperator]="false"
-                                            [showAddButton]="false"
-                                            ></p-columnFilter>
-                                         </div>
-                                      </div>
-                                    </th>
+                                     
                                   </tr>
                                </ng-template>
                                <ng-template pTemplate="body" let-dados>
@@ -229,7 +211,7 @@
                                      <td style="text-align: left">{{ dados.estabelecimento }}</td>
                                      <td style="text-align: left">{{ dados.nome }}</td>
                                      <td style="text-align: left">{{ dados.empresa }}</td>
-                                     <td style="text-align: left">{{ dados.uf }}</td>
+
                                   </tr>
                                </ng-template>
                                </p-table>

@@ -1,338 +1,178 @@
-<div >
+<div>
   <p-stepper [linear]="true">
-     <p-stepperPanel  header="Passo">
-        <ng-template pTemplate="content"  let-nextCallback="nextCallback" let-index="index">
-           <form [formGroup]="adicionarFluxoForm" (ngSubmit)="handleSubmitFluxo()">
-           <p-card styleClass="shadow-3 m-5 text-orange-800" header="Criar Fluxo">
-              <div class="field col-12 md:col-6">
-                 <label for="lblNomeFluxo" class="ml-1">Nome do fluxo:</label>
-                 <input id="txtNomeFluxo" placeholder="Defina um nome para o fluxo a ser criado!" formControlName="nomeFluxo" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full ml-1">
-                 <small class="p-error" *ngIf="submited && !adicionarFluxoForm.value.nomeFluxo">
-                 O campo Nome é obrigatorio!
-                 </small>
+    <p-stepperPanel header="Passo">
+      <ng-template
+        pTemplate="content"
+        let-nextCallback="nextCallback"
+        let-index="index"
+      >
+        <form [formGroup]="adicionarFluxoForm" (ngSubmit)="handleSubmitFluxo()">
+          <p-card
+            styleClass="shadow-3 m-5 text-orange-800"
+            header="Criar Fluxo"
+          >
+            <div class="field col-12 md:col-6">
+              <label for="lblNomeFluxo" class="ml-1">Nome do fluxo:</label>
+              <input
+                id="txtNomeFluxo"
+                placeholder="Defina um nome para o fluxo a ser criado!"
+                formControlName="nomeFluxo"
+                type="text"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full ml-1"
+              />
+              <small
+                class="p-error"
+                *ngIf="submited && !adicionarFluxoForm.value.nomeFluxo"
+              >
+                O campo Nome é obrigatorio!
+              </small>
+            </div>
+            <div class="field col-12 md:col-12">
+              <label for="lblDescricao" class="ml-1">Descrição:</label>
+              <input
+                id="txtDescricao"
+                placeholder="Descreva o fluxo a ser criado!"
+                formControlName="descricaoFluxo"
+                type="text"
+                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full ml-1"
+              />
+              <small
+                class="p-error"
+                *ngIf="submited && !adicionarFluxoForm.value.descricaoFluxo"
+              >
+                O campo Descrição é obrigatorio!
+              </small>
+            </div>
+            <div class="flex pt-4 justify-content-end">
+              <p-button label="Salvar" type="submit" />
+            </div>
+          </p-card>
+        </form>
+        <div class="flex pt-4 justify-content-end">
+          <p-button
+            label="Próximo"
+            icon="pi pi-arrow-right"
+            iconPos="right"
+            (onClick)="nextCallback.emit()"
+          />
+        </div>
+      </ng-template>
+    </p-stepperPanel>
+    <p-stepperPanel header="Passo">
+      <ng-template
+        pTemplate="content"
+        let-prevCallback="prevCallback"
+        let-nextCallback="nextCallback"
+        let-index="index"
+      >
+        <form
+          [formGroup]="adicionarTarefasFluxoForm"
+          (ngSubmit)="(handleSubmitTarefaFluxo)"
+        >
+          <p-card
+            styleClass="shadow-3 text-orange-800"
+            header="Vincular tarefas ao fluxo"
+          >
+            <div class="formgrid grid">
+              <div class="formGroup-inline">
+                <div class="field">
+                  <label for="state" class="ml-1">Fluxos disponíveis:</label>
+                  <p-dropdown
+                    [options]="fluxosDatas"
+                    optionLabel="nome"
+                    formControlName="nomeFluxoTarefa"
+                    styleClass="w-full"
+                    [filter]="true"
+                    filterBy="chave"
+                    [showClear]="true"
+                    class="ml-1"
+                    placeholder="Selecione o fluxo!"
+                  >
+                  </p-dropdown>
+                  <small
+                class="p-error"
+                *ngIf="submited && !adicionarTarefasFluxoForm.value.nomeFluxoTarefa"
+              >
+                Selecione o fluxo!!
+              </small>
+                </div>
               </div>
               <div class="field col-12 md:col-12">
-                 <label for="lblDescricao" class="ml-1">Descrição:</label>
-                 <input id="txtDescricao" placeholder="Descreva o fluxo a ser criado!" formControlName="descricaoFluxo" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full ml-1">
-                 <small class="p-error" *ngIf="submited && !adicionarFluxoForm.value.descricaoFluxo">
-                 O campo Descrição é obrigatorio!
-                 </small>
+                <div class="card">
+                  <p-pickList
+                    [source]="sourceTarefasAutomatizadas"
+                    [target]="targetTarefasAutomatizadas"
+                    sourceHeader="Obrigações Disponíveis"
+                    targetHeader="Obrigações Selecionadas"
+                    pTooltip="Selecione ou arraste da coluna Obrigações Disponíveis para a coluna Obrigações Selecionadas, os itens que deseja vincular ao fluxo selecionado"
+                    tooltipPosition="top"
+                    [dragdrop]="true"
+                    [responsive]="true"
+                    [sourceStyle]="{ height: '30rem' }"
+                    [targetStyle]="{ height: '30rem' }"
+                    breakpoint="1400px"
+                  >
+                    <ng-template let-tarefaAutomatizada pTemplate="item">
+                      <div class="flex flex-wrap p-2 align-items-center gap-3">
+                        <div class="flex-1 flex flex-column gap-2">
+                          <span class="font-bold">{{
+                            "Obrigação: " + tarefaAutomatizada.obrigacao
+                          }}</span>
+                          <div class="flex align-items-center gap-2">
+                            <i class="pi pi-calendar-plus text-sm"></i>
+                            <span>{{ tarefaAutomatizada.periodo }}</span>
+                          </div>
+                        </div>
+                        <span class="font-bold text-900">{{
+                          "Grupo: " + tarefaAutomatizada.grupo
+                        }}</span>
+                      </div>
+                    </ng-template>
+                  </p-pickList>
+                </div>
               </div>
-              <div class="flex pt-4 justify-content-end">
-                 <p-button label="Salvar" type="submit"  />
-              </div>
-           </p-card>
-           </form>
-           <div class="flex pt-4 justify-content-end">
-              <p-button label="Próximo" icon="pi pi-arrow-right" iconPos="right" (onClick)="nextCallback.emit()" />
-           </div
-              >
-        </ng-template>
-     </p-stepperPanel>
-     <p-stepperPanel header="Passo">
-        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback" let-index="index">
-           <form>
-              <p-card
-                 styleClass="shadow-3 m-5 text-orange-800" header="Vincular tarefas ao fluxo"
-                 >
-                 <div class="formgrid grid">
-                    <div class="field col-12 md:col-12">
-                      <div class="card">
-                        <p-pickList
-                        [source]="sourceProducts"
-                        [target]="targetProducts"
-                        sourceHeader="Disponiveis"
-                        targetHeader="Selecionados"
-                        [dragdrop]="true"
-                        [responsive]="true"
-                        [sourceStyle]="{ height: '30rem' }"
-                        [targetStyle]="{ height: '30rem' }"
-                        breakpoint="1400px">
-                        <ng-template let-product pTemplate="item">
-                        <div class="flex flex-wrap p-2 align-items-center gap-3">
-                            <div class="flex-1 flex flex-column gap-2">
-                                <span class="font-bold">{{ product.name }}</span>
-                                <div class="flex align-items-center gap-2">
-                                  <i class="pi pi-tag text-sm"></i>
-                                    <span>{{ product.category }}</span>
-                                </div>
-                            </div>
-                          <span class="font-bold text-900">{{ '$' + product.price }}</span>
+            </div>
+            <div class="flex pt-4 justify-content-end">
+              <p-button label="Salvar" type="submit" />
+            </div>
+          </p-card>
+        </form>
+        <div class="flex pt-4 justify-content-between">
+          <p-button
+            label="Anterior"
+            icon="pi pi-arrow-left"
+            (onClick)="prevCallback.emit()"
+          />
+          <p-button
+            label="Próximo"
+            icon="pi pi-arrow-right"
+            iconPos="right"
+            (onClick)="nextCallback.emit()"
+          />
         </div>
-    </ng-template>
-</p-pickList>
-                    </div>
-                    </div>
-                    <div class="field col-12 md:col-12">
-                       <p-table
-                       #tarefasAutomatizadasTable
-                       [value]="tarefasAutomatizadasDatas"
-                       [(selection)]="tarefasAutomatizadaSelected"
-                       [rows]="20"
-                       [paginator]="true"
-                       [globalFilterFields]="['grupo', 'id']"
-                       [tableStyle]="{ 'min-width': '50rem' }"
-                       styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm"
-                       [rowHover]="true"
-                       [showCurrentPageReport]="true"
-                       dataKey="id"
-                       [rowsPerPageOptions]="[5, 10, 20, 50, 100]"
-                       currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} funcionalidades"
-                       >
-                       <ng-template pTemplate="caption">
-                          <div class="flex align-items-center justify-content-between">
-                             Selecione as tarefas que serão vinculadas ao fluxo
-                          </div>
-                       </ng-template>
-                       <ng-template pTemplate="header">
-                          <tr>
-                             <th style="width: 2%">
-                                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                             </th>
-                             <th pSortableColumn="periodo">
-                                <div class="flex justify-content-between align-items-center">
-                                   <div class="flex justify-content-between align-items-center">
-                                      Periodo
-                                   </div>
-                                   <div class="flex justify-content-between align-items-center">
-                                      <p-sortIcon field="periodo"></p-sortIcon>
-                                      <p-columnFilter
-                                      type="text"
-                                      field="periodo"
-                                      display="menu"
-                                      matchMode="contains"
-                                      [showMatchModes]="false"
-                                      [showOperator]="false"
-                                      [showAddButton]="false"
-                                      ></p-columnFilter>
-                                   </div>
-                                </div>
-                             </th>
-
-                             <th pSortableColumn="obrigacao">
-                                <div class="flex justify-content-between align-items-center">
-                                   <div class="flex justify-content-between align-items-center">
-                                      Obrigação
-                                   </div>
-                                   <div class="flex justify-content-between align-items-center">
-                                      <p-sortIcon field="obrigacao"></p-sortIcon>
-                                      <p-columnFilter
-                                      type="text"
-                                      field="obrigacao"
-                                      display="menu"
-                                      matchMode="contains"
-                                      [showMatchModes]="false"
-                                      [showOperator]="false"
-                                      [showAddButton]="false"
-                                      ></p-columnFilter>
-                                   </div>
-                                </div>
-                             </th>
-
-
-                             <th pSortableColumn="descricao">
-                                <div class="flex justify-content-between align-items-center">
-                                   <div class="flex justify-content-between align-items-center">
-                                      Descrição
-                                   </div>
-                                   <div class="flex justify-content-between align-items-center">
-                                      <p-sortIcon field="descricao"></p-sortIcon>
-                                      <p-columnFilter
-                                      type="text"
-                                      field="descricao"
-                                      display="menu"
-                                      matchMode="contains"
-                                      [showMatchModes]="false"
-                                      [showOperator]="false"
-                                      [showAddButton]="false"
-                                      ></p-columnFilter>
-                                   </div>
-                                </div>
-                             </th>
-                          </tr>
-                       </ng-template>
-                       <ng-template pTemplate="body" let-dados>
-                          <tr>
-                             <td>
-                                <p-tableCheckbox [value]="dados"></p-tableCheckbox>
-                             </td>
-                             <td style="text-align: left">{{ dados.periodo }}</td>
-                             <td style="text-align: left">{{ dados.obrigacao }}</td>
-                             <td [pTooltip]="dados?.descricao" tooltipPosition="top" style="text-align: left">
-                                {{ dados?.descricao | shorten : 100 }}
-                             </td>
-
-                          </tr>
-                       </ng-template>
-                       </p-table>
-                    </div>
-                    <!--div class="field col-12 md:col-6">
-                       <p-table
-                       #fluxosTable
-                       [value]="fluxosDatas"
-                       styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm"
-                       [rows]="10"
-                       [paginator]="true"
-                       [responsive]="true"
-                       [globalFilterFields]="['grupo', 'id']"
-                       [tableStyle]="{ 'min-width': '50rem' }"
-                       [rowHover]="true"
-                       [showCurrentPageReport]="true"
-                       dataKey="id"
-                       [rowsPerPageOptions]="[5, 10, 20, 50, 100]"
-                       currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} funcionalidades"
-                       >
-                       <ng-template pTemplate="caption">
-                          <div class="flex align-items-center justify-content-between">
-                             Listagem de Fluxos
-                          </div>
-                       </ng-template>
-                       <ng-template pTemplate="header">
-                          <tr>
-                             <th style="width: 2%">
-                                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                             </th>
-                             <th pSortableColumn="nome">
-                                <div class="flex justify-content-between align-items-center">
-                                   <div class="flex justify-content-between align-items-center">
-                                      Nome
-                                   </div>
-                                   <div class="flex justify-content-between align-items-center">
-                                      <p-sortIcon field="nome"></p-sortIcon>
-                                      <p-columnFilter
-                                      type="text"
-                                      field="nome"
-                                      display="menu"
-                                      matchMode="contains"
-                                      [showMatchModes]="false"
-                                      [showOperator]="false"
-                                      [showAddButton]="false"
-                                      ></p-columnFilter>
-                                   </div>
-                                </div>
-                             </th>
-                             <th pSortableColumn="descricao">
-                                <div class="flex justify-content-between align-items-center">
-                                   <div class="flex justify-content-between align-items-center">
-                                      Descrição
-                                   </div>
-                                   <div class="flex justify-content-between align-items-center">
-                                      <p-sortIcon field="descricao"></p-sortIcon>
-                                      <p-columnFilter
-                                      type="text"
-                                      field="descricao"
-                                      display="menu"
-                                      matchMode="contains"
-                                      [showMatchModes]="false"
-                                      [showOperator]="false"
-                                      [showAddButton]="false"
-                                      ></p-columnFilter>
-                                   </div>
-                                </div>
-                             </th>
-                             <th pSortableColumn="dataCriacao">
-                                <div class="flex justify-content-between align-items-center">
-                                   <div class="flex justify-content-between align-items-center">
-                                      Data de criação
-                                   </div>
-                                   <div class="flex justify-content-between align-items-center">
-                                      <p-sortIcon field="dataCriacao"></p-sortIcon>
-                                      <p-columnFilter
-                                      type="text"
-                                      field="dataCriacao"
-                                      display="menu"
-                                      matchMode="contains"
-                                      [showMatchModes]="false"
-                                      [showOperator]="false"
-                                      [showAddButton]="false"
-                                      ></p-columnFilter>
-                                   </div>
-                                </div>
-                             </th>
-                             <th pSortableColumn="contemVinculo">
-                                <div class="flex justify-content-between align-items-center">
-                                   <div class="flex justify-content-between align-items-center">
-                                      Contém Vínculo
-                                   </div>
-                                   <div class="flex justify-content-between align-items-center">
-                                      <p-sortIcon field="contemVinculo"></p-sortIcon>
-                                      <p-columnFilter
-                                      type="text"
-                                      field="contemVinculo"
-                                      display="menu"
-                                      matchMode="contains"
-                                      [showMatchModes]="false"
-                                      [showOperator]="false"
-                                      [showAddButton]="false"
-                                      ></p-columnFilter>
-                                   </div>
-                                </div>
-                             </th>
-                             <th pSortableColumn="dataUltimaExecucao">
-                                <div class="flex justify-content-between align-items-center">
-                                   <div class="flex justify-content-between align-items-center">
-                                      Última Execução
-                                   </div>
-                                   <div class="flex justify-content-between align-items-center">
-                                      <p-sortIcon field="dataUltimaExecucao"></p-sortIcon>
-                                      <p-columnFilter
-                                      type="text"
-                                      field="dataUltimaExecucao"
-                                      display="menu"
-                                      matchMode="contains"
-                                      [showMatchModes]="false"
-                                      [showOperator]="false"
-                                      [showAddButton]="false"
-                                      ></p-columnFilter>
-                                   </div>
-                                </div>
-                             </th>
-                             <th>
-                                <div class="flex justify-content-between align-items-center">
-                                   Excluir
-                                </div>
-                             </th>
-                          </tr>
-                       </ng-template>
-                       <ng-template pTemplate="body" let-dados>
-                          <tr>
-                             <td>
-                                <p-tableCheckbox [value]="dados"></p-tableCheckbox>
-                             </td>
-                             <td style="text-align: left">{{ dados.nome }}</td>
-                             <td
-                                [pTooltip]="dados.descricao" tooltipPosition="top"
-                                style="text-align: left"
-                                >{{ dados.descricao |shorten :25 }}</td>
-                             <td style="text-align: left">{{ dados.dataCriacao }}</td>
-                             <td style="text-align: left">{{ dados.contemVinculo }}</td>
-                             <td style="text-align: left">{{ dados.dataUltimaExecucao }}</td>
-                             <td style="text-align: center">
-                             </td>
-                          </tr>
-                       </ng-template>
-                       </p-table>
-                    </div-->
-                 </div>
-              </p-card>
-           </form>
-           <div class="flex pt-4 justify-content-between">
-              <p-button label="Anterior" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()" />
-              <p-button label="Próximo" icon="pi pi-arrow-right" iconPos="right" (onClick)="nextCallback.emit()" />
-           </div
-              >
-        </ng-template>
-     </p-stepperPanel>
-     <p-stepperPanel header="Passo">
-        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-index="index">
-           <div class="flex flex-column h-12rem">
-              <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">Content III</div>
-           </div>
-           <div class="flex pt-4 justify-content-start">
-              <p-button label="Anterior" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()" />
-           </div
-              >
-        </ng-template>
-     </p-stepperPanel>
+      </ng-template>
+    </p-stepperPanel>
+    <p-stepperPanel header="Passo">
+      <ng-template
+        pTemplate="content"
+        let-prevCallback="prevCallback"
+        let-index="index"
+      >
+        <div class="flex flex-column h-12rem">
+          <div
+            class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium"
+          >
+            Content III
+          </div>
+        </div>
+        <div class="flex pt-4 justify-content-start">
+          <p-button
+            label="Anterior"
+            icon="pi pi-arrow-left"
+            (onClick)="prevCallback.emit()"
+          />
+        </div>
+      </ng-template>
+    </p-stepperPanel>
   </p-stepper>
 </div>

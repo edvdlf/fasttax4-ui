@@ -7,7 +7,6 @@ export interface TarefaAutomatizadaResponse {
     obrigacao: string;
     estabelecimento: string;
     empresa:string;
-    uf:string;
     grupo:string;
 
 }

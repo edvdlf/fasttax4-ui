@@ -253,7 +253,7 @@ getTarefaAutomatizadasSelectedDatas(id: number): void {
         codempresa: this.tarefaAutomatizadaSelectedDatas?.empresa,
         estabelecimento: this.tarefaAutomatizadaSelectedDatas?.estabelecimento,
         status: this.tarefaAutomatizadaSelectedDatas?.status,
-        uf: this.tarefaAutomatizadaSelectedDatas?.uf,
+        uf: "",
 
       })
     }
