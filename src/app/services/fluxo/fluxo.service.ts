@@ -29,7 +29,7 @@ export class FluxoService {
   }
 
   getAllFluxosTarefas(): Observable<Array<FluxoResponse2 >> {
-    return this.http.get<Array<FluxoResponse2>>(`${this.API_URL}/FluxosMockers/fluxocomtarefa`)
+    return this.http.get<Array<FluxoResponse2>>(`${this.API_URL}/FluxosMockers`)
   }
 
 

@@ -7,5 +7,5 @@ export  interface FluxoResponse{
   dataCriacao: string;
   contemVinculo: boolean;
   dataUltimaExecucao: Date;
-  tarefas: FluxoTarefaResponse;
+  //tarefas: FluxoTarefaResponse;
 }

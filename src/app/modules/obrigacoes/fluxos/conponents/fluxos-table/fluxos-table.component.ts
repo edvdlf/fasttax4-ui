@@ -57,16 +57,16 @@ export class FluxosTableComponent {
 
   ngOnInit(): void {
 
-    this.cols = [
-      { field: 'name', header: 'Name' },
-      { field: 'size', header: 'Size' },
-      { field: 'type', header: 'Type' }
-  ];
+    //this.cols = [
+      //{ field: 'name', header: 'Name' },
+      //{ field: 'size', header: 'Size' },
+      //{ field: 'type', header: 'Type' }
+  //];
 
-  this.productService.getProductsWithOrdersSmall().then((data) => (this.products = data));
+  //this.productService.getProductsWithOrdersSmall().then((data) => (this.products = data));
 
-  this.productService.getFluxosWithTarefas()
-  .then((data)=> (this.fluxosComTarefas2 = data));
+  //this.productService.getFluxosWithTarefas()
+  //.then((data)=> (this.fluxosComTarefas2 = data));
 
   }
 

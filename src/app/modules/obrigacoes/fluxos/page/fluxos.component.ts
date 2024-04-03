@@ -39,7 +39,7 @@ export class FluxosComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    //this.getFluxosDatas();
+    this.getFluxosDatas();
     //this.getFluxosComTarefasDatas();
 
 
