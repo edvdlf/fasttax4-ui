@@ -27,6 +27,7 @@ import { StepsModule } from 'primeng/steps';
 import { StepperModule  } from 'primeng/stepper';
 import { PickListModule } from 'primeng/picklist';
 import { ProductService } from 'src/app/services/fluxo/fluxo-steps.service';
+import { TreeTableModule } from 'primeng/treetable';
 
 
 
@@ -62,6 +63,7 @@ import { ProductService } from 'src/app/services/fluxo/fluxo-steps.service';
     StepsModule,
     StepperModule,
     PickListModule,
+    TreeTableModule,
 
     //Shared
     SharedModule,

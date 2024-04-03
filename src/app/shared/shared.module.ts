@@ -78,6 +78,7 @@ import { TreeTableModule } from 'primeng/treetable';
 //import { LoadingComponent } from './components/loading/loading.component';
 
 import { StepsModule } from 'primeng/steps';
+import { StatusPipe } from './pipes/status/status.pipe';
 
 
 @NgModule({
@@ -85,6 +86,7 @@ import { StepsModule } from 'primeng/steps';
     SidebarComponent,
     NavbarComponent,
     ShortenPipe,
+    StatusPipe,
   ],
   imports: [
     CommonModule,

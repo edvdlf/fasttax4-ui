@@ -6,6 +6,7 @@
     <app-navbar (toggleSidebarForMe)="sideBarToggler()"></app-navbar>
     <app-fluxos-table
     [fluxos]="fluxosDatas"
+    
     (fluxoEvent)="handleFluxoAction($event)"
     (deleteFluxoEvent)="handleDeleteFluxoAction($event)"
     ></app-fluxos-table>

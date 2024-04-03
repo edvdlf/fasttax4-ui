@@ -1,11 +1,12 @@
 import { FluxoTarefaResponse } from "./fluxoTarefaResponse";
 
-export  interface FluxoResponse{
-  id: string;
+export  interface FluxoResponse2{
+  id: number;
   nome: string;
   descricao: string;
   dataCriacao: string;
   contemVinculo: boolean;
-  dataUltimaExecucao: Date;
-  tarefas: FluxoTarefaResponse;
+  dataUltimaExecucao: string;
+
+
 }

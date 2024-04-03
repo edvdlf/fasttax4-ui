@@ -7,6 +7,9 @@ import { Subject, takeUntil } from 'rxjs';
 import { EventAction } from 'src/app/models/event/EventAction';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { FluxoResponse } from 'src/app/models/interfaces/fluxos/response/fluxoResponse';
+import { ProductService } from 'src/app/services/fluxo/fluxo-steps.service';
+
+
 
 @Component({
   selector: 'app-fluxos',
@@ -22,6 +25,8 @@ export class FluxosComponent implements OnInit, OnDestroy {
   private readonly destroy$: Subject<void> = new Subject();
   private ref!: DynamicDialogRef;
   public fluxosDatas: Array<FluxoResponse> = [];
+  public fluxosComTarefasDatas: Array<FluxoResponse> = [];
+
 
 
   constructor(
@@ -29,11 +34,14 @@ export class FluxosComponent implements OnInit, OnDestroy {
     private messageService: MessageService,
     private dialogService: DialogService,
     private fluxoService: FluxoService,
+
     private confirmationService: ConfirmationService,
   ) {}
 
   ngOnInit(): void {
-    this.getFluxosDatas();
+    //this.getFluxosDatas();
+    //this.getFluxosComTarefasDatas();
+
 
   }
   ngOnDestroy(): void {
@@ -68,6 +76,7 @@ export class FluxosComponent implements OnInit, OnDestroy {
           if (response.length > 0) {
             console.log(response)
             this.fluxosDatas = response;
+            console.log(this.fluxosDatas)
           }
         },
         error: (err) => {
@@ -75,11 +84,18 @@ export class FluxosComponent implements OnInit, OnDestroy {
           this.messageService.add({
             severity: 'error',
             summary: 'Erro',
-            detail: 'Não foi possível buscar regras relatório!',
+            detail: 'Não foi possível buscar fluxos!',
             life: 2500,
           });
         },
       });
+  }
+
+  getFluxosComTarefasDatas(): void {
+
+    //this.fluxoService.getAllFluxosTarefas2().then(data)
+    //this.fluxoService.getAllFluxosTarefas2().then((data) => (this.fluxosComTarefasDatas = data));
+
   }
 
   handleDeleteFluxoAction(event: {id:string, nome:string}): void {

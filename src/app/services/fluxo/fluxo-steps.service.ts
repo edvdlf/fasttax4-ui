@@ -1222,37 +1222,81 @@ export class ProductService {
     }
 
 
-getTarefasData(){
+  getAllFluxosTarefasBkp(){
   return [
-    
-      {
-          "id": 277,
-          "periodo": "ANO_ANTERIOR",
-          "programa": "ANO_ANTERIOR_LIMPEZA_DWT_29_PRODUZIR-FOMENTO - AGR COM EXP SP_SP",
-          "descricao": "Período: ANO_ANTERIOR Obrigação: LIMPEZA_DWT Empresa: 29 Estabelecimento: PRODUZIR-FOMENTO - AGR COM EXP SP Estado: SP",
-          "status": "desabilitado",
-          "obrigacao": "LIMPEZA_DWT",
-          "estabelecimento": "PRODUZIR-FOMENTO - AGR COM EXP SP",
-          "empresa": "29",
-          "grupo": "BASICOS"
+    {
+      id: "11",
+      nome: "FLX_OBRIGACOES_ESTADUAIS2",
+      descricao: "Este fluxo será executará as obrigações basicas",
+      contemVinculo: true,
+      dataCriacao: "2024-03-18T00:00:00",
+      dataUltimaExecucao: "2024-03-18T00:00:00",
+      tarefas: [
+        {
+        id: "14",
+        idFluxo: "11",
+        obrigacao: "CIAP_SLD",
+        descricao: "Teste 1",
+        contemAgendamento: false,
+        dataUltimaExecucao: "2024-03-18T00:00:00",
+        dataProximaExecucao: "2024-03-18T00:00:00"
       },
       {
-          "id": 278,
-          "periodo": "MES_ANTERIOR",
-          "programa": "MES_ANTERIOR_GIARJ_29_PRODUZIR -FOMENTO AGR COM EXP GO_GO",
-          "descricao": "Período: MES_ANTERIOR Obrigação: GIARJ Empresa: 29 Estabelecimento: PRODUZIR -FOMENTO AGR COM EXP GO Estado: GO",
-          "status": "desabilitado",
-          "obrigacao": "GIARJ",
-          "estabelecimento": "PRODUZIR -FOMENTO AGR COM EXP GO",
-          "empresa": "29",
-          "grupo": "ESTADUAL"
-      }
+        id: "15",
+        idFluxo: "11",
+        obrigacao: "CIAP_SLD",
+        descricao: "Teste 2",
+        contemAgendamento: false,
+        dataUltimaExecucao: "2024-03-18T00:00:00",
+        dataProximaExecucao: "2024-03-18T00:00:00"
+      },
+      ]
+    }
   ]
 
 }
 
+getAllFluxosTarefas(){
+  return [
+    {
+      id: 25,
+      nome: "FLUX_Obrigações basicas",
+      descricao: "Este fluxo executará as obrigações basicas",
+      contemVinculo: true,
+      dataCriacao: "2024-04-02T00:00:00",
+      dataUltimaExecucao: "9999-01-01T00:00:00",
+      "tarefas": [{
+          id: 118,
+          idFluxo: 25,
+          obrigacao: "IBATCH",
+          descricao: "FLUXTAR_IBATCH",
+          contemAgendamento: false,
+          dataUltimaExecucao: "9999-01-01T00:00:00",
+          dataProximaExecucao: "9999-01-01T00:00:00"
+      }]
+  },
+  {
+      id: 24,
+      nome: "FLUX_Obrigações estaduais",
+      descricao: "Este fluxo executará as obrigações Estaduais",
+      contemVinculo: true,
+      dataCriacao: "2024-04-02T00:00:00",
+      dataUltimaExecucao: "9999-01-01T00:00:00",
+      "tarefas": [{
+          id: 121,
+          idFluxo: 24,
+          obrigacao: "SEFLA",
+          descricao: "FLUXTAR_SEFLA",
+          contemAgendamento: false,
+          dataUltimaExecucao: "9999-01-01T00:00:00",
+          dataProximaExecucao: "9999-01-01T00:00:00"
+      }]
+  }
+  ]
 
-
-
-
+}
+  getFluxosWithTarefas() {
+    return Promise.resolve(this.getAllFluxosTarefas());
+  }
 };
+

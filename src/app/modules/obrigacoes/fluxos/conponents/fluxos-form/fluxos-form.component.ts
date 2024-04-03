@@ -8,6 +8,8 @@ import { MessageService } from 'primeng/api';
 import { FluxoResponse } from 'src/app/models/interfaces/fluxos/response/fluxoResponse';
 import { TarefaAutomatizadaResponse } from 'src/app/models/interfaces/tarefasautomatizadas/response/tarefaAutomatizadaResponse';
 import { TarefasAutomatizadasService } from 'src/app/services/obrigacoes/tarefas-automatizadas/tarefas-automatizadas.service';
+import { FluxoTarefaRequest } from 'src/app/models/interfaces/fluxos/request/fluxoTarefaRequest';
+import { FluxoResponse2 } from 'src/app/models/interfaces/fluxos/response/fluxoResponse2';
 
 
 
@@ -25,6 +27,7 @@ export class FluxosFormComponent implements OnInit, OnDestroy {
 
   private readonly destroy$: Subject<void> = new Subject();
   fluxosDatas: Array<FluxoResponse> =[]
+  fluxosComTarefasDatas: Array<FluxoResponse2> =[]
   public tarefasAutomatizadaSelected!:TarefaAutomatizadaResponse;
   tarefasAutomatizadasDatas: Array<TarefaAutomatizadaResponse> = [];
 
@@ -54,13 +57,13 @@ export class FluxosFormComponent implements OnInit, OnDestroy {
     handleSubmitFluxo():void{
       if(this.adicionarFluxoForm.value && this.adicionarFluxoForm.valid){
         this.submited=true;
-
+        const dataAtual = new Date();
         const fluxoRequest: FluxoRequest = {
-          nome : this.adicionarFluxoForm.value.nomeFluxo as string,
+          nome : "FLUX_" + this.adicionarFluxoForm.value.nomeFluxo as string,
           descricao: this.adicionarFluxoForm.value.descricaoFluxo as string,
-          contemVinculo: "Não",
-          dataCriacao: "2024-03-18T00:00:00",
-          dataUltimaExecucao: "2024-03-18T00:00:00",
+          contemVinculo: false,
+          dataCriacao: dataAtual,
+          dataUltimaExecucao: "9999-01-01T00:00:00",
         }
         console.log(fluxoRequest)
         this.submitFluxo(fluxoRequest)
@@ -77,10 +80,11 @@ export class FluxosFormComponent implements OnInit, OnDestroy {
           .subscribe({
             next: (response) => {
            if (response) {
+            this.getFluxosDatas()
               this.messageService.add({
                 severity: 'success',
                 summary: 'Sucesso',
-                detail: 'Relatório criado com sucesso!',
+                detail: 'Fluxo criado com sucesso!',
                 life: 2500,
               });
             }
@@ -90,7 +94,7 @@ export class FluxosFormComponent implements OnInit, OnDestroy {
             this.messageService.add({
              severity: 'error',
              summary: 'Erro',
-              detail: 'Não foi possivel adicionar relatório!',
+              detail: 'Não foi possivel adicionar o fluxo!',
               life: 2500,
             });
          },
@@ -99,23 +103,58 @@ export class FluxosFormComponent implements OnInit, OnDestroy {
     }
 
     handleSubmitTarefaFluxo():void{
-      alert("ok")
       if(this.adicionarTarefasFluxoForm.value && this.adicionarTarefasFluxoForm.valid){
         this.submited=true;
 
-        //const fluxoRequest: FluxoRequest = {
-          //nome : this.adicionarFluxoForm.value.nomeFluxo as string,
-          //descricao: this.adicionarFluxoForm.value.descricaoFluxo as string,
-          //contemVinculo: "Não",
-          //dataCriacao: "2024-03-18T00:00:00",
-          //dataUltimaExecucao: "2024-03-18T00:00:00",
-        //}
-        //console.log(fluxoRequest)
-        //this.submitFluxo(fluxoRequest)
+        if(this.targetTarefasAutomatizadas.length>0){
+          for (var i = 0; i < this.targetTarefasAutomatizadas.length; i++) {
+            const fluxoTarefaRequest: FluxoTarefaRequest = {
+              idFluxo: this.adicionarTarefasFluxoForm.value.nomeFluxoTarefa as string,
+
+              descricao: "FLUXTAR_" + this.targetTarefasAutomatizadas[i].obrigacao,
+              obrigacao:this.targetTarefasAutomatizadas[i].obrigacao,
+              contemAgendamento:false,
+              dataUltimaExecucao:"9999-01-01T00:00:00",
+              dataProximaExecucao:"9999-01-01T00:00:00",
+            }
+
+            this.submitTarefaFluxo(fluxoTarefaRequest)
+          }
+        }else{
+          this.messageService.add({ severity: 'error', summary: 'Atenção!', detail: 'Selecione pelo menos uma tarefa!' });
+        }
       }
       else{
         this.submited=true;
       }
+    }
+
+    submitTarefaFluxo(fluxoTarefaRequest:FluxoTarefaRequest):void{
+      this.fluxoService
+          .adicionarTarefaFluxo(fluxoTarefaRequest)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe({
+            next: (response) => {
+           if (response) {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Sucesso',
+                detail: 'Tarefa vinculada ao fluxo com sucesso!',
+                life: 2500,
+              });
+            }
+          },
+          error: (err) => {
+            console.log(err);
+            this.messageService.add({
+             severity: 'error',
+             summary: 'Erro',
+              detail: 'Não foi possivel vincular tarefa ao fluxo!',
+              life: 2500,
+            });
+         },
+      })
+      this.adicionarFluxoForm.reset();
     }
 
     getTarefasAutomatizadasDatas(): void {
@@ -124,7 +163,7 @@ export class FluxosFormComponent implements OnInit, OnDestroy {
                .subscribe({
           next: (response) => {
             if (response.length > 0) {
-              console.log(response)
+              
               this.tarefasAutomatizadasDatas = response;
               this.sourceTarefasAutomatizadas = this.tarefasAutomatizadasDatas
 
@@ -144,12 +183,34 @@ export class FluxosFormComponent implements OnInit, OnDestroy {
 
     getFluxosDatas(): void {
       this.fluxoService
-        .getAllFluxos()
+        .getAllFluxosVinculo(false)
+               .subscribe({
+          next: (response) => {
+            if (response.length > 0) {
+
+              this.fluxosDatas = response;
+            }
+          },
+          error: (err) => {
+
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Erro',
+              detail: 'Não foi possível buscar regras relatório!',
+              life: 2500,
+            });
+          },
+        });
+    }
+
+    getFluxosComTarefasDatas(): void {
+      this.fluxoService
+        .getAllFluxosTarefas()
                .subscribe({
           next: (response) => {
             if (response.length > 0) {
               console.log(response)
-              this.fluxosDatas = response;
+              this.fluxosComTarefasDatas = response;
             }
           },
           error: (err) => {
@@ -168,6 +229,7 @@ export class FluxosFormComponent implements OnInit, OnDestroy {
       this.getFluxosDatas();
       this.getTarefasAutomatizadasDatas();
       this.targetTarefasAutomatizadas = [];
+      this.getFluxosComTarefasDatas();
   }
 
   ngOnDestroy() {

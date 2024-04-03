@@ -1,16 +1,13 @@
 <div>
   <p-stepper [linear]="true">
-    <p-stepperPanel header="Passo">
+    <p-stepperPanel header="Criar Fluxo">
       <ng-template
         pTemplate="content"
         let-nextCallback="nextCallback"
         let-index="index"
       >
         <form [formGroup]="adicionarFluxoForm" (ngSubmit)="handleSubmitFluxo()">
-          <p-card
-            styleClass="shadow-3 m-5 text-orange-800"
-            header="Criar Fluxo"
-          >
+
             <div class="field col-12 md:col-6">
               <label for="lblNomeFluxo" class="ml-1">Nome do fluxo:</label>
               <input
@@ -46,7 +43,7 @@
             <div class="flex pt-4 justify-content-end">
               <p-button label="Salvar" type="submit" />
             </div>
-          </p-card>
+
         </form>
         <div class="flex pt-4 justify-content-end">
           <p-button
@@ -58,7 +55,7 @@
         </div>
       </ng-template>
     </p-stepperPanel>
-    <p-stepperPanel header="Passo">
+    <p-stepperPanel header="Vincular tarefas ao fluxo">
       <ng-template
         pTemplate="content"
         let-prevCallback="prevCallback"
@@ -66,25 +63,56 @@
         let-index="index"
       >
         <form
-          [formGroup]="adicionarTarefasFluxoForm"
-          (ngSubmit)="(handleSubmitTarefaFluxo)"
+          [formGroup]="adicionarTarefasFluxoForm" (ngSubmit)="(handleSubmitTarefaFluxo())"
         >
-          <p-card
-            styleClass="shadow-3 text-orange-800"
-            header="Vincular tarefas ao fluxo"
-          >
-            <div class="formgrid grid">
-              <div class="formGroup-inline">
-                <div class="field">
+
+            <div class="field col-12 md:col-12">
+                <div class="card">
+                  <p-pickList
+                    [source]="sourceTarefasAutomatizadas"
+                    [target]="targetTarefasAutomatizadas"
+                    sourceHeader="Obrigações Disponíveis"
+                    targetHeader="Obrigações Selecionadas"
+                    filterBy="grupo"
+                    targetFilterPlaceholder="Filtro por grupo..."
+                    pTooltip="Selecione ou arraste da coluna Obrigações Disponíveis para a coluna Obrigações Selecionadas, os itens que deseja vincular ao fluxo selecionado"
+                    tooltipPosition="top"
+                    [dragdrop]="true"
+                    [responsive]="true"
+                    [sourceStyle]="{ height: '30rem' }"
+                    [targetStyle]="{ height: '30rem' }"
+                    breakpoint="1200px"
+                  >
+                    <ng-template let-tarefaAutomatizada pTemplate="item">
+                      <div class="flex flex-wrap p-2 align-items-center gap-1">
+                        <div class="flex-1 flex flex-column ">
+                          <span class="font-bold ">{{
+                            tarefaAutomatizada.obrigacao + " | " + tarefaAutomatizada.periodo + " | " + tarefaAutomatizada.grupo
+                          }}</span>
+                          <!--div class="flex align-items-center gap-2">
+                            <i class="pi pi-calendar-plus text-sm"></i>
+                            <span>{{ tarefaAutomatizada.periodo }}</span>
+                          </div-->
+                        </div>
+                        <!--span class="font-bold text-900">{{
+                          "Grupo: " + tarefaAutomatizada.grupo
+                        }}</span-->
+                      </div>
+                    </ng-template>
+                  </p-pickList>
+                </div>
+              </div>
+
+            <p-toolbar>
+              <div class="p-toolbar-group-start">
+
                   <label for="state" class="ml-1">Fluxos disponíveis:</label>
                   <p-dropdown
                     [options]="fluxosDatas"
                     optionLabel="nome"
+                    optionValue="id"
                     formControlName="nomeFluxoTarefa"
                     styleClass="w-full"
-                    [filter]="true"
-                    filterBy="chave"
-                    [showClear]="true"
                     class="ml-1"
                     placeholder="Selecione o fluxo!"
                   >
@@ -95,47 +123,13 @@
               >
                 Selecione o fluxo!!
               </small>
-                </div>
+
               </div>
-              <div class="field col-12 md:col-12">
-                <div class="card">
-                  <p-pickList
-                    [source]="sourceTarefasAutomatizadas"
-                    [target]="targetTarefasAutomatizadas"
-                    sourceHeader="Obrigações Disponíveis"
-                    targetHeader="Obrigações Selecionadas"
-                    pTooltip="Selecione ou arraste da coluna Obrigações Disponíveis para a coluna Obrigações Selecionadas, os itens que deseja vincular ao fluxo selecionado"
-                    tooltipPosition="top"
-                    [dragdrop]="true"
-                    [responsive]="true"
-                    [sourceStyle]="{ height: '30rem' }"
-                    [targetStyle]="{ height: '30rem' }"
-                    breakpoint="1400px"
-                  >
-                    <ng-template let-tarefaAutomatizada pTemplate="item">
-                      <div class="flex flex-wrap p-2 align-items-center gap-3">
-                        <div class="flex-1 flex flex-column gap-2">
-                          <span class="font-bold">{{
-                            "Obrigação: " + tarefaAutomatizada.obrigacao
-                          }}</span>
-                          <div class="flex align-items-center gap-2">
-                            <i class="pi pi-calendar-plus text-sm"></i>
-                            <span>{{ tarefaAutomatizada.periodo }}</span>
-                          </div>
-                        </div>
-                        <span class="font-bold text-900">{{
-                          "Grupo: " + tarefaAutomatizada.grupo
-                        }}</span>
-                      </div>
-                    </ng-template>
-                  </p-pickList>
-                </div>
-              </div>
-            </div>
+            </p-toolbar>
             <div class="flex pt-4 justify-content-end">
               <p-button label="Salvar" type="submit" />
             </div>
-          </p-card>
+
         </form>
         <div class="flex pt-4 justify-content-between">
           <p-button
@@ -152,7 +146,7 @@
         </div>
       </ng-template>
     </p-stepperPanel>
-    <p-stepperPanel header="Passo">
+    <p-stepperPanel header="Agendamento dos fluxos">
       <ng-template
         pTemplate="content"
         let-prevCallback="prevCallback"
@@ -162,7 +156,78 @@
           <div
             class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium"
           >
-            Content III
+          <div class="card">
+            <p-table [value]="fluxosComTarefasDatas"
+            styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm"
+             dataKey="id"
+             [tableStyle]="{ 'min-width': '50rem' }">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 4rem"></th>
+                        <th pSortableColumn="nome">Nome <p-sortIcon field="nome"></p-sortIcon></th>
+                        <th pSortableColumn="descricao">Descrição <p-sortIcon field="descricao"></p-sortIcon></th>
+                        <th pSortableColumn="contemVinculo">Contém Tarefas <p-sortIcon field="contemVinculos"></p-sortIcon></th>
+                        <th pSortableColumn="dataCriacao">Data Criação<p-sortIcon field="dataCriacao"></p-sortIcon></th>
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-dadosFluxo let-expanded="expanded">
+                    <tr>
+                        <td>
+                            <button type="button" pButton pRipple [pRowToggler]="dadosFluxo" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                        </td>
+                        <td>{{ dadosFluxo.nome }}</td>
+                        <td>{{ dadosFluxo.descricao }}</td>
+                        <td>{{ dadosFluxo.contemVinculo }}</td>
+                        <td>{{ dadosFluxo.dataCriacao }}</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="rowexpansion" let-dados>
+                    <tr>
+                        <td colspan="7">
+                            <div class="p-3">
+                                <p-table [value]="dados.tarefas" dataKey="idFluxo">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th
+                                              pSortableColumn="obrigacao">
+                                                Obrigacao
+                                              <p-sortIcon field="obrigacao"></p-sortIcon>
+                                            </th>
+                                            <th
+                                              pSortableColumn="descricao">
+                                                Descrição
+                                              <p-sortIcon field="idFluxo"></p-sortIcon>
+                                            </th>
+                                            <th
+                                              pSortableColumn="contemAgendamento">
+                                                Contém agendamento
+                                              <p-sortIcon field="contemAgendamento"></p-sortIcon>
+                                            </th>
+                                            <th style="width: 4rem"></th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-tarefas>
+                                        <tr>
+                                            <td>{{ tarefas.obrigacao }}</td>
+                                            <td>{{ tarefas.descricao }}</td>
+                                            <td>{{ tarefas.contemAgendamento }}</td>
+
+                                            <td><p-button type="button" icon="pi pi-plus"></p-button></td>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="emptymessage">
+                                        <tr>
+                                            <td colspan="6">Ainda não há tarefas vinculadas a este fluxo</td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+          </div>
           </div>
         </div>
         <div class="flex pt-4 justify-content-start">
