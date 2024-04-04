@@ -29,6 +29,7 @@ import { PickListModule } from 'primeng/picklist';
 import { ProductService } from 'src/app/services/fluxo/fluxo-steps.service';
 import { TreeTableModule } from 'primeng/treetable';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { CalendarModule } from 'primeng/calendar';
 
 
 
@@ -66,6 +67,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
     PickListModule,
     TreeTableModule,
     InputNumberModule,
+    CalendarModule,
 
     //Shared
     SharedModule,

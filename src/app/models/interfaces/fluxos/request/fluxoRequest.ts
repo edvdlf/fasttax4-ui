@@ -5,4 +5,5 @@ export  interface FluxoRequest{
   dataCriacao: Date;
   contemVinculo: boolean;
   dataUltimaExecucao: string;
+  agendadoPara:Date;
 }

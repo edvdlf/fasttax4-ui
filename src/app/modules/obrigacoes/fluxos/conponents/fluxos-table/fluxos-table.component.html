@@ -131,6 +131,44 @@
                 </div>
               </div>
             </th>
+            <th pSortableColumn="dataUltimaExecucao">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Ultima Execução
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="dataUltimaExecucao"></p-sortIcon>
+                  <p-columnFilter
+                    type="text"
+                    field="dataUltimaExecucao"
+                    display="menu"
+                    matchMode="contains"
+                    [showMatchModes]="false"
+                    [showOperator]="false"
+                    [showAddButton]="false"
+                  ></p-columnFilter>
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="agendadoPara">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Agendado Para
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="agendadoPara"></p-sortIcon>
+                  <p-columnFilter
+                    type="text"
+                    field="agendadoPara"
+                    display="menu"
+                    matchMode="contains"
+                    [showMatchModes]="false"
+                    [showOperator]="false"
+                    [showAddButton]="false"
+                  ></p-columnFilter>
+                </div>
+              </div>
+            </th>
             <th>
               <div class="flex justify-content-between align-items-center">
                 <div class="flex justify-content-between align-items-center">
@@ -150,7 +188,9 @@
         <ng-template pTemplate="body" let-dadosFluxo let-expanded="expanded">
           <tr>
             <td>
-              <button type="button" pButton pRipple [pRowToggler]="dadosFluxo" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+              <!--button type="button" pButton pRipple [pRowToggler]="dadosFluxo" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button-->
+              <button type="button" pButton pRipple [pRowToggler]="dadosFluxo" class="p-button-text " [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+
             </td>
             <td style="text-align: left">{{ dadosFluxo.nome }}</td>
             <td [pTooltip]="dadosFluxo?.descricao" tooltipPosition="top" style="text-align: left">
@@ -159,6 +199,9 @@
             <td style="text-align: left"><p-tag [value]="dadosFluxo.contemVinculo ? 'Sim': 'Não'" [severity]="getStatus(dadosFluxo.contemVinculo)"></p-tag></td>
 
             <td style="text-align: left">{{ dadosFluxo.dataCriacao | date: "dd-MM-yyyy"   }}</td>
+            <td style="text-align: left">{{ dadosFluxo.dataUltimaExecucao | date: "dd-MM-yyyy"   }}</td>
+            <td style="text-align: left">{{ dadosFluxo.agendadoPara | date: "dd-MM-yyyy"   }}</td>
+
             <td style="text-align: center">
               <p-button
                 [disabled]="dadosFluxo.contemVinculo"
@@ -205,16 +248,16 @@
                                     </div>
                                   </div>
                                 </th>
-                                <th pSortableColumn="descricao">
+                                <th pSortableColumn="dataUltimaExecucao">
                                   <div class="flex justify-content-between align-items-center">
                                     <div class="flex justify-content-between align-items-center">
-                                      Descrição
+                                      Última execução
                                     </div>
                                     <div class="flex justify-content-between align-items-center">
-                                      <p-sortIcon field="descricao"></p-sortIcon>
+                                      <p-sortIcon field="dataUltimaExecucao"></p-sortIcon>
                                       <p-columnFilter
                                         type="text"
-                                        field="descricao"
+                                        field="dataUltimaExecucao"
                                         display="menu"
                                         matchMode="contains"
                                         [showMatchModes]="false"
@@ -227,13 +270,32 @@
                                 <th pSortableColumn="contemAgendamento">
                                   <div class="flex justify-content-between align-items-center">
                                     <div class="flex justify-content-between align-items-center">
-                                      Contém agendamento
+                                      Status
                                     </div>
                                     <div class="flex justify-content-between align-items-center">
                                       <p-sortIcon field="contemAgendamento"></p-sortIcon>
                                       <p-columnFilter
                                         type="text"
                                         field="contemAgendamento"
+                                        display="menu"
+                                        matchMode="contains"
+                                        [showMatchModes]="false"
+                                        [showOperator]="false"
+                                        [showAddButton]="false"
+                                      ></p-columnFilter>
+                                    </div>
+                                  </div>
+                                </th>
+                                <th pSortableColumn="dataProximaExecucao">
+                                  <div class="flex justify-content-between align-items-center">
+                                    <div class="flex justify-content-between align-items-center">
+                                      Próxima execução
+                                    </div>
+                                    <div class="flex justify-content-between align-items-center">
+                                      <p-sortIcon field="dataProximaExecucao"></p-sortIcon>
+                                      <p-columnFilter
+                                        type="text"
+                                        field="dataProximaExecucao"
                                         display="menu"
                                         matchMode="contains"
                                         [showMatchModes]="false"
@@ -250,9 +312,10 @@
                               <tr>
 
                                   <td style="text-align: left">{{ tarefas.obrigacao }}</td>
-                                  <td style="text-align: left">{{ tarefas.descricao }}</td>
+                                  <td style="text-align: left">{{ tarefas.dataUltimaExecucao | date: "dd-MM-yyyy"   }}</td>
+                                  <td style="text-align: left">{{ tarefas.agendadoPara | date: "dd-MM-yyyy"   }}</td>
                                   <td style="text-align: left">{{ tarefas.contemAgendamento  | status}}</td>
-
+                                  <td style="text-align: left">{{ tarefas.dataProximaExecucao | date: "dd-MM-yyyy"   }}</td>
 
                               </tr>
                           </ng-template>

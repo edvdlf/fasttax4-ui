@@ -1,4 +1,4 @@
-<div>
+  <div>
   <p-stepper [linear]="true">
     <p-stepperPanel header="Criar Fluxo">
       <ng-template
@@ -6,72 +6,69 @@
         let-nextCallback="nextCallback"
         let-index="index"
       >
-        <form [formGroup]="adicionarFluxoForm" (ngSubmit)="handleSubmitFluxo()">
-
-
+      <form [formGroup]="adicionarFluxoForm" (ngSubmit)="handleSubmitFluxo()">
         <div class="col-12">
           <div class="card">
-            <h5>Avançado</h5>
             <div class="p-fluid p-formgrid grid">
-
+              <div class="field col-12 md:col-6">
+                <label for="lblNomeFluxo" class="ml-1 font-bold">Nome do fluxo:</label>
+                  <input
+                  id="txtNomeFluxo"
+                  placeholder="Defina um nome para o fluxo a ser criado!"
+                  formControlName="nomeFluxo"
+                  type="text"
+                  class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full ml-1"
+                />
+                <small
+                  class="p-error"
+                  *ngIf="submited && !adicionarFluxoForm.value.nomeFluxo"
+                >
+                  O campo Nome é obrigatorio!
+                </small>
+              </div>
+              <div class="field col-11 md:col-11">
+                <label for="lblDescricao" class="ml-1 font-bold">Descrição:</label>
+                <input
+                  id="txtDescricao"
+                  placeholder="Descreva o fluxo a ser criado!"
+                  formControlName="descricaoFluxo"
+                  type="text"
+                  class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full ml-1"
+                />
+                <small
+                  class="p-error"
+                  *ngIf="submited && !adicionarFluxoForm.value.descricaoFluxo"
+                >
+                  O campo Descrição é obrigatorio!
+                </small>
+              </div>
+              <div class="field col-6 md:col-6">
+                <label for="lblDescricao" class="ml-1 font-bold">Agendar para:</label>
+                <p-calendar formControlName="agendadoPara"></p-calendar>
+              </div>
+              <div class="field col-6 md:col-6">
+                <p-button
+                type="submit"
+                  icon="pi pi-save"
+                />
+              </div>
             </div>
 
           </div>
         </div>
-
-
-            <div class="field col-12 md:col-6">
-              <label for="lblNomeFluxo" class="ml-1 font-bold">Nome do fluxo:</label>
-              <input
-                id="txtNomeFluxo"
-                placeholder="Defina um nome para o fluxo a ser criado!"
-                formControlName="nomeFluxo"
-                type="text"
-                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full ml-1"
-              />
-              <small
-                class="p-error"
-                *ngIf="submited && !adicionarFluxoForm.value.nomeFluxo"
-              >
-                O campo Nome é obrigatorio!
-              </small>
-            </div>
-            <div class="field col-12 md:col-12">
-              <label for="lblDescricao" class="ml-1 font-bold">Descrição:</label>
-              <input
-                id="txtDescricao"
-                placeholder="Descreva o fluxo a ser criado!"
-                formControlName="descricaoFluxo"
-                type="text"
-                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full ml-1"
-              />
-              <small
-                class="p-error"
-                *ngIf="submited && !adicionarFluxoForm.value.descricaoFluxo"
-              >
-                O campo Descrição é obrigatorio!
-              </small>
-            </div>
-            <div class="flex-auto">
-              <label class="mb-2 block font-bold" for="minmax-buttons">Executar a cada</label>
-              <p-inputNumber [(ngModel)]="value1" mode="number" [showButtons]="true" inputId="minmax-buttons" [min]="0" [max]="100"> </p-inputNumber>
-            </div>
-
-
-
-            <div class="flex pt-4 justify-content-end">
-              <p-button label="Salvar" type="submit" />
-            </div>
-
         </form>
-        <div class="flex pt-4 justify-content-end">
-          <p-button
-            label="Próximo"
-            icon="pi pi-arrow-right"
-            iconPos="right"
-            (onClick)="nextCallback.emit()"
-          />
-        </div>
+        <p-toolbar>
+          <div class="p-toolbar-group-start">
+          </div>
+          <div class="p-toolbar-group-end">
+            <p-button
+              icon="pi pi-arrow-right"
+              iconPos="right"
+              (onClick)="nextCallback.emit()"
+            />
+          </div>
+        </p-toolbar>
+
       </ng-template>
     </p-stepperPanel>
     <p-stepperPanel header="Vincular tarefas ao fluxo">
@@ -124,7 +121,6 @@
 
             <p-toolbar>
               <div class="p-toolbar-group-start">
-
                   <label for="state" class="ml-1">Fluxos disponíveis:</label>
                   <p-dropdown
                     [options]="fluxosDatas"
@@ -142,120 +138,29 @@
               >
                 Selecione o fluxo!!
               </small>
-
+              </div>
+              <div class="p-toolbar-group-end">
+                <p-button icon="pi pi-save" type="submit" />
               </div>
             </p-toolbar>
-            <div class="flex pt-4 justify-content-end">
-              <p-button label="Salvar" type="submit" />
-            </div>
+
 
         </form>
-        <div class="flex pt-4 justify-content-between">
-          <p-button
-            label="Anterior"
+        <p-toolbar>
+          <div class="p-toolbar-group-start">
+            <p-button
             icon="pi pi-arrow-left"
             (onClick)="prevCallback.emit()"
           />
-          <p-button
-            label="Próximo"
+          </div>
+          <!--div-- class="p-toolbar-group-end">
+            <p-button
             icon="pi pi-arrow-right"
             iconPos="right"
             (onClick)="nextCallback.emit()"
           />
-        </div>
-      </ng-template>
-    </p-stepperPanel>
-    <p-stepperPanel header="Agendamento dos fluxos">
-      <ng-template
-        pTemplate="content"
-        let-prevCallback="prevCallback"
-        let-index="index"
-      >
-        <div class="flex flex-column h-12rem">
-          <div
-            class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium"
-          >
-          <div class="card">
-            <p-table [value]="fluxosComTarefasDatas"
-            styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm"
-             dataKey="id"
-             [tableStyle]="{ 'min-width': '50rem' }">
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th style="width: 4rem"></th>
-                        <th pSortableColumn="nome">Nome <p-sortIcon field="nome"></p-sortIcon></th>
-                        <th pSortableColumn="descricao">Descrição <p-sortIcon field="descricao"></p-sortIcon></th>
-                        <th pSortableColumn="contemVinculo">Contém Tarefas <p-sortIcon field="contemVinculos"></p-sortIcon></th>
-                        <th pSortableColumn="dataCriacao">Data Criação<p-sortIcon field="dataCriacao"></p-sortIcon></th>
-
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-dadosFluxo let-expanded="expanded">
-                    <tr>
-                        <td>
-                            <button type="button" pButton pRipple [pRowToggler]="dadosFluxo" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
-                        </td>
-                        <td>{{ dadosFluxo.nome }}</td>
-                        <td>{{ dadosFluxo.descricao }}</td>
-                        <td>{{ dadosFluxo.contemVinculo }}</td>
-                        <td>{{ dadosFluxo.dataCriacao }}</td>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="rowexpansion" let-dados>
-                    <tr>
-                        <td colspan="7">
-                            <div class="p-3">
-                                <p-table [value]="dados.fluxosTarefas" dataKey="idFluxo">
-                                    <ng-template pTemplate="header">
-                                        <tr>
-                                            <th
-                                              pSortableColumn="obrigacao">
-                                                Obrigacao
-                                              <p-sortIcon field="obrigacao"></p-sortIcon>
-                                            </th>
-                                            <th
-                                              pSortableColumn="descricao">
-                                                Descrição
-                                              <p-sortIcon field="idFluxo"></p-sortIcon>
-                                            </th>
-                                            <th
-                                              pSortableColumn="contemAgendamento">
-                                                Contém agendamento
-                                              <p-sortIcon field="contemAgendamento"></p-sortIcon>
-                                            </th>
-                                            <th style="width: 4rem"></th>
-                                        </tr>
-                                    </ng-template>
-                                    <ng-template pTemplate="body" let-tarefas>
-                                        <tr>
-                                            <td>{{ tarefas.obrigacao }}</td>
-                                            <td>{{ tarefas.descricao }}</td>
-                                            <td>{{ tarefas.contemAgendamento }}</td>
-
-                                            <td><p-button type="button" icon="pi pi-plus"></p-button></td>
-                                        </tr>
-                                    </ng-template>
-                                    <ng-template pTemplate="emptymessage">
-                                        <tr>
-                                            <td colspan="6">Ainda não há tarefas vinculadas a este fluxo</td>
-                                        </tr>
-                                    </ng-template>
-                                </p-table>
-                            </div>
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
-          </div>
-          </div>
-        </div>
-        <div class="flex pt-4 justify-content-start">
-          <p-button
-            label="Anterior"
-            icon="pi pi-arrow-left"
-            (onClick)="prevCallback.emit()"
-          />
-        </div>
+          </div-->
+        </p-toolbar>
       </ng-template>
     </p-stepperPanel>
   </p-stepper>

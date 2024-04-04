@@ -44,7 +44,9 @@ export class FluxosFormComponent implements OnInit, OnDestroy {
 
     public adicionarFluxoForm = this.formBuilder.group({
       nomeFluxo:['', Validators.required],
-      descricaoFluxo:['', Validators.required]
+      descricaoFluxo:['', Validators.required],
+      agendadoPara:['', Validators.required],
+
 
     })
 
@@ -64,6 +66,7 @@ export class FluxosFormComponent implements OnInit, OnDestroy {
           contemVinculo: false,
           dataCriacao: dataAtual,
           dataUltimaExecucao: "9999-01-01T00:00:00",
+          agendadoPara:dataAtual,
         }
         console.log(fluxoRequest)
         this.submitFluxo(fluxoRequest)
