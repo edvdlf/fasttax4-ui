@@ -57,17 +57,6 @@ export class FluxosTableComponent {
 
   ngOnInit(): void {
 
-    //this.cols = [
-      //{ field: 'name', header: 'Name' },
-      //{ field: 'size', header: 'Size' },
-      //{ field: 'type', header: 'Type' }
-  //];
-
-  //this.productService.getProductsWithOrdersSmall().then((data) => (this.products = data));
-
-  //this.productService.getFluxosWithTarefas()
-  //.then((data)=> (this.fluxosComTarefas2 = data));
-
   }
 
   handleFluxoEvent(action: string, id?: string): void {
@@ -84,6 +73,11 @@ handleDeleteFluxoEvent(id: string, nome: string): void {
     }
   }
 
-
-
+  getStatus(status: boolean) {
+    console.log(status)
+    if(status==true){
+      return 'success'
+    }
+    return 'info'
+  }
 }

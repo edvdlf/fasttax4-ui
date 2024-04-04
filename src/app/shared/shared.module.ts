@@ -187,6 +187,7 @@ import { StatusPipe } from './pipes/status/status.pipe';
     MatSortModule,
     MatTableModule,
     ShortenPipe,
+    StatusPipe,
     AccordionModule,
     SplitButtonModule,
     PanelMenuModule,

@@ -1,0 +1,21 @@
+
+:host ::ng-deep .p-button{
+  font-size:0.8em;
+  height: 2.5rem;
+  color: #ffffff;
+  background: #E1742E;
+  border: 1px solid #fd7e14;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  border-radius: 6px;
+
+}
+:host ::ng-deep .p-dropdown{
+  font-size:0.8em;
+  height: 2.5rem;
+}
+th, td {
+  text-align: center;
+  font-size: 0.8em;
+}

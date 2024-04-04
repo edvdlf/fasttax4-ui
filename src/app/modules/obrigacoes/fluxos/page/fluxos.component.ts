@@ -40,10 +40,8 @@ export class FluxosComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getFluxosDatas();
-    //this.getFluxosComTarefasDatas();
-
-
   }
+
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
@@ -74,9 +72,7 @@ export class FluxosComponent implements OnInit, OnDestroy {
              .subscribe({
         next: (response) => {
           if (response.length > 0) {
-            console.log(response)
             this.fluxosDatas = response;
-            console.log(this.fluxosDatas)
           }
         },
         error: (err) => {
@@ -91,12 +87,6 @@ export class FluxosComponent implements OnInit, OnDestroy {
       });
   }
 
-  getFluxosComTarefasDatas(): void {
-
-    //this.fluxoService.getAllFluxosTarefas2().then(data)
-    //this.fluxoService.getAllFluxosTarefas2().then((data) => (this.fluxosComTarefasDatas = data));
-
-  }
 
   handleDeleteFluxoAction(event: {id:string, nome:string}): void {
     if (event) {
@@ -137,11 +127,7 @@ deleteFluxo(id: string) {
           });
           },
         });
-
       this.getFluxosDatas();
     }
   }
-
-
-
 }

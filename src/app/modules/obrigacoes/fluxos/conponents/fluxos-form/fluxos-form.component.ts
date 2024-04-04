@@ -30,7 +30,7 @@ export class FluxosFormComponent implements OnInit, OnDestroy {
   fluxosComTarefasDatas: Array<FluxoResponse2> =[]
   public tarefasAutomatizadaSelected!:TarefaAutomatizadaResponse;
   tarefasAutomatizadasDatas: Array<TarefaAutomatizadaResponse> = [];
-
+  value1: number = 20;
   submited:boolean=false;
 
   constructor(
@@ -163,7 +163,7 @@ export class FluxosFormComponent implements OnInit, OnDestroy {
                .subscribe({
           next: (response) => {
             if (response.length > 0) {
-              
+
               this.tarefasAutomatizadasDatas = response;
               this.sourceTarefasAutomatizadas = this.tarefasAutomatizadasDatas
 

@@ -5,24 +5,19 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class StatusPipe implements PipeTransform {
 
-  transform(value: string, args:string): string {
+  transform(value: string): string {
     if(value!== null){
-
-
+      switch(value){
+        case  'true':
+          value = 'Sim'
+        break
+        case  'false':
+          value = 'Não'
+        break
+      }
       return value;
     }
     return "";
-  }
-
-}
-
-export class ShortenPipe implements PipeTransform {
-
-  transform(value: string, args: number): string {
-    if(value!== null){
-      return value.length> args ? value.substring(0, args)+ '...': value;
-    }
-    return '';
   }
 
 }

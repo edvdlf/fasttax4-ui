@@ -131,8 +131,20 @@
                 </div>
               </div>
             </th>
-
-
+            <th>
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Excluir
+                </div>
+              </div>
+            </th>
+            <th>
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Executar
+                </div>
+              </div>
+            </th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-dadosFluxo let-expanded="expanded">
@@ -144,8 +156,27 @@
             <td [pTooltip]="dadosFluxo?.descricao" tooltipPosition="top" style="text-align: left">
               {{ dadosFluxo?.descricao | shorten : 25 }}
             </td>
-            <td style="text-align: left">{{ dadosFluxo.contemVinculo }}</td>
-            <td style="text-align: left">{{ dadosFluxo.dataCriacao }}</td>
+            <td style="text-align: left"><p-tag [value]="dadosFluxo.contemVinculo ? 'Sim': 'Não'" [severity]="getStatus(dadosFluxo.contemVinculo)"></p-tag></td>
+
+            <td style="text-align: left">{{ dadosFluxo.dataCriacao | date: "dd-MM-yyyy"   }}</td>
+            <td style="text-align: center">
+              <p-button
+                [disabled]="dadosFluxo.contemVinculo"
+                icon="pi pi-trash"
+                styleClass="p-button-rounded p-button-secondary p-button-text"
+                (onClick)="handleDeleteFluxoEvent(dadosFluxo.id, dadosFluxo.periodo)"
+              >
+              </p-button>
+            </td>
+            <td style="text-align: center">
+              <p-button
+                [disabled]="!dadosFluxo.contemVinculo"
+                icon="pi pi-caret-right"
+                styleClass="p-button-rounded p-button-secondary p-button-text"
+
+              >
+              </p-button>
+            </td>
           </tr>
         </ng-template>
         <ng-template pTemplate="rowexpansion" let-dados>
@@ -155,32 +186,74 @@
                       <p-table [value]="dados.fluxosTarefas" dataKey="idFluxo">
                           <ng-template pTemplate="header">
                               <tr>
-                                  <th
-                                    pSortableColumn="obrigacao">
-                                      Obrigacao
-                                    <p-sortIcon field="obrigacao"></p-sortIcon>
-                                  </th>
-                                  <th
-                                    pSortableColumn="descricao">
+                                <th pSortableColumn="obrigacao">
+                                  <div class="flex justify-content-between align-items-center">
+                                    <div class="flex justify-content-between align-items-center">
+                                      Obrigação
+                                    </div>
+                                    <div class="flex justify-content-between align-items-center">
+                                      <p-sortIcon field="obrigacao"></p-sortIcon>
+                                      <p-columnFilter
+                                        type="text"
+                                        field="obrigacao"
+                                        display="menu"
+                                        matchMode="contains"
+                                        [showMatchModes]="false"
+                                        [showOperator]="false"
+                                        [showAddButton]="false"
+                                      ></p-columnFilter>
+                                    </div>
+                                  </div>
+                                </th>
+                                <th pSortableColumn="descricao">
+                                  <div class="flex justify-content-between align-items-center">
+                                    <div class="flex justify-content-between align-items-center">
                                       Descrição
-                                    <p-sortIcon field="idFluxo"></p-sortIcon>
-                                  </th>
-                                  <th
-                                    pSortableColumn="contemAgendamento">
+                                    </div>
+                                    <div class="flex justify-content-between align-items-center">
+                                      <p-sortIcon field="descricao"></p-sortIcon>
+                                      <p-columnFilter
+                                        type="text"
+                                        field="descricao"
+                                        display="menu"
+                                        matchMode="contains"
+                                        [showMatchModes]="false"
+                                        [showOperator]="false"
+                                        [showAddButton]="false"
+                                      ></p-columnFilter>
+                                    </div>
+                                  </div>
+                                </th>
+                                <th pSortableColumn="contemAgendamento">
+                                  <div class="flex justify-content-between align-items-center">
+                                    <div class="flex justify-content-between align-items-center">
                                       Contém agendamento
-                                    <p-sortIcon field="contemAgendamento"></p-sortIcon>
-                                  </th>
-                                  <th style="width: 4rem"></th>
+                                    </div>
+                                    <div class="flex justify-content-between align-items-center">
+                                      <p-sortIcon field="contemAgendamento"></p-sortIcon>
+                                      <p-columnFilter
+                                        type="text"
+                                        field="contemAgendamento"
+                                        display="menu"
+                                        matchMode="contains"
+                                        [showMatchModes]="false"
+                                        [showOperator]="false"
+                                        [showAddButton]="false"
+                                      ></p-columnFilter>
+                                    </div>
+                                  </div>
+                                </th>
+                                <th style="width: 4rem"></th>
                               </tr>
                           </ng-template>
                           <ng-template pTemplate="body" let-tarefas>
                               <tr>
 
-                                  <td>{{ tarefas.obrigacao }}</td>
-                                  <td>{{ tarefas.descricao }}</td>
-                                  <td>{{ tarefas.contemAgendamento }}</td>
+                                  <td style="text-align: left">{{ tarefas.obrigacao }}</td>
+                                  <td style="text-align: left">{{ tarefas.descricao }}</td>
+                                  <td style="text-align: left">{{ tarefas.contemAgendamento  | status}}</td>
 
-                                  <td><p-button type="button" icon="pi pi-plus"></p-button></td>
+
                               </tr>
                           </ng-template>
                           <ng-template pTemplate="emptymessage">

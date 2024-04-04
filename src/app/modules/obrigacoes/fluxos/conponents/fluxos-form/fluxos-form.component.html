@@ -8,8 +8,20 @@
       >
         <form [formGroup]="adicionarFluxoForm" (ngSubmit)="handleSubmitFluxo()">
 
+
+        <div class="col-12">
+          <div class="card">
+            <h5>Avançado</h5>
+            <div class="p-fluid p-formgrid grid">
+
+            </div>
+
+          </div>
+        </div>
+
+
             <div class="field col-12 md:col-6">
-              <label for="lblNomeFluxo" class="ml-1">Nome do fluxo:</label>
+              <label for="lblNomeFluxo" class="ml-1 font-bold">Nome do fluxo:</label>
               <input
                 id="txtNomeFluxo"
                 placeholder="Defina um nome para o fluxo a ser criado!"
@@ -25,7 +37,7 @@
               </small>
             </div>
             <div class="field col-12 md:col-12">
-              <label for="lblDescricao" class="ml-1">Descrição:</label>
+              <label for="lblDescricao" class="ml-1 font-bold">Descrição:</label>
               <input
                 id="txtDescricao"
                 placeholder="Descreva o fluxo a ser criado!"
@@ -40,6 +52,13 @@
                 O campo Descrição é obrigatorio!
               </small>
             </div>
+            <div class="flex-auto">
+              <label class="mb-2 block font-bold" for="minmax-buttons">Executar a cada</label>
+              <p-inputNumber [(ngModel)]="value1" mode="number" [showButtons]="true" inputId="minmax-buttons" [min]="0" [max]="100"> </p-inputNumber>
+            </div>
+
+
+
             <div class="flex pt-4 justify-content-end">
               <p-button label="Salvar" type="submit" />
             </div>
