@@ -1,12 +1,14 @@
+import { AppModule } from './../../../../../app.module';
+import { ExecuteFluxoAction } from './../../../../../models/interfaces/fluxos/event/executeFluxoAction';
 import { FluxoService } from 'src/app/services/fluxo/fluxo.service';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MessageService, TreeNode } from 'primeng/api';
+import { MessageService, TreeNode, ConfirmationService } from 'primeng/api';
 import { FluxosEvent } from 'src/app/models/enums/fluxos/fluxosEvent';
 import { EventAction } from 'src/app/models/event/EventAction';
 import { DeleteFluxoAction } from 'src/app/models/interfaces/fluxos/event/deleteFluxoAction';
 import { FluxoResponse } from 'src/app/models/interfaces/fluxos/response/fluxoResponse';
 import { ProductService } from 'src/app/services/fluxo/fluxo-steps.service';
-import { FluxoResponse2 } from 'src/app/models/interfaces/fluxos/response/fluxoResponse2';
+//import { FluxoResponse2 } from 'src/app/models/interfaces/fluxos/response/fluxoResponse2';
 
 export interface Product {
   id?: string;
@@ -33,31 +35,14 @@ interface Column {
 export class FluxosTableComponent {
 
   @Input() fluxos: Array<FluxoResponse> = [];
-  //@Input() fluxosComTarefas: Array<FluxoResponse> = [];
-
   @Output() fluxoEvent = new EventEmitter<EventAction>();
   @Output() deleteFluxoEvent = new EventEmitter<DeleteFluxoAction>();
+  @Output() executeFluxoEvent = new EventEmitter<ExecuteFluxoAction>();
   public adicionarFluxoEvent = FluxosEvent.ADICIONAR_FLUXO_EVENT;
 
-  files: TreeNode[] = [];
-
-  selectedNodes: TreeNode[] = [];
-
-  cols!: Column[];
-  products!: Product[];
-  fluxosComTarefas: FluxoResponse[] = [];
-  fluxosComTarefas2!: FluxoResponse2 [];
-
   constructor(
-    private messageService: MessageService,
-    private productService: ProductService,
-    private fluxoService: FluxoService,
-   ) { }
+    ) { }
 
-
-  ngOnInit(): void {
-
-  }
 
   handleFluxoEvent(action: string, id?: string): void {
     if (action && action !== '') {
@@ -66,15 +51,20 @@ export class FluxosTableComponent {
     }
   }
 
-
-handleDeleteFluxoEvent(id: string, nome: string): void {
+  handleDeleteFluxoEvent(id: string, nome: string): void {
     if (id && nome !== '') {
       this.deleteFluxoEvent.emit({id, nome});
     }
   }
 
+  handleExecuteFluxoEvent(id: string, nome:string): void {
+    if (id  !== '') {
+      this.executeFluxoEvent.emit({id});
+    }
+  }
+
   getStatus(status: boolean) {
-    console.log(status)
+    
     if(status==true){
       return 'success'
     }

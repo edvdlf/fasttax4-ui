@@ -9,7 +9,7 @@ import { FluxoResponse } from 'src/app/models/interfaces/fluxos/response/fluxoRe
 import { TarefaAutomatizadaResponse } from 'src/app/models/interfaces/tarefasautomatizadas/response/tarefaAutomatizadaResponse';
 import { TarefasAutomatizadasService } from 'src/app/services/obrigacoes/tarefas-automatizadas/tarefas-automatizadas.service';
 import { FluxoTarefaRequest } from 'src/app/models/interfaces/fluxos/request/fluxoTarefaRequest';
-import { FluxoResponse2 } from 'src/app/models/interfaces/fluxos/response/fluxoResponse2';
+//import { FluxoResponse2 } from 'src/app/models/interfaces/fluxos/response/fluxoResponse2';
 
 
 
@@ -27,7 +27,6 @@ export class FluxosFormComponent implements OnInit, OnDestroy {
 
   private readonly destroy$: Subject<void> = new Subject();
   fluxosDatas: Array<FluxoResponse> =[]
-  fluxosComTarefasDatas: Array<FluxoResponse2> =[]
   public tarefasAutomatizadaSelected!:TarefaAutomatizadaResponse;
   tarefasAutomatizadasDatas: Array<TarefaAutomatizadaResponse> = [];
   value1: number = 20;
@@ -206,33 +205,12 @@ export class FluxosFormComponent implements OnInit, OnDestroy {
         });
     }
 
-    getFluxosComTarefasDatas(): void {
-      this.fluxoService
-        .getAllFluxosTarefas()
-               .subscribe({
-          next: (response) => {
-            if (response.length > 0) {
-              console.log(response)
-              this.fluxosComTarefasDatas = response;
-            }
-          },
-          error: (err) => {
-            console.log(err);
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Erro',
-              detail: 'Não foi possível buscar regras relatório!',
-              life: 2500,
-            });
-          },
-        });
-    }
 
   ngOnInit() {
       this.getFluxosDatas();
       this.getTarefasAutomatizadasDatas();
       this.targetTarefasAutomatizadas = [];
-      this.getFluxosComTarefasDatas();
+      //this.getFluxosComTarefasDatas();
   }
 
   ngOnDestroy() {

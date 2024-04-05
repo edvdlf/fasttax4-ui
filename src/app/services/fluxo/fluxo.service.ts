@@ -7,7 +7,8 @@ import { Observable, Subject, map } from 'rxjs';
 import { FluxoRequest } from 'src/app/models/interfaces/fluxos/request/fluxoRequest';
 import { FluxoTarefaRequest } from 'src/app/models/interfaces/fluxos/request/fluxoTarefaRequest';
 import { FluxoTarefaResponse } from 'src/app/models/interfaces/fluxos/response/fluxoTarefaResponse';
-import { FluxoResponse2 } from 'src/app/models/interfaces/fluxos/response/fluxoResponse2';
+import { ExecuteFluxoRequest } from 'src/app/models/interfaces/fluxos/request/executeFluxoRequest';
+import { ExecuteFluxoTarefaRequest } from 'src/app/models/interfaces/fluxos/request/executeFluxoTarefaRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -28,14 +29,9 @@ export class FluxoService {
     return this.http.get<Array<FluxoResponse>>(`${this.API_URL}/FluxosMockers`)
   }
 
-  getAllFluxosTarefas(): Observable<Array<FluxoResponse2 >> {
-    return this.http.get<Array<FluxoResponse2>>(`${this.API_URL}/FluxosMockers`)
+  getFluxoById(id:string): Observable<FluxoResponse > {
+    return this.http.get<FluxoResponse>(`${this.API_URL}/FluxosMockers/${id}`)
   }
-
-
-
-
-
 
   getAllFluxosVinculo(vinculo:boolean): Observable<Array<FluxoResponse >> {
     return this.http.get<Array<FluxoResponse>>(`${this.API_URL}/FluxosMockers/vinculo/${vinculo}`)
@@ -52,12 +48,28 @@ export class FluxoService {
       `${this.API_URL}/FluxosMockers`, requestDatas
     );
   }
+
   adicionarTarefaFluxo(
     requestDatas: FluxoTarefaRequest): Observable<FluxoTarefaResponse> {
     return this.http.post<FluxoTarefaResponse>(
       `${this.API_URL}/FluxosTarefasAutomatizadasMockers`, requestDatas
     );
   }
+
+  executarFluxo(id:string,
+    requestDatas: ExecuteFluxoRequest): Observable<FluxoResponse> {
+    return this.http.put<FluxoResponse>(
+      `${this.API_URL}/FluxosMockers/${id}`, requestDatas
+    );
+  }
+
+  executarTarefaFluxo(id:string,
+    requestDatas: ExecuteFluxoTarefaRequest): Observable<FluxoTarefaResponse> {
+    return this.http.put<FluxoTarefaResponse>(
+      `${this.API_URL}/FluxosTarefasAutomatizadasMockers/${id}`, requestDatas
+    );
+  }
+
 
 
 

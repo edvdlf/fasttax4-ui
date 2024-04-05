@@ -8,6 +8,7 @@
     [fluxos]="fluxosDatas"
     (fluxoEvent)="handleFluxoAction($event)"
     (deleteFluxoEvent)="handleDeleteFluxoAction($event)"
+    (executeFluxoEvent)="handleExecuteFluxoAction($event)"
     ></app-fluxos-table>
     <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
     <router-outlet></router-outlet>

@@ -1,3 +1,4 @@
+import { ExecuteFluxoRequest } from 'src/app/models/interfaces/fluxos/request/executeFluxoRequest';
 import { FluxoService } from '../../../../services/fluxo/fluxo.service';
 import { Router } from '@angular/router';
 import { FluxosFormComponent } from './../conponents/fluxos-form/fluxos-form.component';
@@ -26,6 +27,8 @@ export class FluxosComponent implements OnInit, OnDestroy {
   private ref!: DynamicDialogRef;
   public fluxosDatas: Array<FluxoResponse> = [];
   public fluxosComTarefasDatas: Array<FluxoResponse> = [];
+  //private fluxoById: Array<FluxoResponse> =[] ;
+  private fluxoById!: FluxoResponse;
 
 
 
@@ -76,7 +79,7 @@ export class FluxosComponent implements OnInit, OnDestroy {
           }
         },
         error: (err) => {
-          console.log(err);
+
           this.messageService.add({
             severity: 'error',
             summary: 'Erro',
@@ -86,7 +89,6 @@ export class FluxosComponent implements OnInit, OnDestroy {
         },
       });
   }
-
 
   handleDeleteFluxoAction(event: {id:string, nome:string}): void {
     if (event) {
@@ -101,7 +103,8 @@ export class FluxosComponent implements OnInit, OnDestroy {
         })
     }
   }
-deleteFluxo(id: string) {
+
+  deleteFluxo(id: string) {
     if (id) {
       this.fluxoService
       .deleteFluxo(id)
@@ -117,7 +120,7 @@ deleteFluxo(id: string) {
         });
         },
           error: (err) => {
-          console.log(err);
+
           this.getFluxosDatas();
           this.messageService.add({
             severity: 'error',
@@ -130,4 +133,74 @@ deleteFluxo(id: string) {
       this.getFluxosDatas();
     }
   }
+
+  handleExecuteFluxoAction(event: {id:string}):void{
+    this.confirmationService.confirm({
+    //target: event.target as EventTarget,
+    message: 'Confirma a execução agora deste fluxo e tarefas a ele vinculadas?',
+    header:'Confirmação',
+    icon: 'pi pi-exclamation-triangle',
+    acceptIcon: "none",
+    rejectIcon: "nome",
+    rejectButtonStyleClass: "p-button-text",
+    accept: () => this.obterFluxoById(event?.id),
+    })
+  }
+
+  obterFluxoById(id: string):void {
+    if (id) {
+      this.fluxoService
+      .getFluxoById(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next:(response)=>{
+          if(response){
+            this.fluxoById = response;
+            this.executeFluxo(this.fluxoById.id)
+          }
+        }
+      })
+    }
+  }
+
+  executeFluxo(id: string) {
+    if (id) {
+      const dataAtual = new Date();
+      const fluxo: ExecuteFluxoRequest = {
+        id : this.fluxoById.id,
+        nome : this.fluxoById.nome,
+        descricao: this.fluxoById.nome,
+        contemVinculo: this.fluxoById.contemVinculo,
+        dataCriacao: this.fluxoById.dataCriacao,
+        dataUltimaExecucao: dataAtual,
+        agendadoPara:this.fluxoById.agendadoPara,
+      }
+        //console.log(fluxo.dataUltimaExecucao)
+
+      this.fluxoService
+        .executarFluxo(fluxo.id, fluxo)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+         next: (response) => {
+          this.getFluxosDatas();
+            this.messageService.add({
+            severity: 'success',
+            summary: 'Sucesso',
+            detail: 'Fluxo executado com sucesso!',
+            life: 3000,
+        });
+        },
+          error: (err) => {
+          this.getFluxosDatas();
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro',
+            detail: 'Não foi possivel executar  o fluxo!',
+            life: 3000,
+          });
+          },
+        });
+          this.getFluxosDatas();
+         }
+      }
 }

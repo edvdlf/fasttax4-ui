@@ -1,6 +1,4 @@
-import { FluxoTarefaResponse } from "./fluxoTarefaResponse";
-
-export  interface FluxoResponse{
+export  interface ExecuteFluxoRequest{
   id: string;
   nome: string;
   descricao: string;
@@ -8,5 +6,5 @@ export  interface FluxoResponse{
   contemVinculo: boolean;
   dataUltimaExecucao: Date;
   agendadoPara: Date;
-  tarefas: FluxoTarefaResponse;
+
 }
