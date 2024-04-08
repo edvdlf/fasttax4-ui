@@ -72,6 +72,6 @@ import { CalendarModule } from 'primeng/calendar';
     //Shared
     SharedModule,
   ],
-  providers: [DialogService, ConfirmationService, ProductService],
+  providers: [DialogService, ConfirmationService],
 })
 export class FluxosModule { }

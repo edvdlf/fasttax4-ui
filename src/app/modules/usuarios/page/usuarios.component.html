@@ -4,7 +4,9 @@
   </mat-drawer>
   <mat-drawer-content>
     <app-navbar (toggleSidebarForMe)="sideBarToggler()"></app-navbar>
-    
+    <app-usuarios-table [usuarios]="usuariosDatas"
+    (usuarioEvent)="handleUsuarioAction($event)"
+    ></app-usuarios-table>
     <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
     <router-outlet></router-outlet>
   </mat-drawer-content>

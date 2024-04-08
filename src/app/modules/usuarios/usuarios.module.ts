@@ -1,3 +1,4 @@
+import { UsuariosFormComponent } from './components/usuarios-form/usuarios-form.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -23,13 +24,19 @@ import { ChartModule } from 'primeng/chart';
 import { CardModule } from 'primeng/card';
 import { USUARIOS_ROUTES } from './usuarios.routing';
 import { UsuariosComponent } from './page/usuarios.component';
+import { UsuariosTableComponent } from './components/usuarios-table/usuarios-table.component';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+import { PasswordModule } from 'primeng/password';
 
 
 
 
 @NgModule({
   declarations: [
-    UsuariosComponent
+    UsuariosComponent,
+    UsuariosTableComponent,
+    UsuariosFormComponent
   ],
   imports: [
     CommonModule,
@@ -53,8 +60,12 @@ import { UsuariosComponent } from './page/usuarios.component';
     TagModule,
     MultiSelectModule,
     DividerModule,
+    IconFieldModule,
+    InputIconModule,
+    PasswordModule,
     //Shared
     SharedModule,
-  ]
+  ],
+  providers: [DialogService, ConfirmationService],
 })
 export class UsuariosModule { }

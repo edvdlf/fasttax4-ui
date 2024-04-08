@@ -65,10 +65,10 @@ import { MatTableModule } from '@angular/material/table';
 import { TableModule } from 'primeng/table';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
-import { UsuariosComponent } from './modules/usuarios/page/usuarios.component';
-import { UsuariosTableComponent } from './modules/usuarios/components/usuarios-table/usuarios-table.component';
-import { UsuariosFormComponent } from './modules/usuarios/components/usuarios-form/usuarios-form.component';
-import { RelatoriosLogsComponent } from './modules/obrigacoes/relatorios-logs/page/relatorios-logs.component';
+//import { UsuariosComponent } from './modules/usuarios/page/usuarios.component';
+//import { UsuariosTableComponent } from './modules/usuarios/components/usuarios-table/usuarios-table.component';
+//import { UsuariosFormComponent } from './modules/usuarios/components/usuarios-form/usuarios-form.component';
+//import { RelatoriosLogsComponent } from './modules/obrigacoes/relatorios-logs/page/relatorios-logs.component';
 
 
 @NgModule({

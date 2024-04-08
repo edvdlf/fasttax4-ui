@@ -91,7 +91,7 @@ export class SidebarComponent {
             items: [
                 {
                     label: 'Usuários',
-                    icon: 'pi pi-fw pi-user-plus',
+                    icon: 'pi pi-fw pi-users',
                     routerLink:"/usuarios"
                 },
 
