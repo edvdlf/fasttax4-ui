@@ -88,6 +88,13 @@ const routes: Routes = [
       ),
       canActivate: [AuthGuard]
   },
+  {
+    path: 'usuarios',
+    loadChildren: () => import('./modules/usuarios/usuarios.module')
+      .then((m)=>m.UsuariosModule
+      ),
+      canActivate: [AuthGuard]
+  },
 
 ];
 

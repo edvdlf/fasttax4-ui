@@ -86,12 +86,13 @@ export class SidebarComponent {
         ]
     },
         {
-            label: 'Usuários',
-            icon: 'pi pi-fw pi-user',
+            label: 'Segurança',
+            icon: 'pi pi-fw pi-lock',
             items: [
                 {
-                    label: 'Adicionar Usuário',
-                    icon: 'pi pi-fw pi-user-plus'
+                    label: 'Usuários',
+                    icon: 'pi pi-fw pi-user-plus',
+                    routerLink:"/usuarios"
                 },
 
             ]

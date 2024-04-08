@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class UsuariosComponent {
 
+  sideBarOpen = true;
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
+   }
+
 }
