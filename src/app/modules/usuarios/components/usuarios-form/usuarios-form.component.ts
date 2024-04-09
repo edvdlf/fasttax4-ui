@@ -23,45 +23,49 @@ export class UsuariosFormComponent {
     ) {}
 
 
-  signupForm = this.formBuilder.group({
-    name: ['', Validators.required],
+  criaUsuarioForm = this.formBuilder.group({
+    nomeUsuario: ['', Validators.required],
     email: ['', Validators.required],
     password: ['', Validators.required],
+    confirmepassword: ['', Validators.required],
   });
 
+  onSubmitCriaUsuarioForm(): void {
+      if(this.criaUsuarioForm.value && this.criaUsuarioForm.valid){
+        const signupUserRequest: SignupUserRequest= {
+          email: this.criaUsuarioForm.value.email as string,
+          password: this.criaUsuarioForm.value.password as string,
+          confirmepassword:this.criaUsuarioForm.value.confirmepassword as string,
 
-
-
-  onSubmitSignupForm(): void {
-
-    console.log('DADOS DO FORMULÁRIO DE Criação de conta',);
-      if(this.signupForm.value && this.signupForm.valid){
-        this.userService.signupUser(this.signupForm.value as SignupUserRequest)
-        .subscribe({
-          next:(response)=>{
-          if(response){
-             this.signupForm.reset();
-              
-              this.messageService.add({
-                severity:'success',
-                summary: 'Sucesso',
-                detail:`Usuario criado com sucesso!`,
-                life:2000,
-                })
-
-          }
-        },
-        error:(err) => {
-          this.messageService.add({
-            severity:'error',
-            summary: 'Atenção',
-            detail:`Não foi possivel cria sua conta!`,
-            life:2000,
-            });
-            console.log(err)
-         }
-      })
+        }
     }
   }
+  submitUsuarioForm(signupUserRequest:SignupUserRequest): void {
+    if(this.criaUsuarioForm.value && this.criaUsuarioForm.valid){
+      this.userService.signupUser(signupUserRequest)
+      .subscribe({
+        next:(response)=>{
+        if(response){
+           this.criaUsuarioForm.reset();
+            this.messageService.add({
+              severity:'success',
+              summary: 'Sucesso',
+              detail:`Usuario criado com sucesso!`,
+              life:2000,
+              })
+        }
+      },
+      error:(err) => {
+        this.messageService.add({
+          severity:'error',
+          summary: 'Atenção',
+          detail:`Não foi possivel cria sua conta!`,
+          life:2000,
+          });
+          console.log(err)
+       }
+    })
+  }
+}
 
 }

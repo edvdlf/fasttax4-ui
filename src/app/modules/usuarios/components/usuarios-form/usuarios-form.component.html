@@ -1,29 +1,52 @@
-<div class="formgrid grid">
-  <div class="field p-inputgroup mt-5">
-    <div class="col-1">
-      <label class="font-bold">Nome: </label>
-    </div>
-    <div class="col-10">
-      <input type="text" pInputText id="nomeUsuario"  class="p-inputtext-sm w-full" placeholder="Informe o nome" formControlName="nomeUsuario" />
-    </div>
 
- </div>
- <div class="p-inputgroup mt-5">
-  <label class="font-bold">Email: </label>
+<div class="col-12">
+  <!--div class="card"-->
+    <form [formGroup]="criaUsuarioForm" (ngSubmit)="onSubmitCriaUsuarioForm()">
+      <div class="p-fluid p-formgrid grid">
+        <div class="field col-11">
+          <label for="lblNomeUsuario" class="ml-1 font-bold">Nome:</label>
+            <input
+            id="NomeUsuario"
+            placeholder="Informe o nome completo do usuario!"
+            formControlName="nomeUsuario"
+            type="text"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full ml-1"
+          />
 
-  <input type="email" pInputText id="email"   class="p-inputtext-sm w-full" placeholder="Informe o Email" formControlName="email" />
+        </div>
+        <div class="field col-11">
+          <label for="lblEmail" class="ml-1 font-bold">Email:</label>
+          <input
+            id="Email"
+            placeholder="Informe o email. Este será seu usuário!"
+            formControlName="email"
+            type="text"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full ml-1"
+          />
+        </div>
+
+        <div class="field col-11">
+          <label for="lblSenha" class="ml-1 font-bold">Senha:</label>
+          <p-password class="flex p-inputtext-sm" placeholder="Informe a senha" formControlName="password" [toggleMask]="true" />
+        </div>
+        <div class="field col-11">
+          <label for="lblConfirmaSenha" class="ml-1 font-bold">Confirme Senha:</label>
+          <p-password class="flex p-inputtext-sm" placeholder="Confirme a senha" formControlName="confirmepassword" [toggleMask]="true" />
+        </div>
+
+        <div class="field col-1 col-offset-9">
+          <p-button
+          label="Salvar"
+          type="submit"
+          icon="pi pi-save"
+          />
+        </div>
+      </div>
+    </form>
+  <!--div-->
 </div>
-<div class="p-inputgroup mt-3">
-  <label class="font-bold">Senha: </label>
-
-  <p-password class="flex p-inputtext-sm" placeholder="Informe a senha" formControlName="password" [toggleMask]="true" />
-</div>
-<div class="p-inputgroup mt-3">
-  <label class="font-bold">Confirma Senha: </label>
-  
-  <p-password class="flex p-inputtext-sm" placeholder="Confirme a senha" formControlName="password" [toggleMask]="true" />
-</div>
 
 
-</div>
+
+
 
