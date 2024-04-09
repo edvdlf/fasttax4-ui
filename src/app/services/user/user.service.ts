@@ -20,7 +20,7 @@ export class UserService {
 
   signupUser(requestDatas: SignupUserRequest): Observable<SignupUserResponse>{
     return this.http.post<SignupUserResponse>(
-      `${this.API_URL}/user`,requestDatas
+      `${this.API_URL}/nova-conta`,requestDatas
     )
   }
 

@@ -94,8 +94,14 @@ export class SidebarComponent {
                     icon: 'pi pi-fw pi-users',
                     routerLink:"/usuarios"
                 },
+                {
+                  label: 'Permissões Acesso',
+                  icon: 'pi pi-fw pi-lock-open',
+                  routerLink:"/permissoes-acesso"
+              },
 
-            ]
+            ],
+
         },
 
     ];

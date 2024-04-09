@@ -1,6 +1,6 @@
 export interface SignupUserRequest{
-  //name: string;
+  nome: string;
   email: string;
   password:string;
-  confirmpassword:string;
+  confirmPassword:string;
 }

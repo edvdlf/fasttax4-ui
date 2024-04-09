@@ -1,0 +1,73 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { PermissoesAcessoFormComponent } from './components/permissoes-acesso-form/permissoes-acesso-form.component';
+import { PermissoesAcessoComponent } from './page/permissoes-acesso.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { SidebarModule } from 'primeng/sidebar';
+import { ButtonModule } from 'primeng/button';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ChartModule } from 'primeng/chart';
+import { CardModule } from 'primeng/card';
+import { DropdownModule } from 'primeng/dropdown';
+
+import { TableModule } from 'primeng/table';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TabViewModule } from 'primeng/tabview';
+import { TagModule } from 'primeng/tag';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { DividerModule } from 'primeng/divider';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+import { PasswordModule } from 'primeng/password';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { PERMISSOES_ACESSO_ROUTES } from './permissoes-acesso.routing';
+import { RouterModule } from '@angular/router';
+import { TooltipModule } from 'primeng/tooltip';
+import { ConfirmationService } from 'primeng/api';
+import { TreeTableModule } from 'primeng/treetable';
+import { ProductService } from 'src/app/services/fluxo/fluxo-steps.service';
+import { PermissoesAcessoTableComponent } from './components/permissoes-acesso-table/permissoes-acesso-table.component';
+
+
+
+@NgModule({
+  declarations: [
+    PermissoesAcessoFormComponent,
+    PermissoesAcessoTableComponent,
+    PermissoesAcessoComponent
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule.forChild(PERMISSOES_ACESSO_ROUTES),
+    //PrimeNg
+    SidebarModule,
+    ButtonModule,
+    ToolbarModule,
+    ChartModule,
+    CardModule,
+    DropdownModule,
+    TooltipModule,
+    TableModule,
+    DynamicDialogModule,
+    DropdownModule,
+    ConfirmDialogModule,
+    TabViewModule,
+    TagModule,
+    MultiSelectModule,
+    DividerModule,
+
+
+    TreeTableModule,
+
+
+    //Shared
+    SharedModule,
+  ],
+  providers: [DialogService, ConfirmationService, ProductService],
+})
+export class PermissoesAcessoModule { }

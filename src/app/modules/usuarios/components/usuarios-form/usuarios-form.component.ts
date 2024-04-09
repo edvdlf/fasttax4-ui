@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
-import { SignupUserRequest } from 'src/app/models/user/SignupUserRequest';
+import { SignupUserRequest } from 'src/app/models/interfaces/user/SignupUserRequest';
+
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -27,21 +28,27 @@ export class UsuariosFormComponent {
     nomeUsuario: ['', Validators.required],
     email: ['', Validators.required],
     password: ['', Validators.required],
-    confirmepassword: ['', Validators.required],
+    confirmePassword: ['',Validators.required],
   });
 
   onSubmitCriaUsuarioForm(): void {
-      if(this.criaUsuarioForm.value && this.criaUsuarioForm.valid){
+
+    if(this.criaUsuarioForm.value && this.criaUsuarioForm.valid){
+
         const signupUserRequest: SignupUserRequest= {
+          nome: this.criaUsuarioForm.value.nomeUsuario as string,
           email: this.criaUsuarioForm.value.email as string,
           password: this.criaUsuarioForm.value.password as string,
-          confirmepassword:this.criaUsuarioForm.value.confirmepassword as string,
-
+          confirmPassword:this.criaUsuarioForm.value.confirmePassword as string,
         }
+        this.submitUsuarioForm(signupUserRequest)
+    }else{
+      
     }
   }
   submitUsuarioForm(signupUserRequest:SignupUserRequest): void {
     if(this.criaUsuarioForm.value && this.criaUsuarioForm.valid){
+      console.log("DEBUGANDO" + signupUserRequest)
       this.userService.signupUser(signupUserRequest)
       .subscribe({
         next:(response)=>{

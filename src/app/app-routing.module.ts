@@ -95,6 +95,13 @@ const routes: Routes = [
       ),
       canActivate: [AuthGuard]
   },
+  {
+    path: 'permissoes-acesso',
+    loadChildren: () => import('./modules/permissoes/permissoes-acesso.module')
+      .then((m)=>m.PermissoesAcessoModule
+      ),
+      canActivate: [AuthGuard]
+  },
 
 ];
 
