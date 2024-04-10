@@ -104,6 +104,45 @@ export class SidebarComponent {
 
         },
 
+        {
+          label: 'A fazer',
+          icon: 'pi pi-fw pi-stop-circle',
+          items: [
+              {
+                  label: 'Execuções',
+                  icon: 'pi pi-fw pi-stop-circle',
+                  routerLink:"/execucoes"
+              },
+              {
+                label: 'Gestao de Documentos',
+                icon: 'pi pi-fw pi-stop-circle',
+                routerLink:"/gestao-documentos"
+              },
+              {
+                label: 'Validadores',
+                icon: 'pi pi-fw pi-stop-circle',
+                routerLink:"/validadores-monitoramento"
+              },
+              {
+                label: 'Assistente de consultas',
+                icon: 'pi pi-fw pi-stop-circle',
+                routerLink:"/assistente-consulta-bd"
+              },
+              {
+                label: 'Configurações Gerais',
+                icon: 'pi pi-fw pi-stop-circle',
+                routerLink:"/configuracoes-gerais"
+              },
+              {
+                label: 'Acesso Obrigações',
+                icon: 'pi pi-fw pi-stop-circle',
+                routerLink:"/acesso-obrigacoes"
+              },
+
+          ],
+
+      },
+
     ];
   }
 

@@ -102,6 +102,48 @@ const routes: Routes = [
       ),
       canActivate: [AuthGuard]
   },
+  {
+    path: 'execucoes',
+    loadChildren: () => import('./modules/obrigacoes/execucoes/execucoes.module')
+      .then((m)=>m.ExecucoesModule
+      ),
+      canActivate: [AuthGuard]
+  },
+  {
+    path: 'gestao-documentos',
+    loadChildren: () => import('./modules/obrigacoes/gestao-documentos/gestao-documentos.module')
+      .then((m)=>m.GestaoDocumentosModule
+      ),
+      canActivate: [AuthGuard]
+  },
+  {
+    path: 'validadores-monitoramento',
+    loadChildren: () => import('./modules/obrigacoes/validadores-monitoramento/validadores-monitoramento.module')
+      .then((m)=>m.ValidadoresMonitoramentoModule
+      ),
+      canActivate: [AuthGuard]
+  },
+  {
+    path: 'assistente-consulta-bd',
+    loadChildren: () => import('./modules/obrigacoes/assistente-consulta-bd/assistente-consulta-bd.module')
+      .then((m)=>m.AssistenteConsultaBdModule
+      ),
+      canActivate: [AuthGuard]
+  },
+  {
+    path: 'configuracoes-gerais',
+    loadChildren: () => import('./modules/obrigacoes/configuracoes-gerais/configuracoes-gerais.module')
+      .then((m)=>m.ConfiguracoesGeraisModule
+      ),
+      canActivate: [AuthGuard]
+  },
+  {
+    path: 'acesso-obrigacoes',
+    loadChildren: () => import('./modules/obrigacoes/acesso-obrigacoes/acesso-obrigacoes.module')
+      .then((m)=>m.AcessoObrigacoesModule
+      ),
+      canActivate: [AuthGuard]
+  },
 
 ];
 
