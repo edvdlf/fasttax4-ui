@@ -26,6 +26,7 @@ export class TarefasAutomatizadasService {
   getAllTarefasAutomatizadas(): Observable<Array<TarefaAutomatizadaResponse>> {
     return this.http.get<Array<TarefaAutomatizadaResponse>>(`${this.API_URL}/TarefasAutomatizadasMockers`)
   }
+  
   getTarefasAutomatizadasPorPeriodoGrupo(periodo: string, grupo:string): Observable<Array<TarefaAutomatizadaResponse>> {
     return this.http.get<Array<TarefaAutomatizadaResponse>>(`${this.API_URL}/TarefasAutomatizadasMockers/ANO_ATUAL/BASICO`)
   }
@@ -37,7 +38,7 @@ export class TarefasAutomatizadasService {
     );
   }
 
-  
+
   editarTarefaAutomatizada(id: string,requestDatas: TarefaAutomatizadaRequest ): Observable<TarefaAutomatizadaDeleteRequest> {
     return this.http.put<TarefaAutomatizadaDeleteRequest>(`${this.API_URL}/TarefasAutomatizadasMockers/${id}`, requestDatas);
   }

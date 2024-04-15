@@ -1,0 +1,73 @@
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="sideBarOpen">
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-navbar (toggleSidebarForMe)="sideBarToggler()"></app-navbar>
+    <div class="content-header">
+      <div class="container-fluid">
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+           <div class="dropdown float-end" ngbDropdown>
+              <a href="javascript: void(0);" class="dropdown-toggle arrow-none card-drop" ngbDropdownToggle data-toggle="dropdown" aria-expanded="false">
+              <i class="mdi mdi-dots-vertical"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+                 <!-- item-->
+                 <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
+                 <!-- item-->
+                 <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
+                 <!-- item-->
+                 <a href="javascript:void(0);" class="dropdown-item">Profit</a>
+                 <!-- item-->
+                 <a href="javascript:void(0);" class="dropdown-item">Action</a>
+              </div>
+           </div>
+           <h4 class="card-title mb-4">Ultimas execuções</h4>
+           <div class="row">
+              <div class="col-sm-12 col-md-12">
+                 <div id="tickets-table_filter" class="dataTables_filter text-md-end"><label class="d-inline-flex align-items-center">Search:
+                    <input type="text" name="searchTerm" class="form-control form-control-sm ms-2" aria-controls="tickets-table" [(ngModel)]="term" /></label>
+                 </div>
+              </div>
+           </div>
+           <!--div class="table-responsive">
+             <table class="table table-centered">
+                 <thead class="table-light">
+
+                 </thead>
+                 <tbody>
+
+                 </tbody>
+             </table>
+           </div-->
+           <div class="card">
+            
+           </div>
+
+        </div>
+     </div>
+
+
+
+      <div class="card">
+         <div class="card-body pb-1">
+            <div class="float-end d-none d-md-inline-block">
+               <div class="btn-group mb-2">
+                  <button type="button" class="btn btn-sm btn-light">Hoje</button>
+                  <button type="button" class="btn btn-sm btn-light active">Semanal</button>
+                  <button type="button" class="btn btn-sm btn-light">Mensal</button>
+               </div>
+            </div>
+            <h4 class="card-title mb-4">Histograma</h4>
+            <div>
+               <apx-chart dir="ltr" class="apex-charts" [series]="revenueChart.series" [dataLabels]="revenueChart.dataLabels" [chart]="revenueChart.chart" [legend]="revenueChart.legend" [colors]="revenueChart.colors" [labels]="revenueChart.labels" [stroke]="revenueChart.stroke" [plotOptions]="revenueChart.plotOptions">
+               </apx-chart>
+            </div>
+         </div>
+   </div>
+  <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

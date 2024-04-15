@@ -6,93 +6,199 @@
     <app-navbar (toggleSidebarForMe)="sideBarToggler()"></app-navbar>
     <div class="content-header">
       <div class="container-fluid">
-          <div class="row mb-2">
-              <div class="col-sm-6">
-                  <h1 class="m-0 text-dark">Dashboard</h1>
-              </div>
-              <!-- /.col -->
-              <div class="col-sm-6">
-                  <ol class="breadcrumb float-sm-right">
-                      <li class="breadcrumb-item"><a href="#">Home</a></li>
-                      <li class="breadcrumb-item active">Dashboard</li>
-                  </ol>
-              </div>
-              <!-- /.col -->
+       <div class="row mb-2">
+          <div class="col-sm-6">
+             <h1 class="m-0 text-dark">Dashboard</h1>
           </div>
-          <div class="row">
-            <div class="col-12 md:col-6 lg:col-3">
-                <div class="surface-card shadow-2 p-3 border-round">
-                    <div class="flex justify-content-between mb-3">
-                        <div>
-                            <span class="block text-500 font-medium mb-3">Tarefas automatizadas</span>
-                            <div class="text-900 font-medium text-xl">100</div>
-                        </div>
-                        <div class="flex align-items-center justify-content-center bg-orange-100 border-round" style="width:2.5rem;height:2.5rem">
-                            <i class="pi pi-cog text-orange-800 text-xl"></i>
-                        </div>
-                    </div>
-                    <span class="text-green-500 font-medium">24 </span>
-                    <span class="text-500">Agendadas</span>
-                </div>
-            </div>
-            <div class="col-12 md:col-6 lg:col-3">
-                <div class="surface-card shadow-2 p-3 border-round">
-                    <div class="flex justify-content-between mb-3">
-                        <div>
-                            <span class="block text-500 font-medium mb-3">Tarefas agendadas</span>
-                            <div class="text-900 font-medium text-xl">24</div>
-                        </div>
-                        <div class="flex align-items-center justify-content-center bg-orange-100 border-round" style="width:2.5rem;height:2.5rem">
-                            <i class="pi pi-calendar-plus text-orange-500 text-xl"></i>
-                        </div>
-                    </div>
-                    <span class="text-green-500 font-medium">24% </span>
-                    <span class="text-500">Agendadas</span>
-                </div>
-            </div>
-            <div class="col-12 md:col-6 lg:col-3">
-                <div class="surface-card shadow-2 p-3 border-round">
-                    <div class="flex justify-content-between mb-3">
-                        <div>
-                            <span class="block text-500 font-medium mb-3">Fluxos</span>
-                            <div class="text-900 font-medium text-xl">10</div>
-                        </div>
-                        <div class="flex align-items-center justify-content-center bg-cyan-100 border-round" style="width:2.5rem;height:2.5rem">
-                            <i class="pi pi-sliders-v text-cyan-500 text-xl"></i>
-                        </div>
-                    </div>
-                    <span class="text-green-500 font-medium">5  </span>
-                    <span class="text-500">Contém vinculos</span>
-                </div>
-            </div>
-            <div class="col-12 md:col-6 lg:col-3">
-                <div class="surface-card shadow-2 p-3 border-round">
-                    <div class="flex justify-content-between mb-3">
-                        <div>
-                            <span class="block text-500 font-medium mb-3">Fluxos Ativos</span>
-                            <div class="text-900 font-medium text-xl">5</div>
-                        </div>
-                        <div class="flex align-items-center justify-content-center bg-purple-100 border-round" style="width:2.5rem;height:2.5rem">
-                            <i class="pi pi-sliders-h text-orange-600 text-xl"></i>
-                        </div>
-                    </div>
-                    <span class="text-green-500 font-medium">50% </span>
-                    <span class="text-500">Ativos</span>
-                </div>
-            </div>
+          <!-- /.col -->
+          <div class="col-sm-6">
+             <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+             </ol>
+          </div>
+          <!-- /.col -->
+       </div>
+       <div class="row">
+        <div class="col-12 md:col-6 lg:col-3">
+           <div class="surface-card shadow-2 p-3 border-round">
+              <div class="flex justify-content-between mb-3">
+                 <div>
+                    <span class="block text-500 font-medium mb-3">Tarefas automatizadas</span>
+                    <div class="text-900 font-medium text-xl">{{dashboardTotalizadoresDatas?.totalTarefasCriadas}}</div>
+                 </div>
+                 <div class="flex align-items-center justify-content-center bg-orange-100 border-round" style="width:2.5rem;height:2.5rem">
+                    <i class="pi pi-cog text-orange-800 text-xl"></i>
+                 </div>
+              </div>
+              <!--span class="text-green-500 font-medium">{{dashboardTotalizadoresDatas?.totalTarefasAgendadas}} </span-->
+
+              <span ><i class="pi pi-eye"></i></span>
+              <span class="text-green-500 font-medium"><a href="/tarefas-automatizadas">  mais...</a></span>
+           </div>
         </div>
+        <div class="col-12 md:col-6 lg:col-3">
+           <div class="surface-card shadow-2 p-3 border-round">
+              <div class="flex justify-content-between mb-3">
+                 <div>
+                    <span class="block text-500 font-medium mb-3">Tarefas agendadas</span>
+                    <div class="text-900 font-medium text-xl">{{dashboardTotalizadoresDatas?.totalTarefasAgendadas}}</div>
+                 </div>
+                 <div class="flex align-items-center justify-content-center bg-orange-100 border-round" style="width:2.5rem;height:2.5rem">
+                    <i class="pi pi-calendar-plus text-orange-500 text-xl"></i>
+                 </div>
+              </div>
+              <span ><i class="pi pi-eye"></i></span>
+              <span class="text-green-500 font-medium"><a href="/tarefas-automatizadas">  mais...</a></span>
 
-  <div class="surface-ground px-1 py-1 md:px-6 lg:px-8">
+           </div>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+           <div class="surface-card shadow-2 p-3 border-round">
+              <div class="flex justify-content-between mb-3">
+                 <div>
+                    <span class="block text-500 font-medium mb-3">Fluxos</span>
+                    <div class="text-900 font-medium text-xl">{{dashboardTotalizadoresDatas?.totalFluxosCriados}}</div>
+                 </div>
+                 <div class="flex align-items-center justify-content-center bg-cyan-100 border-round" style="width:2.5rem;height:2.5rem">
+                    <i class="pi pi-sliders-v text-cyan-500 text-xl"></i>
+                 </div>
+              </div>
+              <!--span class="text-green-500 font-medium">5  </!--span>
+              <span-- class="text-500">Contém vinculos</span-->
+              <span ><i class="pi pi-eye"></i></span>
+              <span class="text-green-500 font-medium"><a href="/tarefas-automatizadas">  mais...</a></span>
+           </div>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+           <div class="surface-card shadow-2 p-3 border-round">
+              <div class="flex justify-content-between mb-3">
+                 <div>
+                    <span class="block text-500 font-medium mb-3">Fluxos Ativos</span>
+                    <div class="text-900 font-medium text-xl">{{dashboardTotalizadoresDatas?.totalFluxosAtivos}}</div>
+                 </div>
+                 <div class="flex align-items-center justify-content-center bg-purple-100 border-round" style="width:2.5rem;height:2.5rem">
+                    <i class="pi pi-sliders-h text-orange-600 text-xl"></i>
+                 </div>
+              </div>
+              <!--span class="text-green-500 font-medium">50% </!--span>
+              <span-- class="text-500">Ativos</span-->
+              <span ><i class="pi pi-eye"></i></span>
+              <span class="text-green-500 font-medium"><a href="/fluxos">  mais...</a></span>
+           </div>
+        </div>
+       </div>
+       <p-accordion class="w-full">
+        <p-accordionTab>
+            <ng-template pTemplate="header">
+                <span class="flex align-items-center gap-2 w-full">
+                    <p-avatar image="../../../../../assets/img/ic_rotate_right_black_48dp.png" shape="circle" />
+                    <span class="font-bold white-space-nowrap">Últimas tarefas executadas</span>
+                    <p-badge value="{{fluxoTarefasExecutadasTotal}}" class="ml-auto" />
+                </span>
+            </ng-template>
+            <p class="m-0">
 
-</div>
+                <p-table
+                        #usuariosOnLineTable
+                        [value]="fluxoTarefasExecutadasDatas"
+                        styleClass="p-datatable-sm"
+                        [rows]="10"
+                        [paginator]="true"
+                        [responsive]="true"
+                        [globalFilterFields]="['grupo', 'id']"
+                        [tableStyle]="{ 'min-width': '50rem' }"
+                        styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm"
+                        [rowHover]="true"
+                        [showCurrentPageReport]="true"
+                        dataKey="id"
+                        [rowsPerPageOptions]="[5, 10, 20, 50, 100]"
+                        currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} funcionalidades"
+                      >
+                      <ng-template pTemplate="caption">
+                        <div class="flex align-items-center justify-content-between">
+                          Ultimas obrigações executadas
+
+                        </div>
+                    </ng-template>
+                        <ng-template pTemplate="header">
+                          <tr>
+                            <th pSortableColumn="obrigacao">
+                              <div class="flex justify-content-between align-items-center">
+                                <div class="flex justify-content-between align-items-center">
+                                  Obrigação
+                                </div>
+                                <div class="flex justify-content-between align-items-center">
+                                  <p-sortIcon field="obrigacao"></p-sortIcon>
+                                </div>
+                              </div>
+                            </th>
+                            <th pSortableColumn="periodo">
+                              <div class="flex justify-content-between align-items-center">
+                                <div class="flex justify-content-between align-items-center">
+                                  Periodo
+                                </div>
+                                <div class="flex justify-content-between align-items-center">
+                                  <p-sortIcon field="periodo"></p-sortIcon>
+                                </div>
+                              </div>
+                            </th>
+                            <th pSortableColumn="nomeFluxo">
+                              <div class="flex justify-content-between align-items-center">
+                                <div class="flex justify-content-between align-items-center">
+                                  Nome do Fluxo
+                                </div>
+                                <div class="flex justify-content-between align-items-center">
+                                  <p-sortIcon field="nomeFluxo"></p-sortIcon>
+                                </div>
+                              </div>
+                            </th>
+
+
+                            <th pSortableColumn="ultimaExecucao">
+                              <div class="flex justify-content-between align-items-center">
+                                <div class="flex justify-content-between align-items-center">
+                                  Ultima Execução
+                                </div>
+                                <div class="flex justify-content-between align-items-center">
+                                  <p-sortIcon field="ultimaExecucao"></p-sortIcon>
+                                </div>
+                              </div>
+                            </th>
+                            <th pSortableColumn="proximaExecucao">
+                              <div class="flex justify-content-between align-items-center">
+                                <div class="flex justify-content-between align-items-center">
+                                  Próxima Execução
+                                </div>
+                                <div class="flex justify-content-between align-items-center">
+                                  <p-sortIcon field="proximaExecucao"></p-sortIcon>
+                                </div>
+                              </div>
+                            </th>
+                          </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-dados>
+                          <tr>
+                            <td style="text-align: left">{{ dados.obrigacao }}</td>
+                            <td style="text-align: left">{{ dados.periodo }}</td>
+                            <td style="text-align: left">{{ dados.nomeFluxo }}</td>
+                            <td style="text-align: left">{{ dados.dataUltimaExecucao | date: "dd-MM-yyyy HH:mm"   }}</td>
+                            <td style="text-align: left">{{ dados.dataProximaExecucao | date: "dd-MM-yyyy HH:mm"   }}</td>
+                          </tr>
+                        </ng-template>
+                </p-table>
+
+            </p>
+        </p-accordionTab>
+
+      </p-accordion>
+
+
+
+
       </div>
-      <!-- /.container-fluid -->
-  </div>
-  <!-- /.content-header -->
-
-
-    <router-outlet></router-outlet>
+    </div>
+  <router-outlet></router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>
-
-

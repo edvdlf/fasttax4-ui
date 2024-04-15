@@ -5,7 +5,7 @@
   <mat-drawer-content>
     <app-navbar (toggleSidebarForMe)="sideBarToggler()"></app-navbar>
     <app-fluxos-table
-    [fluxos]="fluxosDatas"
+    [fluxos]="fluxosTarefasDatas"
     (fluxoEvent)="handleFluxoAction($event)"
     (deleteFluxoEvent)="handleDeleteFluxoAction($event)"
     (executeFluxoEvent)="handleExecuteFluxoAction($event)"

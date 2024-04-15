@@ -28,9 +28,6 @@
 
       </div>
     </div>
-
-
-
         <div class="card">
           <p-table
         #tarefasAutomatizadasTable
@@ -55,6 +52,25 @@
         <ng-template pTemplate="header">
           <tr>
             <th style="width: 4rem"></th>
+            <th pSortableColumn="id">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Id
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="codempresa"></p-sortIcon>
+                  <!--p-columnFilter
+                    type="text"
+                    field="id"
+                    display="menu"
+                    matchMode="contains"
+                    [showMatchModes]="false"
+                    [showOperator]="false"
+                    [showAddButton]="false"
+                  ></p-columnFilter-->
+                </div>
+              </div>
+            </th>
             <th pSortableColumn="codempresa">
               <div class="flex justify-content-between align-items-center">
                 <div class="flex justify-content-between align-items-center">
@@ -193,6 +209,7 @@
               <button type="button" pButton pRipple [pRowToggler]="dadosFluxo" class="p-button-text " [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
 
             </td>
+            <td style="text-align: left">{{ dadosFluxo.id }}</td>
             <td style="text-align: left">{{ dadosFluxo.nome }}</td>
             <td [pTooltip]="dadosFluxo?.descricao" tooltipPosition="top" style="text-align: left">
               {{ dadosFluxo?.descricao | shorten : 25 }}
@@ -242,6 +259,25 @@
                                       <p-columnFilter
                                         type="text"
                                         field="obrigacao"
+                                        display="menu"
+                                        matchMode="contains"
+                                        [showMatchModes]="false"
+                                        [showOperator]="false"
+                                        [showAddButton]="false"
+                                      ></p-columnFilter>
+                                    </div>
+                                  </div>
+                                </th>
+                                <th pSortableColumn="periodo">
+                                  <div class="flex justify-content-between align-items-center">
+                                    <div class="flex justify-content-between align-items-center">
+                                      Periodo
+                                    </div>
+                                    <div class="flex justify-content-between align-items-center">
+                                      <p-sortIcon field="periodo"></p-sortIcon>
+                                      <p-columnFilter
+                                        type="text"
+                                        field="periodo"
                                         display="menu"
                                         matchMode="contains"
                                         [showMatchModes]="false"
@@ -313,14 +349,14 @@
                           </ng-template>
                           <ng-template pTemplate="body" let-tarefas>
                               <tr>
-
                                   <td style="text-align: left">{{ tarefas.obrigacao }}</td>
+                                  <td style="text-align: left">{{ tarefas.periodo }}</td>
                                   <td style="text-align: left">{{ tarefas.dataUltimaExecucao  | date: "dd-MM-yyyy HH:mm"   }}</td>
                                   <td style="text-align: left">{{ tarefas.contemAgendamento  | status}}</td>
                                   <td style="text-align: left">{{ tarefas.dataProximaExecucao | date: "dd-MM-yyyy"   }}</td>
                                   <td style="text-align: center">
                                     <p-button
-                                      [disabled]="!tarefas.contemAgendamento"
+
                                       icon="pi pi-caret-right"
                                       styleClass="p-button-rounded p-button-secondary p-button-text"
 
@@ -344,7 +380,6 @@
 
 
         </div>
-
     </p-card>
   </div>
 

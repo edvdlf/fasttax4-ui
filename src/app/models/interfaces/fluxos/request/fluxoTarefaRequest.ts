@@ -1,8 +1,9 @@
 export  interface FluxoTarefaRequest{
 
   idFluxo: string;
+  idTarefa: number;
   obrigacao: string;
-  descricao: string;
+  periodo: string;
   contemAgendamento: boolean;
   dataUltimaExecucao: string;
   dataProximaExecucao: string;

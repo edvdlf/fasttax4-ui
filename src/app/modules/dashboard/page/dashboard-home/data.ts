@@ -128,6 +128,117 @@ const sparklineMonthly: ChartType = {
     }
 };
 
+const spark1Chart: ChartType = {
+    series: [{
+        data: [23, 32, 27, 38, 27, 32, 27, 34, 26, 31, 28]
+    }],
+    chart: {
+        type: 'line',
+        width: 80,
+        height: 35,
+        sparkline: {
+            enabled: true
+        }
+    },
+    stroke: {
+        width: [3],
+        curve: 'smooth'
+    },
+    colors: ['#5664d2'],
+
+    tooltip: {
+        fixed: {
+            enabled: false
+        },
+        x: {
+            show: false
+        },
+        y: {
+            title: {
+                formatter: function () {
+                    return ''
+                }
+            }
+        },
+        marker: {
+            show: false
+        }
+    }
+}
+
+const spark2Chart: ChartType = {
+    series: [{
+        data: [24, 62, 42, 84, 63, 25, 44, 46, 54, 28, 54]
+    }],
+    chart: {
+        type: 'line',
+        width: 80,
+        height: 35,
+        sparkline: {
+            enabled: true
+        }
+    },
+    stroke: {
+        width: [3],
+        curve: 'smooth'
+    },
+    colors: ['#5664d2'],
+    tooltip: {
+        fixed: {
+            enabled: false
+        },
+        x: {
+            show: false
+        },
+        y: {
+            title: {
+                formatter: function () {
+                    return ''
+                }
+            }
+        },
+        marker: {
+            show: false
+        }
+    }
+}
+
+const spark3Chart: ChartType = {
+    series: [{
+        data: [42, 31, 42, 34, 46, 38, 44, 36, 42, 32, 54]
+    }],
+    chart: {
+        type: 'line',
+        width: 80,
+        height: 35,
+        sparkline: {
+            enabled: true
+        }
+    },
+    stroke: {
+        width: [3],
+        curve: 'smooth'
+    },
+    colors: ['#5664d2'],
+    tooltip: {
+        fixed: {
+            enabled: false
+        },
+        x: {
+            show: false
+        },
+        y: {
+            title: {
+                formatter: function () {
+                    return ''
+                }
+            }
+        },
+        marker: {
+            show: false
+        }
+    }
+}
 
 const chatData = [
     {
@@ -232,4 +343,4 @@ const statData = [
     }
 ];
 
-export { revenueChart, salesAnalytics, sparklineEarning, sparklineMonthly, chatData, transactions, statData };
+export { revenueChart, salesAnalytics, sparklineEarning, sparklineMonthly, chatData, transactions, statData,spark1Chart,spark2Chart,spark3Chart };

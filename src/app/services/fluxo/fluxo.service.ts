@@ -9,6 +9,7 @@ import { FluxoTarefaRequest } from 'src/app/models/interfaces/fluxos/request/flu
 import { FluxoTarefaResponse } from 'src/app/models/interfaces/fluxos/response/fluxoTarefaResponse';
 import { ExecuteFluxoRequest } from 'src/app/models/interfaces/fluxos/request/executeFluxoRequest';
 import { ExecuteFluxoTarefaRequest } from 'src/app/models/interfaces/fluxos/request/executeFluxoTarefaRequest';
+import { FluxoTarefaExecutadaResponse } from 'src/app/models/interfaces/fluxos/response/fluxoTarefaExecutadaResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,14 @@ export class FluxoService {
 
   getAllFluxos(): Observable<Array<FluxoResponse >> {
     return this.http.get<Array<FluxoResponse>>(`${this.API_URL}/FluxosMockers`)
+  }
+
+  getAllFluxosTarefas(): Observable<Array<FluxoResponse >> {
+    return this.http.get<Array<FluxoResponse>>(`${this.API_URL}/FluxosTarefasMockers`)
+  }
+
+  getTop10TarefasExecutadas(): Observable<Array<FluxoTarefaExecutadaResponse>> {
+    return this.http.get<Array<FluxoTarefaExecutadaResponse>>(`${this.API_URL}/FluxosTarefasMockers/executadas`)
   }
 
   getFluxoById(id:string): Observable<FluxoResponse > {
@@ -52,7 +61,7 @@ export class FluxoService {
   adicionarTarefaFluxo(
     requestDatas: FluxoTarefaRequest): Observable<FluxoTarefaResponse> {
     return this.http.post<FluxoTarefaResponse>(
-      `${this.API_URL}/FluxosTarefasAutomatizadasMockers`, requestDatas
+      `${this.API_URL}/FluxosTarefasMockers`, requestDatas
     );
   }
 
@@ -66,10 +75,9 @@ export class FluxoService {
   executarTarefaFluxo(id:string,
     requestDatas: ExecuteFluxoTarefaRequest): Observable<FluxoTarefaResponse> {
     return this.http.put<FluxoTarefaResponse>(
-      `${this.API_URL}/FluxosTarefasAutomatizadasMockers/${id}`, requestDatas
+      `${this.API_URL}/FluxosTarefasMockers/${id}`, requestDatas
     );
   }
-
 
 
 

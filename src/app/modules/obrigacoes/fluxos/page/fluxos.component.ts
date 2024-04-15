@@ -26,6 +26,7 @@ export class FluxosComponent implements OnInit, OnDestroy {
   private readonly destroy$: Subject<void> = new Subject();
   private ref!: DynamicDialogRef;
   public fluxosDatas: Array<FluxoResponse> = [];
+  public fluxosTarefasDatas: Array<FluxoResponse> = [];
   public fluxosComTarefasDatas: Array<FluxoResponse> = [];
   //private fluxoById: Array<FluxoResponse> =[] ;
   private fluxoById!: FluxoResponse;
@@ -43,6 +44,7 @@ export class FluxosComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getFluxosDatas();
+    this.getFluxosTarefasDatas()
   }
 
   ngOnDestroy(): void {
@@ -64,7 +66,7 @@ export class FluxosComponent implements OnInit, OnDestroy {
         },
       });
       this.ref.onClose.pipe(takeUntil(this.destroy$)).subscribe({
-        next: () => this.getFluxosDatas(),
+        next: () => this.getFluxosTarefasDatas(),
       });
     }
   }
@@ -76,6 +78,27 @@ export class FluxosComponent implements OnInit, OnDestroy {
         next: (response) => {
           if (response.length > 0) {
             this.fluxosDatas = response;
+          }
+        },
+        error: (err) => {
+
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro',
+            detail: 'Não foi possível buscar fluxos!',
+            life: 2500,
+          });
+        },
+      });
+  }
+
+  getFluxosTarefasDatas(): void {
+    this.fluxoService
+      .getAllFluxosTarefas()
+             .subscribe({
+        next: (response) => {
+          if (response.length > 0) {
+            this.fluxosTarefasDatas = response;
           }
         },
         error: (err) => {
@@ -111,7 +134,7 @@ export class FluxosComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
        next: (response) => {
-       this.getFluxosDatas();
+       this.getFluxosTarefasDatas();
             this.messageService.add({
             severity: 'success',
             summary: 'Sucesso',
@@ -130,7 +153,7 @@ export class FluxosComponent implements OnInit, OnDestroy {
           });
           },
         });
-      this.getFluxosDatas();
+      this.getFluxosTarefasDatas();
     }
   }
 

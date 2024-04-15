@@ -100,6 +100,7 @@ export class FluxosFormComponent implements OnInit, OnDestroy {
               life: 2500,
             });
          },
+
       })
       this.adicionarFluxoForm.reset();
     }
@@ -112,8 +113,8 @@ export class FluxosFormComponent implements OnInit, OnDestroy {
           for (var i = 0; i < this.targetTarefasAutomatizadas.length; i++) {
             const fluxoTarefaRequest: FluxoTarefaRequest = {
               idFluxo: this.adicionarTarefasFluxoForm.value.nomeFluxoTarefa as string,
-
-              descricao: "FLUXTAR_" + this.targetTarefasAutomatizadas[i].obrigacao,
+              idTarefa: this.targetTarefasAutomatizadas[i].id,
+              periodo:this.targetTarefasAutomatizadas[i].periodo,
               obrigacao:this.targetTarefasAutomatizadas[i].obrigacao,
               contemAgendamento:false,
               dataUltimaExecucao:"9999-01-01T00:00:00",
