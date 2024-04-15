@@ -4,7 +4,10 @@
   </mat-drawer>
   <mat-drawer-content>
     <app-navbar (toggleSidebarForMe)="sideBarToggler()"></app-navbar>
-    <app-execucoes-table></app-execucoes-table>
+    <app-execucoes-table
+    [execucoes]="fluxoTarefasExecutadasDatas"
+    >
+    </app-execucoes-table>
     <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
     <router-outlet></router-outlet>
   </mat-drawer-content>

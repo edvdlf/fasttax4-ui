@@ -57,8 +57,6 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
 
 
     ngOnInit(): void {
-      this.getDashboardTotalizadoresDatas()
-      this.getTop10FluxosTarefasExecutadasDatas()
       this._fetchData()
     }
 
@@ -68,6 +66,8 @@ export class DashboardHomeComponent implements OnInit, OnDestroy {
     }
 
     private _fetchData() {
+      this.getDashboardTotalizadoresDatas()
+      this.getTop10FluxosTarefasExecutadasDatas()
       this.revenueChart = revenueChart;
       this.salesAnalytics = salesAnalytics;
       this.sparklineEarning = sparklineEarning;

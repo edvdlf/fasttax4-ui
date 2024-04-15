@@ -19,21 +19,104 @@
           <p-button
            icon="pi pi-plus"
            class="mr-2"
-           
-
            ></p-button>
         </div>
       </p-toolbar>
-
       </div>
     </div>
-
-
-
-        <div class="card">
-
+      <div class="card">
+        <p-table
+        #usuariosOnLineTable
+        [value]="execucoes"
+        styleClass="p-datatable-sm"
+        [rows]="10"
+        [paginator]="true"
+        [responsive]="true"
+        [globalFilterFields]="['grupo', 'id']"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm"
+        [rowHover]="true"
+        [showCurrentPageReport]="true"
+        dataKey="id"
+        [rowsPerPageOptions]="[5, 10, 20, 50, 100]"
+        currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} funcionalidades"
+      >
+      <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+          Ultimas obrigações executadas
 
         </div>
+    </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="obrigacao">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Obrigação
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="obrigacao"></p-sortIcon>
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="periodo">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Periodo
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="periodo"></p-sortIcon>
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="nomeFluxo">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Nome do Fluxo
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="nomeFluxo"></p-sortIcon>
+                </div>
+              </div>
+            </th>
+
+
+            <th pSortableColumn="ultimaExecucao">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Ultima Execução
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="ultimaExecucao"></p-sortIcon>
+                </div>
+              </div>
+            </th>
+            <th pSortableColumn="proximaExecucao">
+              <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center">
+                  Próxima Execução
+                </div>
+                <div class="flex justify-content-between align-items-center">
+                  <p-sortIcon field="proximaExecucao"></p-sortIcon>
+                </div>
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-dados>
+          <tr>
+            <td style="text-align: left">{{ dados.obrigacao }}</td>
+            <td style="text-align: left">{{ dados.periodo }}</td>
+            <td style="text-align: left">{{ dados.nomeFluxo }}</td>
+            <td style="text-align: left">{{ dados.dataUltimaExecucao | date: "dd-MM-yyyy HH:mm"   }}</td>
+            <td style="text-align: left">{{ dados.dataProximaExecucao | date: "dd-MM-yyyy HH:mm"   }}</td>
+          </tr>
+        </ng-template>
+
+        </p-table>
+
+      </div>
 
     </p-card>
 </div>

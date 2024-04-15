@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { FluxoTarefaExecutadaResponse } from 'src/app/models/interfaces/fluxos/response/fluxoTarefaExecutadaResponse';
 
 @Component({
   selector: 'app-execucoes-table',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./execucoes-table.component.scss']
 })
 export class ExecucoesTableComponent {
+
+  @Input() execucoes: Array<FluxoTarefaExecutadaResponse> = [];
 
 }

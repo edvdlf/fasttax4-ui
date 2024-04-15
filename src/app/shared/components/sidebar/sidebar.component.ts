@@ -40,7 +40,12 @@ export class SidebarComponent {
                   label: 'Manutenção de Fluxos',
                   icon: 'pi pi-sliders-h',
                   routerLink:"/fluxos"
-              }
+              },
+              {
+                label: 'Execuções',
+                icon: 'pi pi-fw pi-stop-circle',
+                routerLink:"/execucoes"
+            },
 
             ]
         },
@@ -108,11 +113,7 @@ export class SidebarComponent {
           label: 'A fazer',
           icon: 'pi pi-fw pi-stop-circle',
           items: [
-              {
-                  label: 'Execuções',
-                  icon: 'pi pi-fw pi-stop-circle',
-                  routerLink:"/execucoes"
-              },
+
               {
                 label: 'Gestao de Documentos',
                 icon: 'pi pi-fw pi-stop-circle',
