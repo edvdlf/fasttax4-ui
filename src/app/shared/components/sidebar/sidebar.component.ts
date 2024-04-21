@@ -42,8 +42,8 @@ export class SidebarComponent {
                   routerLink:"/fluxos"
               },
               {
-                label: 'Execuções',
-                icon: 'pi pi-fw pi-stop-circle',
+                label: 'Tarefas Executadas',
+                icon: 'pi pi-fw pi-sync',
                 routerLink:"/execucoes"
             },
 
@@ -63,9 +63,14 @@ export class SidebarComponent {
           ]
       },
         {
-          label: 'Parametrização',
+          label: 'Configurações',
           icon: 'pi pi-fw pi-wrench',
           items: [
+            {
+              label: 'Configurações Gerais',
+              icon: 'pi pi-fw pi-table',
+              routerLink:"/configuracoes-gerais"
+            },
             {
               label: 'Parametros',
               icon: 'pi pi-fw pi-book',
@@ -129,11 +134,7 @@ export class SidebarComponent {
                 icon: 'pi pi-fw pi-stop-circle',
                 routerLink:"/assistente-consulta-bd"
               },
-              {
-                label: 'Configurações Gerais',
-                icon: 'pi pi-fw pi-stop-circle',
-                routerLink:"/configuracoes-gerais"
-              },
+
               {
                 label: 'Acesso Obrigações',
                 icon: 'pi pi-fw pi-stop-circle',
