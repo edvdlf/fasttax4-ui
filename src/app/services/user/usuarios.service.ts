@@ -24,5 +24,8 @@ export class UsuariosService {
   getAllUsuarios(): Observable<Array<UsuariosResponse >> {
     return this.http.get<Array<UsuariosResponse>>(`${this.API_URL}/UsuariosMockers`)
   }
+  getAllUsuariosPermissoes(): Observable<Array<UsuariosResponse >> {
+    return this.http.get<Array<UsuariosResponse>>(`${this.API_URL}/UsuariosMockers/permissoes`)
+  }
 
 }

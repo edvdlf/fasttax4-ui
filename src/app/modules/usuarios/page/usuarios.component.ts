@@ -35,7 +35,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
 
    getUsuariosDatas(): void {
     this.usuariosService
-      .getAllUsuarios()
+      .getAllUsuariosPermissoes()
              .subscribe({
         next: (response) => {
           if (response.length > 0) {
