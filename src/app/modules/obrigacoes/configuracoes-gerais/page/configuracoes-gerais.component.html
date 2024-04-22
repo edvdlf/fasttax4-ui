@@ -4,7 +4,10 @@
   </mat-drawer>
   <mat-drawer-content>
     <app-navbar (toggleSidebarForMe)="sideBarToggler()"></app-navbar>
-    <app-configuracoes-gerais-table></app-configuracoes-gerais-table>
+    <app-configuracoes-gerais-table
+    [configuracoesGerais]="configuracoesGeraisDatas"
+    >
+    </app-configuracoes-gerais-table>
     <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
     <router-outlet></router-outlet>
   </mat-drawer-content>

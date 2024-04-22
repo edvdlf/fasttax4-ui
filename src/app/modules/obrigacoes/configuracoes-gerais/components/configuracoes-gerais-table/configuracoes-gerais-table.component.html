@@ -25,16 +25,174 @@
            ></p-button>
         </div>
       </p-toolbar>
-
       </div>
     </div>
-
-
-
         <div class="card">
+          <p-table
+          #usuariosOnLineTable
+          [value]="configuracoesGerais"
+          styleClass="p-datatable-sm"
+          [rows]="10"
+          [paginator]="true"
+          [responsive]="true"
+          [globalFilterFields]="['grupo', 'id']"
+          [tableStyle]="{ 'min-width': '50rem' }"
+          styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm"
+          [rowHover]="true"
+          [showCurrentPageReport]="true"
+          dataKey="id"
+          [rowsPerPageOptions]="[5, 10, 20, 50, 100]"
+          currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} funcionalidades"
+        >
+        <ng-template pTemplate="caption">
+          <div class="flex align-items-center justify-content-between">
+            Listagem de configurações gerais
 
+          </div>
+      </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th pSortableColumn="ambiente">
+                <div class="flex justify-content-between align-items-center">
+                  <div class="flex justify-content-between align-items-center">
+                    Ambiente
+                  </div>
+                  <div class="flex justify-content-between align-items-center">
+                    <p-sortIcon field="ambiente"></p-sortIcon>
+                  </div>
+                </div>
+              </th>
+              <th pSortableColumn="nivelLog">
+                <div class="flex justify-content-between align-items-center">
+                  <div class="flex justify-content-between align-items-center">
+                    Nível de Log
+                  </div>
+                  <div class="flex justify-content-between align-items-center">
+                    <p-sortIcon field="nivelLog"></p-sortIcon>
+                  </div>
+                </div>
+              </th>
+              <th pSortableColumn="linguagem">
+                <div class="flex justify-content-between align-items-center">
+                  <div class="flex justify-content-between align-items-center">
+                    Idioma
+                  </div>
+                  <div class="flex justify-content-between align-items-center">
+                    <p-sortIcon field="linguagem"></p-sortIcon>
+                  </div>
+                </div>
+              </th>
+
+
+              <th pSortableColumn="ged">
+                <div class="flex justify-content-between align-items-center">
+                  <div class="flex justify-content-between align-items-center">
+                    Ged
+                  </div>
+                  <div class="flex justify-content-between align-items-center">
+                    <p-sortIcon field="ged"></p-sortIcon>
+                  </div>
+                </div>
+              </th>
+              <th pSortableColumn="trabalhos">
+                <div class="flex justify-content-between align-items-center">
+                  <div class="flex justify-content-between align-items-center">
+                    Trabalhos
+                  </div>
+                  <div class="flex justify-content-between align-items-center">
+                    <p-sortIcon field="trabalhos"></p-sortIcon>
+                  </div>
+                </div>
+              </th>
+
+              <th pSortableColumn="painelControle">
+                <div class="flex justify-content-between align-items-center">
+                  <div class="flex justify-content-between align-items-center">
+                    Painel de Controle
+                  </div>
+                  <div class="flex justify-content-between align-items-center">
+                    <p-sortIcon field="painelControle"></p-sortIcon>
+                  </div>
+                </div>
+              </th>
+
+              <th pSortableColumn="validador">
+                <div class="flex justify-content-between align-items-center">
+                  <div class="flex justify-content-between align-items-center">
+                    Validador
+                  </div>
+                  <div class="flex justify-content-between align-items-center">
+                    <p-sortIcon field="validador"></p-sortIcon>
+                  </div>
+                </div>
+              </th>
+
+              <th pSortableColumn="agruparPorStatus">
+                <div class="flex justify-content-between align-items-center">
+                  <div class="flex justify-content-between align-items-center">
+                    Agrupar por Status
+                  </div>
+                  <div class="flex justify-content-between align-items-center">
+                    <p-sortIcon field="agruparPorStatus"></p-sortIcon>
+                  </div>
+                </div>
+              </th>
+
+              <th pSortableColumn="diratorioAgrupamento">
+                <div class="flex justify-content-between align-items-center">
+                  <div class="flex justify-content-between align-items-center">
+                    Diretório Agrupamento
+                  </div>
+                  <div class="flex justify-content-between align-items-center">
+                    <p-sortIcon field="diratorioAgrupamento"></p-sortIcon>
+                  </div>
+                </div>
+              </th>
+
+              <th pSortableColumn="rlProvedor">
+                <div class="flex justify-content-between align-items-center">
+                  <div class="flex justify-content-between align-items-center">
+                    RL Provedor
+                  </div>
+                  <div class="flex justify-content-between align-items-center">
+                    <p-sortIcon field="rlProvedor"></p-sortIcon>
+                  </div>
+                </div>
+              </th>
+
+              <th pSortableColumn="portaProvedo">
+                <div class="flex justify-content-between align-items-center">
+                  <div class="flex justify-content-between align-items-center">
+                    Porta
+                  </div>
+                  <div class="flex justify-content-between align-items-center">
+                    <p-sortIcon field="portaProvedo"></p-sortIcon>
+                  </div>
+                </div>
+              </th>
+
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-dados>
+            <tr>
+              <td style="text-align: left">{{ dados.ambiente }}</td>
+              <td style="text-align: left">{{ dados.nivelLog }}</td>
+              <td style="text-align: left">{{ dados.linguagem }}</td>
+              <td style="text-align: left">{{ dados.ged }}</td>
+              <td style="text-align: left">{{ dados.trabalhos }}</td>
+              <td style="text-align: left">{{ dados.painelControle }}</td>
+              <td style="text-align: left">{{ dados.validador }}</td>
+              <td style="text-align: left">{{ dados.agruparPorStatus }}</td>
+              <td style="text-align: left">{{ dados.diratorioAgrupamento }}</td>
+              <td style="text-align: left">{{ dados.rlProvedor }}</td>
+              <td style="text-align: left">{{ dados.portaProvedor }}</td>
+              painelControle
+            </tr>
+          </ng-template>
+
+          </p-table>
 
         </div>
-
     </p-card>
 </div>
