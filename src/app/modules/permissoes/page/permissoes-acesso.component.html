@@ -4,7 +4,9 @@
   </mat-drawer>
   <mat-drawer-content>
     <app-navbar (toggleSidebarForMe)="sideBarToggler()"></app-navbar>
-    <app-permissoes-acesso-table></app-permissoes-acesso-table>
+    <app-permissoes-acesso-table
+    [usuarios]="usuariosDatas"
+    ></app-permissoes-acesso-table>
     <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
     <router-outlet></router-outlet>
   </mat-drawer-content>
