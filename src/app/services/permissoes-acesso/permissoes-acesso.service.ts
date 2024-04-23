@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
+import { ModulosSistemaResponse } from 'src/app/models/interfaces/modulos-sistema/response/modulosSistemaResponse';
 import { PermissoesAcessoRequest } from 'src/app/models/interfaces/permissoes-acesso/request/permissoesAcessoRequest';
 import { PermissoesAcessoResponse } from 'src/app/models/interfaces/permissoes-acesso/response/permissoesAcessoResponse';
 import { environment } from 'src/environments/environment';
@@ -22,8 +23,8 @@ export class PermissoesAcessoService {
 
   constructor(private http: HttpClient, private cookie: CookieService) {}
 
-  getAllPermissoesAcesso(): Observable<Array<PermissoesAcessoResponse >> {
-    return this.http.get<Array<PermissoesAcessoResponse >>(`${this.API_URL}/LogProcessamentoMockers`)
+  getAllModulosSistema(): Observable<Array<ModulosSistemaResponse >> {
+    return this.http.get<Array<ModulosSistemaResponse >>(`${this.API_URL}/modulossistemaMockers`)
   }
 
 

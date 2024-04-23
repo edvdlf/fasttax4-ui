@@ -6,6 +6,7 @@
     <app-navbar (toggleSidebarForMe)="sideBarToggler()"></app-navbar>
     <app-permissoes-acesso-table
     [usuarios]="usuariosDatas"
+    (permissoesAcessoEvent)="handlePermissaoUsuarioAction($event)"
     ></app-permissoes-acesso-table>
     <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
     <router-outlet></router-outlet>

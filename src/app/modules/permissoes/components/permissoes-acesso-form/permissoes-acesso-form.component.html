@@ -1,1 +1,279 @@
-<p>permissoes-acesso-forms works!</p>
+<div >
+  <form [formGroup]="adicionaPermissaoUsuarioForm" (ngSubmit)="handleSubmitAdicionarPermissoesAcesso()" >
+    <div class="card">
+            <p-toolbar>
+              <div class="p-toolbar-group-start">
+
+              </div>
+              <div class="p-toolbar-group-end">
+                <p-button
+                icon="pi pi-save" severity="warning"
+                type="submit"
+                pTooltip="Clique para adicionar as permissões ao usuario(s) selecionado(s)"
+                tooltipPosition="top"
+              ></p-button>
+              </div>
+            </p-toolbar>
+            <div class="formgrid grid">
+              <div class="field col-12">
+                <div class="card flex flex-column md:flex-column">
+                  <div class="card flex justify-content-center">
+                    <p-table
+                    #tarefasAutomatizadasTable
+                    [value]="modulosDatas"
+
+                    [rows]="20"
+                    [paginator]="true"
+                    [globalFilterFields]="['grupo', 'id']"
+                    [tableStyle]="{ 'min-width': '50rem' }"
+                    styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm"
+                    [rowHover]="true"
+                    [showCurrentPageReport]="true"
+                    dataKey="id"
+                    [rowsPerPageOptions]="[5, 10, 20, 50, 100]"
+                    currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} funcionalidades"
+                  >
+                  <ng-template pTemplate="caption">
+                    <div class="flex align-items-center justify-content-between">
+                      Selecione as permissões
+                    </div>
+                  </ng-template>
+                    <ng-template pTemplate="header">
+                      <tr>
+                        <th style="width: 2%">
+                          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th pSortableColumn="modulo">
+                          <div class="flex justify-content-between align-items-center">
+                            <div class="flex justify-content-between align-items-center">
+                              Módulo
+                            </div>
+                            <div class="flex justify-content-between align-items-center">
+                              <p-sortIcon field="modulo"></p-sortIcon>
+                              <p-columnFilter
+                                type="text"
+                                field="modulo"
+                                display="menu"
+                                matchMode="contains"
+                                [showMatchModes]="false"
+                                [showOperator]="false"
+                                [showAddButton]="false"
+                              ></p-columnFilter>
+                            </div>
+                          </div>
+                        </th>
+                        <th pSortableColumn="permTotal">
+                          <div class="flex justify-content-between align-items-center">
+                            <div class="flex justify-content-between align-items-center">
+                              Permissão Total
+                            </div>
+                            <div class="flex justify-content-between align-items-center">
+                              <p-sortIcon field="permTotal"></p-sortIcon>
+                              <p-columnFilter
+                                type="text"
+                                field="permTotal"
+                                display="menu"
+                                matchMode="contains"
+                                [showMatchModes]="false"
+                                [showOperator]="false"
+                                [showAddButton]="false"
+                              ></p-columnFilter>
+                            </div>
+                          </div>
+                        </th>
+                        <th pSortableColumn="adicionar">
+                          <div class="flex justify-content-between align-items-center">
+                            <div class="flex justify-content-between align-items-center">
+                              Permissão de Inclusão
+                            </div>
+                            <div class="flex justify-content-between align-items-center">
+                              <p-sortIcon field="adicionar"></p-sortIcon>
+                              <p-columnFilter
+                                type="text"
+                                field="adicionar"
+                                display="menu"
+                                matchMode="contains"
+                                [showMatchModes]="false"
+                                [showOperator]="false"
+                                [showAddButton]="false"
+                              ></p-columnFilter>
+                            </div>
+                          </div>
+                        </th>
+                        <th pSortableColumn="visualizar">
+                          <div class="flex justify-content-between align-items-center">
+                            <div class="flex justify-content-between align-items-center">
+                              Permissão Visualização
+                            </div>
+                            <div class="flex justify-content-between align-items-center">
+                              <p-sortIcon field="visualizar"></p-sortIcon>
+                              <p-columnFilter
+                                type="text"
+                                field="visualizar"
+                                display="menu"
+                                matchMode="contains"
+                                [showMatchModes]="false"
+                                [showOperator]="false"
+                                [showAddButton]="false"
+                              ></p-columnFilter>
+                            </div>
+                          </div>
+                        </th>
+                        <th pSortableColumn="editar">
+                          <div class="flex justify-content-between align-items-center">
+                            <div class="flex justify-content-between align-items-center">
+                              Permissão Edição
+                            </div>
+                            <div class="flex justify-content-between align-items-center">
+                              <p-sortIcon field="editar"></p-sortIcon>
+                              <p-columnFilter
+                                type="text"
+                                field="editar"
+                                display="menu"
+                                matchMode="contains"
+                                [showMatchModes]="false"
+                                [showOperator]="false"
+                                [showAddButton]="false"
+                              ></p-columnFilter>
+                            </div>
+                          </div>
+                        </th>
+                        <th pSortableColumn="excluir">
+                          <div class="flex justify-content-between align-items-center">
+                            <div class="flex justify-content-between align-items-center">
+                              Permissão Exclusão
+                            </div>
+                            <div class="flex justify-content-between align-items-center">
+                              <p-sortIcon field="excluir"></p-sortIcon>
+                              <p-columnFilter
+                                type="text"
+                                field="excluir"
+                                display="menu"
+                                matchMode="contains"
+                                [showMatchModes]="false"
+                                [showOperator]="false"
+                                [showAddButton]="false"
+                              ></p-columnFilter>
+                            </div>
+                          </div>
+                        </th>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-dados >
+                      <tr>
+                        <td>
+                          <p-tableCheckbox [value]="dados"></p-tableCheckbox>
+                        </td>
+                        <td style="text-align: left">{{ dados.nomeModulo }}</td>
+
+                        <td>
+                          <p-tableCheckbox  [value]="dados.permTotal"></p-tableCheckbox>
+                        </td>
+                        <td>
+                          <p-tableCheckbox [value]="dados.adicionar"></p-tableCheckbox>
+                        </td>
+                        <td>
+                          <p-tableCheckbox [value]="dados.visualizar"></p-tableCheckbox>
+                        </td>
+                        <td>
+                          <p-tableCheckbox [value]="dados.editar"></p-tableCheckbox>
+                        </td>
+                        <td>
+                          <p-tableCheckbox [value]="dados.excluir"></p-tableCheckbox>
+                        </td>
+                      </tr>
+                    </ng-template>
+
+                      </p-table>
+
+                  </div>
+                </div>
+              </div>
+              <div class="field col-12">
+                <div class="card flex flex-column md:flex-column">
+                  <div class="card flex justify-content-center">
+                    <p-table
+                    #tarefasAutomatizadasTable
+                    [value]="usuariosDatas"
+
+                    [rows]="20"
+                    [paginator]="true"
+                    [globalFilterFields]="['grupo', 'id']"
+                    [tableStyle]="{ 'min-width': '50rem' }"
+                    styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm"
+                    [rowHover]="true"
+                    [showCurrentPageReport]="true"
+                    dataKey="id"
+                    [rowsPerPageOptions]="[5, 10, 20, 50, 100]"
+                    currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} funcionalidades"
+                  >
+                  <ng-template pTemplate="caption">
+                    <div class="flex align-items-center justify-content-between">
+                      Selecione os usuários para adicionar as permissões
+                    </div>
+                  </ng-template>
+                    <ng-template pTemplate="header">
+                      <tr>
+                        <th style="width: 2%">
+                          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th pSortableColumn="login">
+                          <div class="flex justify-content-between align-items-center">
+                            <div class="flex justify-content-between align-items-center">
+                              Login
+                            </div>
+                            <div class="flex justify-content-between align-items-center">
+                              <p-sortIcon field="login"></p-sortIcon>
+                              <p-columnFilter
+                                type="text"
+                                field="login"
+                                display="menu"
+                                matchMode="contains"
+                                [showMatchModes]="false"
+                                [showOperator]="false"
+                                [showAddButton]="false"
+                              ></p-columnFilter>
+                            </div>
+                          </div>
+                        </th>
+                        <th pSortableColumn="Nome">
+                          <div class="flex justify-content-between align-items-center">
+                            <div class="flex justify-content-between align-items-center">
+                              Nome
+                            </div>
+                            <div class="flex justify-content-between align-items-center">
+                              <p-sortIcon field="periodo"></p-sortIcon>
+                              <p-columnFilter
+                                type="text"
+                                field="nome"
+                                display="menu"
+                                matchMode="contains"
+                                [showMatchModes]="false"
+                                [showOperator]="false"
+                                [showAddButton]="false"
+                              ></p-columnFilter>
+                            </div>
+                          </div>
+                        </th>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-dados >
+                      <tr>
+                        <td>
+                          <p-tableCheckbox [value]="dados"></p-tableCheckbox>
+                        </td>
+                        <td style="text-align: left">{{ dados.login }}</td>
+                        <td style="text-align: left">{{ dados.nome }}</td>
+                      </tr>
+                    </ng-template>
+
+                      </p-table>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+    </div>
+  </form>
+</div>

@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { ModulosSistemaResponse } from './../../../../models/interfaces/modulos-sistema/response/modulosSistemaResponse';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { MessageService } from 'primeng/api';
+import { Subject } from 'rxjs';
 import { PermissoesAcessoRequest } from 'src/app/models/interfaces/permissoes-acesso/request/permissoesAcessoRequest';
+import { UsuariosResponse } from 'src/app/models/interfaces/user/UsuariosResponse';
 
 import { PermissoesAcessoService } from 'src/app/services/permissoes-acesso/permissoes-acesso.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -13,13 +16,16 @@ import { UsuariosService } from 'src/app/services/user/usuarios.service';
   templateUrl: './permissoes-acesso-form.component.html',
   styleUrls: ['./permissoes-acesso-form.component.scss']
 })
-export class PermissoesAcessoFormComponent {
+export class PermissoesAcessoFormComponent implements OnInit, OnDestroy {
 
+  private readonly destroy$: Subject<void> = new Subject();
+  public usuariosDatas: Array<UsuariosResponse> = [];
+  public modulosDatas: Array<ModulosSistemaResponse> = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private permissoesAcessoService: PermissoesAcessoService,
-
+    private usuariosService: UsuariosService,
     private cookieService: CookieService,
     private messageService: MessageService,
 
@@ -29,36 +35,70 @@ export class PermissoesAcessoFormComponent {
 
 
 
-  criaPermissaoUsuarioForm = this.formBuilder.group({
+  adicionaPermissaoUsuarioForm = this.formBuilder.group({
     //nomeUsuario: ['', Validators.required],
     //email: ['', Validators.required],
     //password: ['', Validators.required],
     //confirmePassword: ['',Validators.required],
   });
 
-  onSubmitCriaUsuarioForm(): void {
+  getUsuariosDatas(): void {
+    this.usuariosService
+      .getAllUsuariosPermissoes()
+             .subscribe({
+        next: (response) => {
+          if (response.length > 0) {
+            console.log(response)
+            this.usuariosDatas = response;
+          }
+        },
+        error: (err) => {
+          console.log(err);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro',
+            detail: 'Não foi possível buscar Usuários!',
+            life: 2500,
+          });
+        },
+      });
+  }
 
-    if(this.criaPermissaoUsuarioForm.value && this.criaPermissaoUsuarioForm.valid){
+  getModulosSistemaDatas(): void {
+    this.permissoesAcessoService
+      .getAllModulosSistema()
+             .subscribe({
+        next: (response) => {
+          if (response.length > 0) {
+            console.log(response)
+            this.modulosDatas = response;
+          }
+        },
+        error: (err) => {
+          console.log(err);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro',
+            detail: 'Não foi possível buscar Usuários!',
+            life: 2500,
+          });
+        },
+      });
+  }
 
-        //const signupUserRequest: SignupUserRequest= {
-          //nome: this.criaUsuarioForm.value.nomeUsuario as string,
-          //email: this.criaUsuarioForm.value.email as string,
-          //password: this.criaUsuarioForm.value.password as string,
-          //confirmPassword:this.criaUsuarioForm.value.confirmePassword as string,
-        //}
-        //this.submitUsuarioForm(signupUserRequest)
-    }else{
+  handleSubmitAdicionarPermissoesAcesso():void{
+    if (this.adicionaPermissaoUsuarioForm?.value && this.adicionaPermissaoUsuarioForm.valid) {
 
     }
   }
-  submitUsuarioForm(permissoesAcessoRequest:PermissoesAcessoRequest): void {
-    if(this.criaPermissaoUsuarioForm.value && this.criaPermissaoUsuarioForm.valid){
 
+  submitUsuarioForm(permissoesAcessoRequest:PermissoesAcessoRequest): void {
+    if(this.adicionaPermissaoUsuarioForm.value && this.adicionaPermissaoUsuarioForm.valid){
       this.permissoesAcessoService.adicionarPermissoesAcesso(permissoesAcessoRequest)
       .subscribe({
         next:(response)=>{
         if(response){
-           this.criaPermissaoUsuarioForm.reset();
+           this.adicionaPermissaoUsuarioForm.reset();
             this.messageService.add({
               severity:'success',
               summary: 'Sucesso',
@@ -78,6 +118,15 @@ export class PermissoesAcessoFormComponent {
        }
     })
   }
+}
+ngOnInit(): void {
+  this.getUsuariosDatas();
+  this.getModulosSistemaDatas();
+
+}
+ngOnDestroy(): void {
+  this.destroy$.next();
+  this.destroy$.complete();
 }
 
 

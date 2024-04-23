@@ -8,6 +8,7 @@ import { PermissoesAcessoEvent } from 'src/app/models/enums/permissoes-acesso/pe
 import { EventAction } from 'src/app/models/event/EventAction';
 import { UsuariosResponse } from 'src/app/models/interfaces/user/UsuariosResponse';
 import { UsuariosService } from 'src/app/services/user/usuarios.service';
+import { PermissoesAcessoFormComponent } from '../components/permissoes-acesso-form/permissoes-acesso-form.component';
 
 
 @Component({
@@ -63,9 +64,9 @@ export class PermissoesAcessoComponent implements OnInit, OnDestroy {
 
   handlePermissaoUsuarioAction(event: EventAction): void {
     if (event) {
-      this.ref = this.dialogService.open(PermissoesAcessoComponent, {
+      this.ref = this.dialogService.open(PermissoesAcessoFormComponent, {
         header: event?.action,
-        width: '50%',
+        width: '85%',
         contentStyle: { overflow: 'auto' },
         baseZIndex: 10000,
         maximizable: true,
