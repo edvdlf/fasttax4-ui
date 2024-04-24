@@ -46,6 +46,11 @@ export class SidebarComponent {
                 icon: 'pi pi-fw pi-sync',
                 routerLink:"/execucoes"
             },
+            {
+              label: 'Gestao de Documentos',
+              icon: 'pi pi-fw pi-file-o',
+              routerLink:"/gestao-documentos"
+            },
 
             ]
         },
@@ -119,11 +124,7 @@ export class SidebarComponent {
           icon: 'pi pi-fw pi-stop-circle',
           items: [
 
-              {
-                label: 'Gestao de Documentos',
-                icon: 'pi pi-fw pi-stop-circle',
-                routerLink:"/gestao-documentos"
-              },
+
               {
                 label: 'Validadores',
                 icon: 'pi pi-fw pi-stop-circle',

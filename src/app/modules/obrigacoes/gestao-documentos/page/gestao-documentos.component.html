@@ -4,7 +4,9 @@
   </mat-drawer>
   <mat-drawer-content>
     <app-navbar (toggleSidebarForMe)="sideBarToggler()"></app-navbar>
-    <app-gestao-documentos-table></app-gestao-documentos-table>
+    <app-gestao-documentos-table
+    [gestaoDocumentos]="gestaoDocumentosDatas"
+    ></app-gestao-documentos-table>
     <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
     <router-outlet></router-outlet>
   </mat-drawer-content>

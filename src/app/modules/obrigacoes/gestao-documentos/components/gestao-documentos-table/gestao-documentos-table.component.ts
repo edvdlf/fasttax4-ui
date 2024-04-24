@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { GestaoDocumentosResponse } from 'src/app/models/interfaces/gestao-documentos/response/gestaoDocumentosResponse';
 
 @Component({
   selector: 'app-gestao-documentos-table',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./gestao-documentos-table.component.scss']
 })
 export class GestaoDocumentosTableComponent {
-
+  @Input() gestaoDocumentos: Array<GestaoDocumentosResponse> = [];
 }
