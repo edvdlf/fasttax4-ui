@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   images: any[] = [];
 
   responsiveOptions: any[] = [
-     
+
       {
           breakpoint: '1024px',
           numVisible: 5

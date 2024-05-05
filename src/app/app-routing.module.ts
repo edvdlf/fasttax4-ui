@@ -15,7 +15,6 @@ import { ParametrosComponent } from './modules/obrigacoes/parametros/page/parame
 const routes: Routes = [
   {
     path: '',
-    //component: LoginComponent,
     redirectTo: 'home',
     pathMatch:'full'
   },
@@ -23,6 +22,7 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
+  
   {
     path: 'home',
     loadChildren: () => import('./modules/home/home.module')
@@ -30,7 +30,6 @@ const routes: Routes = [
       ),
       canActivate: [AuthGuard]
   },
-
   {
     path: 'dashboard',
     loadChildren: () => import('./modules/dashboard/dashboard.module')

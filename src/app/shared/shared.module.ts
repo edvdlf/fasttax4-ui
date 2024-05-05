@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -80,6 +81,18 @@ import { TreeTableModule } from 'primeng/treetable';
 import { StepsModule } from 'primeng/steps';
 import { StatusPipe } from './pipes/status/status.pipe';
 
+import { SimplebarAngularModule } from 'simplebar-angular';
+import { TranslateModule } from '@ngx-translate/core';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { MenuSidebarComponent } from './components/menu-sidebar/menu-sidebar.component';
+import { MenuToolbarComponent } from './components/menu-toolbar/menu-toolbar.component';
+//import { ClickOutsideModule } from 'ng-click-outside';
+
+
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
@@ -87,6 +100,8 @@ import { StatusPipe } from './pipes/status/status.pipe';
     NavbarComponent,
     ShortenPipe,
     StatusPipe,
+    MenuToolbarComponent,
+    MenuSidebarComponent,
   ],
   imports: [
     CommonModule,
@@ -146,6 +161,9 @@ import { StatusPipe } from './pipes/status/status.pipe';
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
+    SimplebarAngularModule,
+    TranslateModule,
+    NgbDropdownModule,
 
   ],
   exports:[
@@ -192,7 +210,13 @@ import { StatusPipe } from './pipes/status/status.pipe';
     SplitButtonModule,
     PanelMenuModule,
     CascadeSelectModule,
-    RadioButtonModule
+    RadioButtonModule,
+    SimplebarAngularModule,
+    TranslateModule,
+    NgbDropdownModule,
+    MenuSidebarComponent,
+    MenuToolbarComponent,
+
 
 
   ],

@@ -4,7 +4,7 @@ export const environment = {
     API_URL: 'http://edvdlfhotmailcom-004-site1.ctempurl.com/api'
     //API_URL_TOKEN: 'http://localhost:5192',
     //API_URL: 'http://localhost:5192/api'
-
+    //API_URL_TOKEN: 'http://localhost:3333',
 }
 
 

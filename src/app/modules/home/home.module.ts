@@ -13,11 +13,11 @@ import { ButtonModule } from 'primeng/button';
 import { ChartModule } from 'primeng/chart';
 import { GalleriaModule } from 'primeng/galleria';
 
-
 import { MessageService } from 'primeng/api';
 import {CookieService} from 'ngx-cookie-service';
-import { SharedModule } from 'src/app/shared/shared.module';
+
 import { HomeComponent } from './page/home/home.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -35,8 +35,9 @@ import { HomeComponent } from './page/home/home.component';
     ToolbarModule,
     ChartModule,
     GalleriaModule,
+
     //Shared
-    SharedModule
+    SharedModule,
 
   ],
   providers:[MessageService, CookieService,PhotoService]

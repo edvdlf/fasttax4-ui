@@ -1,0 +1,122 @@
+
+#sidebar-menu {
+  padding: 10px 0 30px 0;
+
+  .mm-active {
+      >.has-arrow {
+          &:after {
+              transform: rotate(-180deg);
+          }
+      }
+  }
+
+  .has-arrow {
+      &:after {
+          content: "\F0140";
+          font-family: 'Material Design Icons';
+          display: block;
+          float: right;
+          transition: transform .2s;
+          font-size: 1rem;
+      }
+  }
+
+  ul {
+      li {
+          a {
+              display: block;
+              padding: .625rem 1.5rem;
+              color: var(--#{$prefix}sidebar-menu-item-color);
+              position: relative;
+              font-size: 13.3px;
+              transition: all .4s;
+              font-family: $font-family-secondary;
+              font-weight: 500;
+
+              i {
+                  display: inline-block;
+                  min-width: 1.5rem;
+                  padding-bottom: .125em;
+                  font-size: 1.1rem;
+                  line-height: 1.40625rem;
+                  vertical-align: middle;
+                  color: var(--#{$prefix}sidebar-menu-item-icon-color);
+                  transition: all .4s;
+                  opacity: .75;
+              }
+
+              &:hover {
+                  color:  var(--#{$prefix}sidebar-menu-item-hover-color);
+
+                  i {
+                      color:  var(--#{$prefix}sidebar-menu-item-hover-color);
+                  }
+              }
+          }
+
+          .badge {
+              margin-top: 4px;
+          }
+
+          ul.sub-menu {
+              padding: 0;
+
+              li {
+
+                  a {
+                      padding: .4rem 1.5rem .4rem 3.2rem;
+                      font-size: 13px;
+                      color:  var(--#{$prefix}sidebar-menu-sub-item-color);
+                  }
+
+                  ul.sub-menu {
+                      padding: 0;
+
+                      li {
+                          a {
+                              padding: .4rem 1.5rem .4rem 4.2rem;
+                              font-size: 13.5px;
+                          }
+                      }
+                  }
+              }
+          }
+      }
+
+  }
+}
+
+
+.metismenu {
+  margin: 0;
+
+  li {
+      display: block;
+      width: 100%;
+  }
+
+  .mm-collapse {
+      display: none;
+
+      &:not(.mm-show) {
+          display: none;
+      }
+
+      &.mm-show {
+          display: block
+      }
+  }
+
+  .mm-collapsing {
+      position: relative;
+      height: 0;
+      overflow: hidden;
+      transition-timing-function: ease;
+      transition-duration: .35s;
+      transition-property: height, visibility;
+  }
+}
+
+
+
+

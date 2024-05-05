@@ -30,15 +30,19 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/ngx-ui-switch/ui-switch.component.css",
+              "src/assets/scss/bootstrap.scss",
+              "src/assets/scss/app.scss",
               "src/styles.scss",
               "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css",
-              "node_modules/primeflex/primeflex.css",
-              "node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"
+              "node_modules/primeflex/primeflex.css"
+
             ],
             "scripts": [
-              "node_modules/chart.js/dist/chart.js"
+              "node_modules/chart.js/dist/chart.js",
+              "src/assets/js/app.js"
             ]
           },
           "configurations": {
@@ -72,10 +76,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "fasttax-frontend:build:production"
+              "buildTarget": "fasttax-frontend:build:production"
             },
             "development": {
-              "browserTarget": "fasttax-frontend:build:development"
+              "buildTarget": "fasttax-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +87,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "fasttax-frontend:build"
+            "buildTarget": "fasttax-frontend:build"
           }
         },
         "test": {

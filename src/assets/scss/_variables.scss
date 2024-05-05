@@ -1,0 +1,68 @@
+// Variables
+
+// Cores
+$orange:  #f1734f;
+$orange-100: tint-color($orange, 80%);
+$orange-200: tint-color($orange, 60%);
+$orange-300: tint-color($orange, 40%);
+$orange-400: tint-color($orange, 20%);
+$orange-500: $orange;
+$orange-600: shade-color($orange, 20%);
+$orange-700: shade-color($orange, 40%);
+$orange-800: shade-color($orange, 60%);
+$orange-900: shade-color($orange, 80%);
+$black: #000;
+$red: red;
+$gray-600: #74788d;
+
+$box-shadow:                  0 2px 4px rgba($black,.08);
+$header-height: 70px;
+$grid-gutter-width:           1.5rem;
+$navbar-brand-box-width: 240px;
+
+//header
+
+//sidebar
+$vt-cores-primary: #e28000;
+$vt-cores-secondary: #ff9800;
+$vt-cores-secondary-2: #ffc340;
+$vt-cores-secondary-3: #666666;
+$vt-cores-secondary-4: #8c8c8c;
+$vt-cores-success: #009846;
+$vt-cores-alert: #8d4925;
+$vt-cores-danger: #e00000;
+
+
+$vt-buttons-bg-1: #c06500;
+$vt-buttons-bg-2: #853400;
+$vt-buttons-bg-3: #853400;
+
+
+
+
+
+// Footer
+$footer-height: 60px;
+$footer-bg: $orange-300;
+$footer-color: #74788d;
+$danger: red;
+$white: #fff;
+$header-bg:$orange-900;
+
+//botoes e outros
+$dropdown-color:$orange;
+
+
+$variable-prefix: bs-; // Deprecated in v5.2.0 for the shorter `$prefix`
+$prefix: $variable-prefix;
+$font-family-secondary: 'Inter', sans-serif;
+
+$sidebar-bg: #252b3b;
+$sidebar-menu-item-color: #8590a5;
+$sidebar-menu-sub-item-color: #8590a5;
+$sidebar-menu-item-icon-color: #8590a5;
+$sidebar-menu-item-hover-color: #d7e4ec;
+$sidebar-menu-item-active-color: #d7e4ec;
+$sidebar-width: 240px;
+$sidebar-collapsed-width: 70px;
+$sidebar-width-sm: 160px;
