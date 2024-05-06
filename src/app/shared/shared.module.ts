@@ -16,6 +16,7 @@ import { PanelModule } from 'primeng/panel';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { CascadeSelectModule } from 'primeng/cascadeselect';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { MegaMenuModule } from 'primeng/megamenu';
 
 //import { MenuItem } from 'primeng/api';
 
@@ -166,6 +167,7 @@ import { MenuSuperiorComponent } from './components/menu-superior/menu-superior.
     SimplebarAngularModule,
     TranslateModule,
     NgbDropdownModule,
+    MegaMenuModule,
 
   ],
   exports:[
@@ -218,6 +220,7 @@ import { MenuSuperiorComponent } from './components/menu-superior/menu-superior.
     SimplebarAngularModule,
     TranslateModule,
     NgbDropdownModule,
+    MegaMenuModule,
 
 
 
