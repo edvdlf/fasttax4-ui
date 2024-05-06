@@ -22,7 +22,7 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
-  
+
   {
     path: 'home',
     loadChildren: () => import('./modules/home/home.module')

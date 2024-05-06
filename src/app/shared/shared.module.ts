@@ -84,13 +84,14 @@ import { StatusPipe } from './pipes/status/status.pipe';
 import { SimplebarAngularModule } from 'simplebar-angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-import { MenuSidebarComponent } from './components/menu-sidebar/menu-sidebar.component';
-import { MenuToolbarComponent } from './components/menu-toolbar/menu-toolbar.component';
+
 //import { ClickOutsideModule } from 'ng-click-outside';
 
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MenuLateralComponent } from './components/menu-lateral/menu-lateral.component';
+import { MenuSuperiorComponent } from './components/menu-superior/menu-superior.component';
 
 
 
@@ -98,10 +99,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   declarations: [
     SidebarComponent,
     NavbarComponent,
+    MenuLateralComponent,
+    MenuSuperiorComponent,
     ShortenPipe,
     StatusPipe,
-    MenuToolbarComponent,
-    MenuSidebarComponent,
+
   ],
   imports: [
     CommonModule,
@@ -169,6 +171,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   exports:[
     SidebarComponent,
     NavbarComponent,
+    MenuLateralComponent,
+    MenuSuperiorComponent,
     MatSidenavModule,
     MatToolbarModule,
     MatAutocompleteModule,
@@ -214,8 +218,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SimplebarAngularModule,
     TranslateModule,
     NgbDropdownModule,
-    MenuSidebarComponent,
-    MenuToolbarComponent,
+
 
 
 

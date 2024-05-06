@@ -1,0 +1,39 @@
+
+.sidenav-item {
+	color: white;
+	font-size: 20px;
+}
+
+mat-drawer {
+  //width: 260px;
+  width: 80px;
+}
+mat-drawer-container {
+  height: 100%;
+}
+
+mat-drawer {
+  background: #E1742E;
+}
+
+mat-icon {
+	color: white;
+}
+
+mat-nav-list {
+  .menu-item {
+    margin-left: 8px;
+  }
+
+  .chevron-button {
+    transition: 300ms ease-in-out;
+    transform: rotate(0deg);
+  }
+
+  .chevron-button.rotated {
+    transform: rotate(180deg);
+  }
+}
+//mat-sidenav {
+
+//}
