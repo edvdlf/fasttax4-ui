@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { MegaMenuItem, TreeNode } from 'primeng/api';
+import { MegaMenuItem, TreeNode, PrimeIcons } from 'primeng/api';
 import { Sidebar } from 'primeng/sidebar';
 
 import { MenuItem } from 'primeng/api';
@@ -65,7 +65,12 @@ export class SidebarComponent {
                   label: 'Processos Customizados',
                   icon: 'pi pi-fw pi-lock',
                   routerLink:"/processos-customizados"
-              }
+              },
+              {
+                label: 'Acesso Data Base',
+                icon: PrimeIcons.DATABASE,
+                routerLink:"/assistente-consulta-bd"
+              },
           ]
       },
         {
@@ -131,15 +136,11 @@ export class SidebarComponent {
                 icon: 'pi pi-fw pi-stop-circle',
                 routerLink:"/validadores-monitoramento"
               },
-              {
-                label: 'Assistente de consultas',
-                icon: 'pi pi-fw pi-stop-circle',
-                routerLink:"/assistente-consulta-bd"
-              },
+
 
               {
                 label: 'Acesso Obrigações',
-                icon: 'pi pi-fw pi-stop-circle',
+                icon: PrimeIcons.INFO,
                 routerLink:"/acesso-obrigacoes"
               },
 

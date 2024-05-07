@@ -1,0 +1,36 @@
+$primary-color: #FF5200;
+$light-color: #FFF;
+$dark-color: #181920;
+$text-color: #8B8E94;
+$black: #000;
+$secondary-bg: #E5EAFF;
+$footer-bg: #1D1D1D;
+
+.btn{
+  background-color: $primary-color;
+  padding: .6rem 1rem;
+  border: 1px solid $light-color;
+  text-transform: uppercase;
+  border-radius: 5px;
+  transition: .3s;
+  color: $light-color;
+
+}
+
+
+
+
+
+
+
+
+.btn2{
+  padding: 10px 20px;
+  border: 1px solid #f1734f;
+  border-radius: 5px;
+  color: #FFF;
+  background-color: $primary-color;
+  cursor: pointer;
+  margin: 5px;
+}
+

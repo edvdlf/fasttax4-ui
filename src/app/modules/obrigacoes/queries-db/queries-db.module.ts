@@ -1,8 +1,6 @@
-import { AssistenteConsultaBdComponent } from './page/assistente-consulta-bd.component';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AssistenteConsultaBdTableComponent } from './components/assistente-consulta-bd-table/assistente-consulta-bd-table.component';
-import { AssistenteConsultaBdFormComponent } from './components/assistente-consulta-bd-form/assistente-consulta-bd-form.component';
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,23 +29,26 @@ import { PickListModule } from 'primeng/picklist';
 import { TreeTableModule } from 'primeng/treetable';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CalendarModule } from 'primeng/calendar';
-import { ASSISTENTE_CONSULTA_BD_ROUTES } from './assistente-consulta-bd.routing';
+import { QUERIES_BD_ROUTES } from './queries-db.routing';
+import { QueriesDbFormComponent } from './components/queries-db-form/queries-db-form.component';
+import { QueriesDbTableComponent } from './components/queries-db-table/queries-db-table.component';
+import { QueriesDbComponent } from './page/queries-db.component';
 
 
 
 
 @NgModule({
   declarations: [
-    AssistenteConsultaBdComponent,
-    AssistenteConsultaBdTableComponent,
-    AssistenteConsultaBdFormComponent
+    QueriesDbComponent,
+    QueriesDbTableComponent,
+    QueriesDbFormComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forChild(ASSISTENTE_CONSULTA_BD_ROUTES),
+    RouterModule.forChild(QUERIES_BD_ROUTES),
     //PrimeNg
     SidebarModule,
     ButtonModule,
@@ -79,4 +80,4 @@ import { ASSISTENTE_CONSULTA_BD_ROUTES } from './assistente-consulta-bd.routing'
 
 
 })
-export class AssistenteConsultaBdModule { }
+export class QueriesBdModule { }

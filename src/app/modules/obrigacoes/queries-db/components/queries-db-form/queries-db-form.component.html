@@ -1,0 +1,27 @@
+<p-card header="Dados da Querie Db">
+  <div class="formgrid grid">
+    <div class="field col-12 md:col-6">
+        <label class="ml-1 font-bold"  for="nome">Nome:</label>
+        <input id="nome" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        placeholder="Defina um nome para a consulta a ser criada."
+        >
+    </div>
+    <div class="field col-12">
+        <label class="ml-1 font-bold" for="descricao">Descrição:</label>
+        <input id="descricao" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+        placeholder="Descreva a responsabilidade desta consulta."
+        >
+    </div>
+    <div class="field col-12">
+      <label class="ml-1 font-bold" for="queriedb">Querie Db:</label>
+      <textarea id="querie" type="text" rows="4" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+      placeholder="Escreva o comando PLSQL a ser executado no banco de dados."
+      ></textarea>
+  </div>
+
+    <div class="field col-12 md:col-3">
+      <button class="btn">Salvar</button>
+
+    </div>
+</div>
+</p-card>

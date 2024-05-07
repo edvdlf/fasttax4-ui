@@ -124,8 +124,8 @@ const routes: Routes = [
   },
   {
     path: 'assistente-consulta-bd',
-    loadChildren: () => import('./modules/obrigacoes/assistente-consulta-bd/assistente-consulta-bd.module')
-      .then((m)=>m.AssistenteConsultaBdModule
+    loadChildren: () => import('./modules/obrigacoes/queries-db/queries-db.module')
+      .then((m)=>m.QueriesBdModule
       ),
       canActivate: [AuthGuard]
   },

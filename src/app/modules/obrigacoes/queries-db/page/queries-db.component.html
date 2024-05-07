@@ -4,7 +4,11 @@
   </mat-drawer>
   <mat-drawer-content>
     <app-navbar (toggleSidebarForMe)="sideBarToggler()"></app-navbar>
-    <app-assistente-consulta-bd-table></app-assistente-consulta-bd-table>
+    <app-queries-db-table
+    [queriesDb]="queriesDbDatas"
+    [queriesDbHistorico]="queriesDbHistoricoDatas"
+    (queriesDbEvent)="handleQuerieDbAction($event)"
+    ></app-queries-db-table>
     <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
     <router-outlet></router-outlet>
   </mat-drawer-content>

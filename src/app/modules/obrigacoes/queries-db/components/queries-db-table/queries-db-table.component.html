@@ -1,0 +1,304 @@
+<div class="col-12">
+  <p-card
+      styleClass="shadow-3  text-orange-500"
+      header="Assistente de consulta"
+    >
+    <div class="col-sm-12">
+      <!--ol class="breadcrumb float-sm-right">
+        <li class="breadcrumb-item" icon="pi pi-plus" ><a href="/tarefas-automatizadas">Tarefas Automatizadas</a></li>
+        <li class="breadcrumb-item active">Fluxos</li>
+      </ol-->
+    </div>
+
+    <div class="formgrid grid">
+      <div class="field col-12">
+      <p-toolbar>
+        <div class="p-toolbar-group-star">
+          <h3>Lista de Consultas BD</h3>
+        </div>
+        <div class="p-toolbar-group-end">
+          <p-button
+           icon="pi pi-plus"
+           class="mr-2"
+           pTooltip="Adicionar novas consultas na base de dados"
+           tooltipPosition="top"
+            (onClick)="handleQuerieDbEvent(adicionarQuerieDbEvent)"
+           ></p-button>
+        </div>
+      </p-toolbar>
+
+      </div>
+    </div>
+
+    <mat-tab-group dynamicHeight>
+      <mat-tab label="Queries Db">
+        <div class="example-small-box mat-elevation-z4">
+          <div class="card flex justify-content-center mr-2">
+            <p-table
+              #queriesDbTable
+              [value]="queriesDb"
+
+              [rows]="20"
+              [paginator]="true"
+              [globalFilterFields]="['grupo', 'id']"
+              [tableStyle]="{ 'min-width': '50rem' }"
+              styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm"
+              [rowHover]="true"
+              [showCurrentPageReport]="true"
+              dataKey="id"
+              [rowsPerPageOptions]="[5, 10, 20, 50, 100]"
+              currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} funcionalidades"
+            >
+            <ng-template pTemplate="caption">
+              <div class="flex align-items-center justify-content-between">
+                Listagem de Queries Db
+              </div>
+            </ng-template>
+              <ng-template pTemplate="header">
+                <tr>
+                  <th style="width: 2%">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                  </th>
+                  <th pSortableColumn="nome">
+                    <div class="flex justify-content-between align-items-center">
+                      <div class="flex justify-content-between align-items-center">
+                        Nome
+                      </div>
+                      <div class="flex justify-content-between align-items-center">
+                        <p-sortIcon field="nome"></p-sortIcon>
+                        <p-columnFilter
+                          type="text"
+                          field="nome"
+                          display="menu"
+                          matchMode="contains"
+                          [showMatchModes]="false"
+                          [showOperator]="false"
+                          [showAddButton]="false"
+                        ></p-columnFilter>
+                      </div>
+                    </div>
+                  </th>
+
+                  <th pSortableColumn="descricao">
+                    <div class="flex justify-content-between align-items-center">
+                      <div class="flex justify-content-between align-items-center">
+                        Descrição
+                      </div>
+                      <div class="flex justify-content-between align-items-center">
+                        <p-sortIcon field="descricao"></p-sortIcon>
+                        <p-columnFilter
+                          type="text"
+                          field="descricao"
+                          display="menu"
+                          matchMode="contains"
+                          [showMatchModes]="false"
+                          [showOperator]="false"
+                          [showAddButton]="false"
+                        ></p-columnFilter>
+                      </div>
+                    </div>
+                  </th>
+
+                  <th pSortableColumn="querieStr">
+                    <div class="flex justify-content-between align-items-center">
+                      <div class="flex justify-content-between align-items-center">
+                        Querie
+                      </div>
+                      <div class="flex justify-content-between align-items-center">
+                        <p-sortIcon field="querieStr"></p-sortIcon>
+                        <p-columnFilter
+                          type="text"
+                          field="querieStr"
+                          display="menu"
+                          matchMode="contains"
+                          [showMatchModes]="false"
+                          [showOperator]="false"
+                          [showAddButton]="false"
+                        ></p-columnFilter>
+                      </div>
+                    </div>
+                  </th>
+                  <th pSortableColumn="data">
+                    <div class="flex justify-content-between align-items-center">
+                      <div class="flex justify-content-between align-items-center">
+                        Data
+                      </div>
+                      <div class="flex justify-content-between align-items-center">
+                        <p-sortIcon field="data"></p-sortIcon>
+                        <p-columnFilter
+                          type="text"
+                          field="data"
+                          display="menu"
+                          matchMode="contains"
+                          [showMatchModes]="false"
+                          [showOperator]="false"
+                          [showAddButton]="false"
+                        ></p-columnFilter>
+                      </div>
+                    </div>
+                  </th>
+                  <th>
+                    <div class="flex justify-content-between align-items-center">
+                      Editar
+                    </div>
+                  </th>
+                  <th>
+                    <div class="flex justify-content-between align-items-center">
+                      Excluir
+                    </div>
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-dados >
+                <tr>
+                  <td>
+                    <p-tableCheckbox [value]="dados"></p-tableCheckbox>
+                </td>
+                  <td style="text-align: left">{{ dados.nome }}</td>
+                  <td [pTooltip]="dados?.descricao" tooltipPosition="top" style="text-align: left">
+                    {{ dados?.descricao | shorten : 25 }}
+                  </td>
+                  <td [pTooltip]="dados?.querieStr" tooltipPosition="top" style="text-align: left">
+                    {{ dados?.querieStr | shorten : 25 }}
+                  </td>
+                  <td style="text-align: left">{{ dados.data | date: "dd-MM-yyyy"   }}</td>
+                  <td style="text-align: center">
+                    <p-button
+                      icon="pi pi-file-edit"
+                      styleClass="p-button-rounded p-button-secondary p-button-text"
+
+                    >
+                    </p-button>
+                  </td>
+                  <td style="text-align: center">
+                    <p-button
+                      icon="pi pi-trash"
+                      styleClass="p-button-rounded p-button-secondary p-button-text"
+
+                    >
+                    </p-button>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Histórico">
+        <div class="example-large-box mat-elevation-z4">
+          <div class="example-small-box mat-elevation-z4">
+            <div class="card flex justify-content-center mr-2">
+              <p-table
+                #queriesDbHistoricoTable
+                [value]="queriesDbHistorico"
+
+                [rows]="20"
+                [paginator]="true"
+                [globalFilterFields]="['grupo', 'id']"
+                [tableStyle]="{ 'min-width': '50rem' }"
+                styleClass="p-datatable-gridlines p-datatable-striped p-datatable-sm"
+                [rowHover]="true"
+                [showCurrentPageReport]="true"
+                dataKey="id"
+                [rowsPerPageOptions]="[5, 10, 20, 50, 100]"
+                currentPageReportTemplate="Mostrando {first} de {last} de {totalRecords} funcionalidades"
+              >
+              <ng-template pTemplate="caption">
+                <div class="flex align-items-center justify-content-between">
+                  Histórico de Queries Db
+                </div>
+              </ng-template>
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th style="width: 2%">
+                      <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                    </th>
+                    <th pSortableColumn="historico">
+                      <div class="flex justify-content-between align-items-center">
+                        <div class="flex justify-content-between align-items-center">
+                          Histórico
+                        </div>
+                        <div class="flex justify-content-between align-items-center">
+                          <p-sortIcon field="historico"></p-sortIcon>
+                          <p-columnFilter
+                            type="text"
+                            field="historico"
+                            display="menu"
+                            matchMode="contains"
+                            [showMatchModes]="false"
+                            [showOperator]="false"
+                            [showAddButton]="false"
+                          ></p-columnFilter>
+                        </div>
+                      </div>
+                    </th>
+                    <th pSortableColumn="data">
+                      <div class="flex justify-content-between align-items-center">
+                        <div class="flex justify-content-between align-items-center">
+                          Data
+                        </div>
+                        <div class="flex justify-content-between align-items-center">
+                          <p-sortIcon field="data"></p-sortIcon>
+                          <p-columnFilter
+                            type="text"
+                            field="data"
+                            display="menu"
+                            matchMode="contains"
+                            [showMatchModes]="false"
+                            [showOperator]="false"
+                            [showAddButton]="false"
+                          ></p-columnFilter>
+                        </div>
+                      </div>
+                    </th>
+                    <th pSortableColumn="status">
+                      <div class="flex justify-content-between align-items-center">
+                        <div class="flex justify-content-between align-items-center">
+                          Status
+                        </div>
+                        <div class="flex justify-content-between align-items-center">
+                          <p-sortIcon field="status"></p-sortIcon>
+                          <p-columnFilter
+                            type="text"
+                            field="status"
+                            display="menu"
+                            matchMode="contains"
+                            [showMatchModes]="false"
+                            [showOperator]="false"
+                            [showAddButton]="false"
+                          ></p-columnFilter>
+                        </div>
+                      </div>
+                    </th>
+
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-dados >
+                  <tr>
+                    <td>
+                      <p-tableCheckbox [value]="dados"></p-tableCheckbox>
+                    </td>
+                    <td [pTooltip]="dados?.historico" tooltipPosition="top" style="text-align: left">
+                      {{ dados?.historico | shorten : 200 }}
+                    </td>
+                    <td style="text-align: left">{{ dados.data | date: "dd-MM-yyyy"   }}</td>
+
+                    <td><p-tag [value]="dados.status" [severity]="getStatus(dados.status)"></p-tag></td>
+
+                  </tr>
+                </ng-template>
+              </p-table>
+
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
+
+
+
+
+  </p-card>
+</div>

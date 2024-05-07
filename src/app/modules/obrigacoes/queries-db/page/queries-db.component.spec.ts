@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AssistenteConsultaBdComponent } from './assistente-consulta-bd.component';
+import { QueriesDbComponent } from './queries-db.component';
 
 describe('AssistenteConsultaBdComponent', () => {
-  let component: AssistenteConsultaBdComponent;
-  let fixture: ComponentFixture<AssistenteConsultaBdComponent>;
+  let component: QueriesDbComponent;
+  let fixture: ComponentFixture<QueriesDbComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AssistenteConsultaBdComponent]
+      declarations: [QueriesDbComponent]
     });
-    fixture = TestBed.createComponent(AssistenteConsultaBdComponent);
+    fixture = TestBed.createComponent(QueriesDbComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

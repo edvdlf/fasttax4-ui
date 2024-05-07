@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AssistenteConsultaBdFormComponent } from './assistente-consulta-bd-form.component';
+import { QueriesDbFormComponent } from './queries-db-form.component';
 
 describe('AssistenteConsultaBdFormComponent', () => {
-  let component: AssistenteConsultaBdFormComponent;
-  let fixture: ComponentFixture<AssistenteConsultaBdFormComponent>;
+  let component: QueriesDbFormComponent;
+  let fixture: ComponentFixture<QueriesDbFormComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AssistenteConsultaBdFormComponent]
+      declarations: [QueriesDbFormComponent]
     });
-    fixture = TestBed.createComponent(AssistenteConsultaBdFormComponent);
+    fixture = TestBed.createComponent(QueriesDbFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
